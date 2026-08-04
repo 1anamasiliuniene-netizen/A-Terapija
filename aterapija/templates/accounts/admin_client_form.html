@@ -1,0 +1,114 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}
+    {% trans "Add client" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page at-admin-client-form-page">
+
+    <a
+        href="{% url 'aterapija:admin_booking_request_add' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to booking" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Client management" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% trans "Add new client" %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Create the client profile here, then return to the booking page and select the client from the list." %}
+            </p>
+
+        </div>
+
+    </header>
+
+    <div class="at-admin-form-card">
+
+        <div class="at-admin-form-section-header">
+
+            <p class="at-eyebrow">
+                {% trans "Client details" %}
+            </p>
+
+            <h2 class="at-heading-3">
+                {% trans "Create client profile" %}
+            </h2>
+
+            <p class="at-admin-form-section-intro">
+                {% trans "Enter the client's contact and account information." %}
+            </p>
+
+        </div>
+
+        <form
+            method="post"
+            class="at-admin-form"
+            novalidate
+        >
+
+            {% csrf_token %}
+
+            {% if form.errors %}
+
+                <div class="at-form-message at-form-message-error">
+
+                    <strong>
+                        {% trans "The client was not created." %}
+                    </strong>
+
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+            {% endif %}
+
+            {% for field in form %}
+                {{ field|as_crispy_field }}
+            {% endfor %}
+
+            <div class="at-admin-form-actions">
+
+                <a
+                    href="{% url 'aterapija:admin_booking_request_add' %}"
+                    class="at-btn at-btn-secondary"
+                >
+                    {% trans "Cancel" %}
+                </a>
+
+                <button
+                    type="submit"
+                    class="at-btn at-btn-primary"
+                >
+                    {% trans "Create client" %}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Based on what you’ve shared" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<div
+    class="at-assessment-results-page"
+    style="--at-page-width: var(--at-width-wide); --at-text-width: var(--at-width-narrow);"
+>
+
+  <header class="at-page-header mb-5">
+    <h1 class="at-heading-1 mb-3">
+      {% trans "Based on what you’ve shared," %}
+    </h1>
+
+    <p class="at-body-lg mb-3">
+      {% trans "these services may be a good place to begin." %}
+    </p>
+
+    <p class="at-body at-results-note mb-0">
+      {% trans "Every journey is different, so you are always welcome to explore all services before making your choice." %}
+    </p>
+  </header>
+
+
+  {% if suggested_services %}
+
+    <div class="row g-4 mb-5">
+      {% for service in suggested_services %}
+
+        <div class="col-md-6">
+          <article class="card at-service-card h-100">
+            <div class="card-body">
+
+              <h2 class="at-heading-3">
+                {{ service|localized_title }}
+              </h2>
+
+              <p class="at-body">
+                {{ service|localized_short_description }}
+              </p>
+
+              <div class="at-service-card-footer">
+                <div class="at-service-meta">
+                  <span>
+                    {% blocktrans with minutes=service.duration_minutes %}{{ minutes }} min{% endblocktrans %}
+                  </span>
+
+                  <span>
+                    {{ service.price }} €
+                  </span>
+                </div>
+
+                <a href="{% url 'aterapija:service_detail' service.slug %}" class="at-card-link">
+                  {% trans "More" %} →
+                </a>
+              </div>
+
+            </div>
+          </article>
+        </div>
+
+      {% endfor %}
+    </div>
+
+  {% else %}
+
+    <section class="at-empty-state mb-5">
+      <h2 class="at-heading-3 mb-3">
+        {% trans "No clear match yet" %}
+      </h2>
+
+      <p class="at-body mb-0">
+        {% trans "We could not match your answers to a specific service yet. You can retake the questions or browse all available services." %}
+      </p>
+    </section>
+
+  {% endif %}
+
+
+  <hr class="at-section-divider my-5">
+
+
+  <div class="at-results-actions">
+    <a href="{% url 'aterapija:assessment' %}" class="at-card-link">
+      ← {% trans "Retake assessment" %}
+    </a>
+
+    <a href="{% url 'aterapija:services' %}" class="at-card-link">
+      {% trans "Browse all services" %} →
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}

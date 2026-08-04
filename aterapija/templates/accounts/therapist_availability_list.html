@@ -1,0 +1,167 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Unavailable Time" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:therapist_dashboard' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to therapist dashboard" %}
+    </a>
+
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Schedule management" %}</p>
+
+            <h1 class="at-heading-1">{% trans "Busy and unavailable periods" %}</h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Review upcoming busy periods and manage the times when you are unavailable for bookings." %}
+            </p>
+        </div>
+
+        <a href="{% url 'aterapija:therapist_availability_add' %}"
+           class="at-btn at-btn-primary">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            {% trans "Add unavailable time" %}
+        </a>
+    </header>
+
+    <section class="at-admin-list-section">
+        <header class="at-admin-list-section-header">
+            <div>
+                <h2 class="at-heading-3">{% trans "Upcoming busy periods" %}</h2>
+
+                <p class="at-admin-section-meta">
+                    {% trans "Bookings and unavailable periods scheduled ahead." %}
+                </p>
+            </div>
+        </header>
+
+        {% include "accounts/includes/busy_period_list.html" with busy_periods=busy_periods %}
+    </section>
+
+    <section class="at-admin-list-section">
+        <header class="at-admin-list-section-header">
+            <div>
+                <h2 class="at-heading-3">{% trans "Unavailable blocks I manage" %}</h2>
+
+                <p class="at-admin-section-meta">
+                    {% trans "Edit or remove the unavailable periods you created." %}
+                </p>
+            </div>
+
+            <span class="at-admin-item-count">
+                {{ availability_slots|length }}
+            </span>
+        </header>
+
+        {% if availability_slots %}
+
+            <div class="at-admin-table-card">
+                <div class="table-responsive">
+
+                    <table class="table at-admin-table align-middle">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">{% trans "Date" %}</th>
+                                <th scope="col">{% trans "End date" %}</th>
+                                <th scope="col">{% trans "Start" %}</th>
+                                <th scope="col">{% trans "End" %}</th>
+                                <th scope="col">{% trans "Reason" %}</th>
+                                <th scope="col">
+                                    <span class="visually-hidden">{% trans "Actions" %}</span>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for slot in availability_slots %}
+                                <tr>
+
+                                    <td>
+                                        <strong class="at-admin-table-title">
+                                            {{ slot.date|date:"M j, Y" }}
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        {{ slot.end_date|date:"M j, Y" }}
+                                    </td>
+
+                                    <td>
+                                        {{ slot.start_time|time:"H:i" }}
+                                    </td>
+
+                                    <td>
+                                        {{ slot.end_time|time:"H:i" }}
+                                    </td>
+
+                                    <td>
+                                        {% if slot.reason %}
+                                            {{ slot.reason }}
+                                        {% else %}
+                                            <span class="at-admin-table-meta">
+                                                {% trans "Unavailable" %}
+                                            </span>
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        <div class="at-admin-row-actions">
+
+                                            <a href="{% url 'aterapija:therapist_availability_edit' slot.pk %}"
+                                               class="at-admin-table-action">
+                                                <i class="bi bi-pencil" aria-hidden="true"></i>
+                                                {% trans "Edit" %}
+                                            </a>
+
+                                            <a href="{% url 'aterapija:therapist_availability_delete' slot.pk %}"
+                                               class="at-admin-table-action at-admin-table-action-delete">
+                                                <i class="bi bi-trash3" aria-hidden="true"></i>
+                                                {% trans "Delete" %}
+                                            </a>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+        {% else %}
+
+            <div class="at-admin-empty-state">
+                <i class="bi bi-calendar-x" aria-hidden="true"></i>
+
+                <div>
+                    <h3 class="at-admin-empty-title">
+                        {% trans "No unavailable blocks yet" %}
+                    </h3>
+
+                    <p class="at-admin-empty-text">
+                        {% trans "Add an unavailable period when you need to block time from bookings." %}
+                    </p>
+                </div>
+
+                <a href="{% url 'aterapija:therapist_availability_add' %}"
+                   class="at-btn at-btn-primary">
+                    {% trans "Add unavailable time" %}
+                </a>
+            </div>
+
+        {% endif %}
+    </section>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}{% trans "Create account" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-auth-page at-form-page">
+
+  <div class="at-auth-header at-form-page-header">
+    <p class="at-eyebrow">{% trans "Welcome" %}</p>
+
+    <h1 class="at-heading-1">
+      {% trans "Create your account" %}
+    </h1>
+
+    <p class="at-body">
+      {% blocktrans trimmed %}
+      Create your client account to book appointments, complete your assessment,
+      and follow your therapy journey.
+      {% endblocktrans %}
+    </p>
+  </div>
+
+  <div class="at-auth-card at-form-card">
+
+    <form method="post" class="at-auth-form at-form-content">
+      {% csrf_token %}
+
+      {{ form|crispy }}
+
+      <button class="at-btn at-btn-primary" type="submit">
+        {% trans "Create account" %}
+      </button>
+    </form>
+
+  </div>
+
+</section>
+
+{% endblock %}

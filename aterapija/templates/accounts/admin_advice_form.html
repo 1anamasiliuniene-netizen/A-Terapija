@@ -1,0 +1,86 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+{% block title %}{% trans "Advice" %} | A Terapija{% endblock %}
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:admin_advice_list' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to advice schedule" %}
+    </a>
+
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Content management" %}</p>
+
+            <h1 class="at-heading-1">
+                {% if object %}
+                {% trans "Edit advice" %}
+                {% else %}
+                {% trans "Add advice" %}
+                {% endif %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Choose the publication date for this advice. Active advice scheduled for a future date stays hidden publicly until that date arrives." %}
+            </p>
+        </div>
+    </header>
+    <div class="at-admin-form-card">
+        <form
+                method="post"
+                enctype="multipart/form-data"
+                class="at-admin-form"
+                novalidate
+        >
+            {% csrf_token %}
+
+            <div class="at-admin-form-fields">
+                {{ form.title|as_crispy_field }}
+                {{ form.published_date|as_crispy_field }}
+                {{ form.quote|as_crispy_field }}
+                {{ form.body|as_crispy_field }}
+
+                <div class="at-form-group">
+                    <span class="at-label">{% trans "Is active" %}</span>
+
+                    <label class="at-switch" for="{{ form.is_active.id_for_label }}">
+                        {{ form.is_active }}
+                        <span class="at-switch__slider" aria-hidden="true"></span>
+                    </label>
+
+                    {% if form.is_active.help_text %}
+                    <span class="at-helper">
+                {{ form.is_active.help_text }}
+            </span>
+                    {% endif %}
+
+                    {% for error in form.is_active.errors %}
+                    <span class="at-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="at-admin-form-actions">
+                <a
+                        href="{% url 'aterapija:admin_advice_list' %}"
+                        class="at-btn at-btn-secondary"
+                >
+                    {% trans "Cancel" %}
+                </a>
+
+                <button type="submit" class="at-btn at-btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i>
+
+                    {% if object %}
+                    {% trans "Save changes" %}
+                    {% else %}
+                    {% trans "Save advice" %}
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

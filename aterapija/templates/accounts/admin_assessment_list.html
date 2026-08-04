@@ -1,0 +1,104 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Help Me Choose Results" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a
+        href="{% url 'aterapija:admin_dashboard' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to admin dashboard" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Client insights" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% trans "Help Me Choose Results" %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Review questionnaire results submitted by clients, starting with the most recent." %}
+            </p>
+
+        </div>
+
+    </header>
+
+    {% if assessment_results %}
+
+        <div class="at-admin-result-list">
+
+            {% for result in assessment_results %}
+
+                <a
+                    href="{% url 'aterapija:admin_assessment_detail' result.assessment.pk %}"
+                    class="at-admin-result-card"
+                >
+
+                    <div class="at-admin-result-content">
+
+                        <h2 class="at-heading-3 at-admin-result-title">
+                            {{ result.client_name }}
+                        </h2>
+
+                        {% if result.client_phone %}
+                            <p class="at-admin-result-meta">
+                                <i class="bi bi-telephone" aria-hidden="true"></i>
+                                {{ result.client_phone }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="at-admin-result-date">
+                        <i class="bi bi-calendar3" aria-hidden="true"></i>
+                        {{ result.assessment.created_at|date:"M j, Y H:i" }}
+                    </div>
+
+                    <i
+                        class="bi bi-arrow-right at-admin-result-arrow"
+                        aria-hidden="true"
+                    ></i>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="at-admin-empty-state">
+
+            <i class="bi bi-ui-checks-grid" aria-hidden="true"></i>
+
+            <div>
+
+                <h2 class="at-admin-empty-title">
+                    {% trans "No questionnaire results yet" %}
+                </h2>
+
+                <p class="at-admin-empty-text">
+                    {% trans "Completed Help Me Choose questionnaires will appear here." %}
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

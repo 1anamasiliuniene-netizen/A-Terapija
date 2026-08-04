@@ -1,0 +1,133 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+{% load static %}
+{% block title %}{% trans "Services" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<div class="at-services-page">
+
+  <div class="at-page-header d-flex justify-content-between align-items-start gap-3 mb-5">
+    <div>
+      <h1 class="at-heading-1 mb-2">{% trans "Services" %}</h1>
+      <p class="at-body-lg text-muted mb-0">
+        {% trans "Browse available support options by category." %}
+      </p>
+    </div>
+    <a href="{% url 'aterapija:assessment' %}"
+       class="at-btn at-btn-accent at-btn-hero">
+      {% trans "Help me choose" %}
+    </a>
+  </div>
+
+
+  {# Featured first consultation #}
+  {% for category in categories %}
+    {% for service in category.services.all %}
+      {% if service.slug == "initial-wellbeing-consultation" %}
+
+        <section class="at-service-start mb-5">
+
+          <div class="at-service-start-copy mb-4">
+
+        <article class="card at-service-card at-service-card-featured">
+          <div class="card-body">
+            <div class="at-service-featured-layout">
+              <div class="at-service-featured-content">
+                <h3 class="at-heading-3">
+                  {{ service|localized_title }}
+                </h3>
+                <p class="at-body">
+                  {{ service|localized_short_description }}
+                </p>
+                <div class="at-service-card-footer">
+                  <div class="at-service-meta">
+                    <span class="at-service-duration">
+                      {% blocktrans with minutes=service.duration_minutes %}{{ minutes }} min{% endblocktrans %}
+                    </span>
+                    <span class="at-service-price">
+                      {{ service.price }} €
+                    </span>
+                  </div>
+                  <a href="{% url 'aterapija:service_detail' service.slug %}" class="at-card-link">
+                    {% trans "More" %} →
+                  </a>
+                </div>
+              </div>
+              <div class="at-service-featured-image">
+                <img src="{% static 'images/service_placeholder.png' %}" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+        </article>
+</div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  <hr class="at-section-divider my-5">
+
+  {# Service categories #}
+  {% for category in categories %}
+    {% if category.services.all %}
+
+      <section class="at-service-category mb-5">
+
+        <div class="at-category-header mb-4">
+          <h2 class="at-heading-2 at-service-category-title">
+            {{ category.name }}
+          </h2>
+
+          {% if category.description %}
+            <p class="at-body text-muted mb-0">
+              {{ category.description }}
+            </p>
+          {% endif %}
+        </div>
+
+        <div class="row g-4">
+          {% for service in category.services.all %}
+            {% if service.slug != "initial-wellbeing-consultation" %}
+
+              <div class="col-md-6">
+                <article class="card at-service-card h-100">
+                  <div class="card-body">
+                    <h3 class="at-heading-3">
+                      {{ service|localized_title }}
+                    </h3>
+
+                    <p class="at-body">
+                      {{ service|localized_short_description }}
+                    </p>
+                    <div class="at-service-card-footer">
+                      <div class="at-service-meta">
+                        <span class="at-service-duration">
+                          {% blocktrans with minutes=service.duration_minutes %}{{ minutes }} min{% endblocktrans %}
+                        </span>
+                        <span class="at-service-price">
+                          {{ service.price }} €
+                        </span>
+                      </div>
+                      <a href="{% url 'aterapija:service_detail' service.slug %}" class="at-card-link">
+                        {% trans "More" %} →
+                      </a>
+                    </div>
+                </article>
+              </div>
+
+            {% endif %}
+          {% endfor %}
+        </div>
+
+      </section>
+<hr class="at-section-divider my-5">
+    {% endif %}
+  {% empty %}
+
+    <p>{% trans "No active services are available yet." %}</p>
+
+  {% endfor %}
+
+</div>
+
+{% endblock %}

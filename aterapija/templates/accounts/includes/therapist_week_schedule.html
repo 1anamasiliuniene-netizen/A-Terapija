@@ -1,0 +1,92 @@
+{% load i18n %}
+
+{% if week_schedule %}
+    <div class="at-week-schedule">
+        <div class="at-week-schedule__legend" aria-label="{% trans 'Schedule legend' %}">
+            <div class="at-week-schedule__legend-item">
+                <span class="at-week-schedule__legend-mark is-booking"></span>
+                <span>{% trans "Appointment time" %}</span>
+            </div>
+
+            <div class="at-week-schedule__legend-item">
+                <span class="at-week-schedule__legend-mark is-buffer"></span>
+                <span>{% trans "Transition time" %}</span>
+            </div>
+
+            <div class="at-week-schedule__legend-item">
+                <span class="at-week-schedule__legend-mark is-unavailable"></span>
+                <span>{% trans "Blocked time" %}</span>
+            </div>
+
+            <div class="at-week-schedule__legend-item">
+                <span class="at-week-schedule__legend-mark is-free"></span>
+                <span>{% trans "Free" %}</span>
+            </div>
+        </div>
+
+        <div class="at-week-schedule__table-wrap">
+            <table class="at-week-schedule__table">
+                <thead>
+                    <tr>
+                        <th class="at-week-schedule__time-heading" scope="col">
+                            {% trans "Time" %}
+                        </th>
+
+                        {% for day in week_schedule.days %}
+                            <th scope="col">
+                                <span class="at-week-schedule__day">
+                                    {{ day.date|date:"D" }}
+                                </span>
+                                <span class="at-week-schedule__date">
+                                    {{ day.date|date:"M j" }}
+                                </span>
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for slot_time in week_schedule.time_slots %}
+                        <tr>
+                            <th
+                                class="at-week-schedule__time"
+                                scope="row"
+                            >
+                                {{ slot_time|time:"H:i" }}
+                            </th>
+
+                            {% for day in week_schedule.days %}
+                                {% for cell in day.cells %}
+                                    {% if cell.time == slot_time %}
+                                        <td
+                                            class="at-week-schedule__cell is-{{ cell.status }}"
+                                            title="{{ cell.detail }}">
+
+                                            {% if cell.status == "booking" %}
+                                            <strong class="at-week-schedule__cell-label">
+                                                {{ cell.label }}
+                                            </strong>
+                                            {% elif cell.status == "buffer" %}
+                                            <span class="at-week-schedule__cell-label">
+                                                {% trans "Transition" %}
+                                            </span>
+                                            {% elif cell.status == "unavailable" %}
+                                            <span class="at-week-schedule__cell-label">
+                                                {{ cell.label }}
+                                            </span>
+                                            {% else %}
+                                            <span class="at-week-schedule__cell-label">
+                                                {% trans "Free" %}
+                                            </span>
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endif %}

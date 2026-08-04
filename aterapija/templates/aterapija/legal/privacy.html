@@ -1,0 +1,200 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Privacy Policy" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<article class="at-legal-page">
+
+    <a
+        href="{% url 'aterapija:home' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to home" %}
+    </a>
+
+    <header class="at-legal-header">
+
+        <p class="at-eyebrow">
+            {% trans "Legal information" %}
+        </p>
+
+        <h1 class="at-heading-1">
+            {% trans "Privacy Policy" %}
+        </h1>
+
+        <p class="at-legal-updated">
+            {% trans "Last updated: January 2025" %}
+        </p>
+
+    </header>
+
+    <div class="at-legal-content">
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "1. Introduction" %}</h2>
+
+            <p>
+                {% trans "A Terapija (\"we,\" \"us,\" or \"our\") operates this website and provides therapy and wellbeing services. This Privacy Policy explains how we collect, use, store and protect your personal information when you use our website and services." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "2. Information We Collect" %}</h2>
+
+            <p>
+                {% trans "We may collect the following types of information:" %}
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>{% trans "Personal information" %}</strong> —
+                    {% trans "Name, email address, phone number, address, date of birth and other information you voluntarily provide." %}
+                </li>
+
+                <li>
+                    <strong>{% trans "Profile information" %}</strong> —
+                    {% trans "Information shared during assessments, bookings or therapy sessions." %}
+                </li>
+
+                <li>
+                    <strong>{% trans "Usage data" %}</strong> —
+                    {% trans "Technical information such as browser type, IP address, pages visited and visit times." %}
+                </li>
+
+                <li>
+                    <strong>{% trans "Communication records" %}</strong> —
+                    {% trans "Messages exchanged with therapists or administrative staff." %}
+                </li>
+
+            </ul>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "3. How We Use Your Information" %}</h2>
+
+            <p>
+                {% trans "We use your information to:" %}
+            </p>
+
+            <ul>
+
+                <li>{% trans "Provide and improve our services." %}</li>
+                <li>{% trans "Process bookings and manage therapy sessions." %}</li>
+                <li>{% trans "Send important service notifications." %}</li>
+                <li>{% trans "Respond to your enquiries." %}</li>
+                <li>{% trans "Understand how our website is used." %}</li>
+                <li>{% trans "Comply with legal obligations." %}</li>
+                <li>{% trans "Protect the security of our services." %}</li>
+
+            </ul>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "4. Data Security" %}</h2>
+
+            <p>
+                {% trans "We apply appropriate technical, organisational and administrative measures to protect your personal information. Although we strive to safeguard your data, no method of electronic storage or internet transmission can guarantee absolute security." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "5. Your Privacy Rights" %}</h2>
+
+            <p>
+                {% trans "Depending on applicable law, you may have the right to:" %}
+            </p>
+
+            <ul>
+
+                <li>{% trans "Access your personal data." %}</li>
+                <li>{% trans "Correct inaccurate information." %}</li>
+                <li>{% trans "Request deletion of your data." %}</li>
+                <li>{% trans "Object to or restrict certain processing." %}</li>
+                <li>{% trans "Request data portability." %}</li>
+
+            </ul>
+
+            <p>
+                {% trans "To exercise these rights, please contact us using the details below." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "6. Cookies" %}</h2>
+
+            <p>
+                {% trans "We use cookies to improve your experience and website functionality. Please see our Cookies Policy for more information." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "7. Third-Party Websites" %}</h2>
+
+            <p>
+                {% trans "Our website may contain links to third-party websites. We are not responsible for their privacy practices or content. We encourage you to review their privacy policies before providing personal information." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "8. Changes to This Policy" %}</h2>
+
+            <p>
+                {% trans "We may update this Privacy Policy from time to time. Any changes will be published on this page together with the updated revision date." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "9. Contact" %}</h2>
+
+            <p>
+                {% trans "If you have questions about this Privacy Policy or how we process your personal information, please contact us:" %}
+            </p>
+
+            <address class="at-legal-address">
+
+                <strong>A Terapija</strong><br>
+
+                {% trans "Email" %}:
+                <a href="mailto:info@aterapija.lt">
+                    info@aterapija.lt
+                </a>
+
+                <br>
+
+                {% trans "Phone" %}:
+                <a href="tel:+37060123456">
+                    +370&nbsp;6&nbsp;012&nbsp;3456
+                </a>
+
+            </address>
+
+        </section>
+
+    </div>
+
+</article>
+
+{% endblock %}

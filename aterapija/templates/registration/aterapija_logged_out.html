@@ -1,0 +1,42 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Logged out" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-auth-page at-form-page">
+
+  <div class="at-auth-card at-form-card">
+
+    <p class="at-eyebrow">{% trans "Session ended" %}</p>
+
+    <h1 class="at-heading-1">
+      {% trans "You’re logged out" %}
+    </h1>
+
+    <p class="at-body">
+      {% trans "Your session has ended safely. You can sign in again or return to the home page." %}
+    </p>
+
+    <div class="at-auth-actions">
+      <a
+        class="at-btn at-btn-primary"
+        href="{% url 'aterapija:login' %}"
+      >
+        {% trans "Sign in" %}
+      </a>
+
+      <a
+        class="at-btn at-btn-secondary"
+        href="{% url 'aterapija:home' %}"
+      >
+        {% trans "Go to home" %}
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

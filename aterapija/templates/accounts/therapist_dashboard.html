@@ -1,0 +1,249 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Therapist Dashboard" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section
+    class="at-dashboard-page"
+    style="--at-page-width: var(--at-width-xxl);"
+>
+
+  <header class="at-dashboard-header">
+    <p class="at-eyebrow">{% trans "Professional workspace" %}</p>
+
+    <h1 class="at-heading-1">
+      {% trans "Therapist dashboard" %}
+    </h1>
+
+    <p class="at-body">
+      {% trans "Manage your schedule, services, articles, profile, and received payments." %}
+    </p>
+
+    <div class="at-dashboard-actions">
+      <a
+        href="{% url 'aterapija:therapist_availability_add' %}"
+        class="at-btn at-btn-primary"
+      >
+        {% trans "Add unavailable time" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:therapist_availability_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Busy periods" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:therapist_service_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Manage services" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:article_manage_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Manage articles" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:therapist_profile' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Profile" %}
+      </a>
+    </div>
+  </header>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Overview" %}</p>
+        <h2 class="at-heading-2">{% trans "Payments received" %}</h2>
+      </div>
+    </div>
+
+    <div class="at-dashboard-stats">
+
+      <article class="at-stat-card">
+        <span class="at-stat-label">{% trans "Today" %}</span>
+        <strong class="at-stat-value">
+          €{{ payment_stats.today.total_received|floatformat:2 }}
+        </strong>
+        <span class="at-stat-meta">
+          {% blocktrans count count=payment_stats.today.paid_booking_count with n=payment_stats.today.paid_booking_count %}
+            {{ n }} paid booking
+          {% plural %}
+            {{ n }} paid bookings
+          {% endblocktrans %}
+        </span>
+      </article>
+
+      <article class="at-stat-card">
+        <span class="at-stat-label">{% trans "This month" %}</span>
+        <strong class="at-stat-value">
+          €{{ payment_stats.month.total_received|floatformat:2 }}
+        </strong>
+        <span class="at-stat-meta">
+          {% blocktrans count count=payment_stats.month.paid_booking_count with n=payment_stats.month.paid_booking_count %}
+            {{ n }} paid booking
+          {% plural %}
+            {{ n }} paid bookings
+          {% endblocktrans %}
+        </span>
+      </article>
+
+      <article class="at-stat-card">
+        <span class="at-stat-label">{% trans "All time" %}</span>
+        <strong class="at-stat-value">
+          €{{ payment_stats.all_time.total_received|floatformat:2 }}
+        </strong>
+        <span class="at-stat-meta">
+          {% blocktrans count count=payment_stats.all_time.paid_booking_count with n=payment_stats.all_time.paid_booking_count %}
+            {{ n }} paid booking
+          {% plural %}
+            {{ n }} paid bookings
+          {% endblocktrans %}
+        </span>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Schedule" %}</p>
+        <h2 class="at-heading-2">{% trans "This week" %}</h2>
+      </div>
+    </div>
+
+    <div class="at-dashboard-card">
+      {% include "accounts/includes/therapist_week_schedule.html" with week_schedule=week_schedule %}
+    </div>
+
+  </section>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Appointments" %}</p>
+        <h2 class="at-heading-2">{% trans "Bookings" %}</h2>
+      </div>
+    </div>
+
+    {% if approved_bookings %}
+
+      <div class="at-dashboard-table-card">
+        <div class="table-responsive">
+
+          <table class="at-dashboard-table">
+
+            <thead>
+              <tr>
+                <th scope="col">{% trans "Client" %}</th>
+                <th scope="col">{% trans "Service" %}</th>
+                <th scope="col">{% trans "Price" %}</th>
+                <th scope="col">{% trans "Payment" %}</th>
+                <th scope="col">{% trans "Date and time" %}</th>
+                <th scope="col">{% trans "Status" %}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for booking in approved_bookings %}
+                <tr>
+
+                  <td data-label="{% trans 'Client' %}">
+                    <strong>{{ booking.client_name }}</strong>
+                  </td>
+
+                  <td data-label="{% trans 'Service' %}">
+                    {{ booking.service|localized_title }}
+                  </td>
+
+                  <td data-label="{% trans 'Price' %}">
+                    €{{ booking.service.price|floatformat:2 }}
+                  </td>
+
+                  <td data-label="{% trans 'Payment' %}">
+                    {% url 'aterapija:therapist_booking_payment_toggle' booking.pk as payment_toggle_url %}
+
+                    {% include "accounts/includes/payment_received_checkbox.html" with booking=booking payment_toggle_url=payment_toggle_url %}
+                  </td>
+
+                  <td data-label="{% trans 'Date and time' %}">
+                    <div class="at-table-datetime">
+                      <span>{{ booking.preferred_date|date:"M j, Y" }}</span>
+                      <span class="at-table-time">
+                        {{ booking.preferred_time|time:"H:i" }}
+                      </span>
+                    </div>
+                  </td>
+
+                  <td data-label="{% trans 'Status' %}">
+                    <span class="at-status at-status-{{ booking.status }}">
+                      {{ booking.get_status_display }}
+                    </span>
+                  </td>
+
+                </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="at-empty-state">
+        <h3 class="at-heading-3">{% trans "No bookings yet" %}</h3>
+
+        <p class="at-body">
+          {% trans "Approved client appointments will appear here." %}
+        </p>
+      </div>
+
+    {% endif %}
+
+  </section>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Availability" %}</p>
+        <h2 class="at-heading-2">{% trans "Busy periods" %}</h2>
+      </div>
+
+      <a
+        href="{% url 'aterapija:therapist_availability_add' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Add unavailable time" %}
+      </a>
+    </div>
+
+    <div class="at-dashboard-card">
+      {% include "accounts/includes/busy_period_list.html" with busy_periods=busy_periods %}
+    </div>
+
+  </section>
+
+</section>
+
+{% endblock %}

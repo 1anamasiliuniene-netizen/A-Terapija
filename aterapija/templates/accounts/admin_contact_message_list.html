@@ -1,0 +1,114 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Client Messages" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a
+        href="{% url 'aterapija:admin_dashboard' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to admin dashboard" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Client communication" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% trans "Client Messages" %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Review messages submitted through the contact form, starting with the most recent." %}
+            </p>
+
+        </div>
+
+    </header>
+
+    {% if contact_messages %}
+
+        <div class="at-admin-result-list">
+
+            {% for contact_message in contact_messages %}
+
+                <a
+                    href="{% url 'aterapija:admin_contact_message_detail' contact_message.pk %}"
+                    class="at-admin-result-card"
+                >
+
+                    <div class="at-admin-result-content">
+
+                        <h2 class="at-heading-3 at-admin-result-title">
+
+                            {% if contact_message.name %}
+                                {{ contact_message.name }}
+                            {% else %}
+                                {% trans "Anonymous visitor" %}
+                            {% endif %}
+
+                        </h2>
+
+                        <p class="at-admin-result-meta">
+
+                            {% if contact_message.email %}
+                                <i class="bi bi-envelope" aria-hidden="true"></i>
+                                {{ contact_message.email }}
+                            {% endif %}
+
+                        </p>
+
+                    </div>
+
+                    <div class="at-admin-result-date">
+
+                        <i class="bi bi-calendar3" aria-hidden="true"></i>
+                        {{ contact_message.created_at|date:"M j, Y H:i" }}
+
+                    </div>
+
+                    <i
+                        class="bi bi-arrow-right at-admin-result-arrow"
+                        aria-hidden="true"
+                    ></i>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="at-admin-empty-state">
+
+            <i class="bi bi-chat-dots" aria-hidden="true"></i>
+
+            <div>
+
+                <h2 class="at-admin-empty-title">
+                    {% trans "No client messages yet" %}
+                </h2>
+
+                <p class="at-admin-empty-text">
+                    {% trans "Messages submitted through the contact form will appear here." %}
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

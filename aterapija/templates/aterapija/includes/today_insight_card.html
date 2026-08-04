@@ -1,0 +1,79 @@
+{% load i18n static %}
+
+<section class="at-blog-section at-blog-section-wide mb-5">
+    <div class="at-blog-card">
+
+        <div class="at-insights-visual">
+            <img
+                src="{% static 'images/insight_simbol.png' %}"
+                alt="{% trans 'Daily insight' %}"
+                class="at-insights-image">
+        </div>
+
+        <div class="at-blog-content">
+
+            <p class="at-blog-date">
+                {% if advice_for_today %}
+                    {{ advice_for_today.published_date|date:"F j, Y" }}
+                {% else %}
+                    {% now "F j, Y" %}
+                {% endif %}
+            </p>
+
+            <h2 class="at-heading-2 at-blog-title">
+                {% if advice_for_today %}
+                    {{ advice_for_today.title }}
+                {% else %}
+                    {% trans "Today's Insight" %}
+                {% endif %}
+            </h2>
+
+            <p class="at-blog-quote">
+                {% if advice_for_today.quote %}
+                    “{{ advice_for_today.quote }}”
+                {% else %}
+                    {% trans "Small, consistent steps create lasting change." %}
+                {% endif %}
+            </p>
+
+            <p class="at-blog-excerpt">
+              {% if advice_for_today %}
+                  {% if compact %}
+                      {{ advice_for_today.body|truncatewords:22 }}
+                  {% else %}
+                      {{ advice_for_today.body|truncatewords:32 }}
+                  {% endif %}
+              {% else %}
+                  {% trans "Today's insight has not been published yet. Meanwhile, explore our articles and discover practical ideas for improving wellbeing." %}
+              {% endif %}
+            </p>
+
+            {% if advice_for_today %}
+                <a href="{{ advice_for_today.get_absolute_url }}"
+                   class="at-btn at-btn-secondary at-btn-sm">
+                    {% trans "Read today's insight" %}
+                </a>
+            {% else %}
+                <a href="{% url 'aterapija:articles' %}"
+                   class="at-btn at-btn-secondary at-btn-sm">
+                    {% trans "Read the insight" %}
+                </a>
+            {% endif %}
+
+            <p class="at-blog-readtime">
+                <i class="bi bi-clock"></i>
+                {% trans "2 min read" %}
+            </p>
+
+        </div>
+
+        <div class="at-blog-share">
+            {% if advice_for_today %}
+                {% include "aterapija/includes/share_links.html" with share_url=advice_share_url share_text=advice_for_today.title %}
+            {% else %}
+                {% include "aterapija/includes/share_links.html" with share_url=request.build_absolute_uri share_text="Today's Insight" %}
+            {% endif %}
+        </div>
+
+    </div>
+</section>

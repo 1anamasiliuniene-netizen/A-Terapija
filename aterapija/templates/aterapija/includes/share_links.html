@@ -1,0 +1,30 @@
+{% load i18n %}
+
+<div class="at-share">
+  <p class="at-share-title">{% trans "Share today's insight" %}</p>
+
+  <a class="at-share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url|urlencode }}" target="_blank" rel="noopener">
+    <i class="bi bi-facebook"></i>
+    <span>Facebook</span>
+  </a>
+
+  <a class="at-share-link" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url|urlencode }}" target="_blank" rel="noopener">
+    <i class="bi bi-linkedin"></i>
+    <span>LinkedIn</span>
+  </a>
+
+  <a class="at-share-link" href="https://twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ share_text|urlencode }}" target="_blank" rel="noopener">
+    <i class="bi bi-twitter-x"></i>
+    <span>X</span>
+  </a>
+
+  <a class="at-share-link" href="https://www.messenger.com/t/?link={{ share_url|urlencode }}" target="_blank" rel="noopener">
+    <i class="bi bi-messenger"></i>
+    <span>Messenger</span>
+  </a>
+
+  <a class="at-share-link" href="https://api.whatsapp.com/send?text={{ share_text|urlencode }}%20{{ share_url|urlencode }}" target="_blank" rel="noopener">
+    <i class="bi bi-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
+</div>

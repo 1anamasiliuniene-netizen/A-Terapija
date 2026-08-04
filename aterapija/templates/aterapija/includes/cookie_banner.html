@@ -1,0 +1,57 @@
+{% load i18n %}
+<div
+        class="at-cookie-banner"
+        id="cookie-banner"
+        hidden
+>
+
+    <div class="at-cookie-content">
+
+        <h2 class="at-cookie-title">
+            {% trans "Cookies" %}
+        </h2>
+
+        <p class="at-cookie-text">
+            {% blocktrans trimmed %}
+                We use cookies to improve your experience, remember your preferences and analyse website usage.
+                You can accept all cookies or manage your preferences.
+            {% endblocktrans %}
+        </p>
+
+        <p class="at-cookie-links">
+
+            <a href="{% url 'aterapija:privacy' %}">
+
+                {% trans "Privacy Policy" %}
+
+            </a>
+
+            <span aria-hidden="true">•</span>
+
+            <a href="{% url 'aterapija:cookies' %}">
+
+                {% trans "Cookies Policy" %}
+
+            </a>
+
+        </p>
+
+    </div>
+
+    <div class="at-cookie-actions">
+
+        <button class="at-btn at-btn-secondary">
+
+            {% trans "Only necessary" %}
+
+        </button>
+
+        <button class="at-btn at-btn-primary">
+
+            {% trans "Accept all" %}
+
+        </button>
+
+    </div>
+
+</div>

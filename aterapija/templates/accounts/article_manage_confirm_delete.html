@@ -1,0 +1,65 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Delete Article" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:article_manage_list' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to articles" %}
+    </a>
+
+    <section class="at-admin-confirm-card">
+
+        <div class="at-admin-confirm-icon" aria-hidden="true">
+            <i class="bi bi-exclamation-triangle"></i>
+        </div>
+
+        <div class="at-admin-confirm-content">
+
+            <p class="at-eyebrow">
+                {% trans "Content management" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% trans "Delete article" %}
+            </h1>
+
+            <p class="at-admin-confirm-text">
+                {% blocktrans with article_title=object|localized_title %}
+                Are you sure you want to delete
+                <strong>{{ article_title }}</strong>?
+                {% endblocktrans %}
+            </p>
+
+            <p class="at-admin-confirm-warning">
+                {% trans "This action cannot be undone." %}
+            </p>
+
+            <form method="post" class="at-admin-confirm-actions">
+
+                {% csrf_token %}
+
+                <a href="{% url 'aterapija:article_manage_list' %}"
+                   class="at-btn at-btn-secondary">
+                    {% trans "Cancel" %}
+                </a>
+
+                <button type="submit"
+                        class="at-btn at-btn-accent">
+                    <i class="bi bi-trash3" aria-hidden="true"></i>
+                    {% trans "Delete article" %}
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</section>
+
+{% endblock %}

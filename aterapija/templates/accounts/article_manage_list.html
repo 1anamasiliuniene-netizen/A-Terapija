@@ -1,0 +1,124 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Manage Articles" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:admin_dashboard' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to admin dashboard" %}
+    </a>
+
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Content management" %}</p>
+
+            <h1 class="at-heading-1">{% trans "Manage Articles" %}</h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Create, update, publish, and organise articles. Newest articles appear first." %}
+            </p>
+        </div>
+
+        <a href="{% url 'aterapija:article_manage_add' %}"
+           class="at-btn at-btn-primary">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            {% trans "Add article" %}
+        </a>
+    </header>
+
+    {% if articles %}
+
+        <div class="at-admin-article-list">
+
+            {% for article in articles %}
+               <article class="at-admin-article-card {% if not article.image %}at-admin-article-card--no-image{% endif %}">
+
+                    {% if article.image %}
+                        <div class="at-admin-article-image">
+                            <img src="{{ article.image.url }}"
+                                 alt="{{ article|localized_title }}">
+                        </div>
+                    {% endif %}
+
+                    <div class="at-admin-article-content">
+
+                        <div class="at-admin-article-meta">
+                            <span>
+                                <i class="bi bi-calendar3" aria-hidden="true"></i>
+                                {{ article.created_at|date:"M j, Y H:i" }}
+                            </span>
+
+                            <span>
+                                {{ article.category.name }}
+                            </span>
+
+                            <span class="at-status-badge {% if article.is_published %}at-status-badge--active{% else %}at-status-badge--inactive{% endif %}">
+                                {% if article.is_published %}
+                                    {% trans "Published" %}
+                                {% else %}
+                                    {% trans "Draft" %}
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <h2 class="at-heading-3 at-admin-article-title">
+                            {{ article|localized_title }}
+                        </h2>
+
+                        <p class="at-admin-article-summary">
+                            {{ article.summary }}
+                        </p>
+
+                    </div>
+
+                    <div class="at-admin-row-actions">
+
+                        <a href="{% url 'aterapija:article_manage_edit' article.pk %}"
+                           class="at-admin-table-action">
+                            <i class="bi bi-pencil" aria-hidden="true"></i>
+                            {% trans "Edit" %}
+                        </a>
+
+                        <a href="{% url 'aterapija:article_manage_delete' article.pk %}"
+                           class="at-admin-table-action at-admin-table-action-delete">
+                            <i class="bi bi-trash3" aria-hidden="true"></i>
+                            {% trans "Delete" %}
+                        </a>
+
+                    </div>
+
+                </article>
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="at-admin-empty-state">
+            <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+
+            <div>
+                <h2 class="at-admin-empty-title">
+                    {% trans "No articles yet" %}
+                </h2>
+
+                <p class="at-admin-empty-text">
+                    {% trans "Create the first article for the public reading section." %}
+                </p>
+            </div>
+
+            <a href="{% url 'aterapija:article_manage_add' %}"
+               class="at-btn at-btn-primary">
+                {% trans "Add article" %}
+            </a>
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

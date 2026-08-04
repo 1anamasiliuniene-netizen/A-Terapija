@@ -1,0 +1,87 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}{% trans "Contact" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section
+    class="at-contact-page at-form-page"
+    style="--at-page-width: var(--at-width-content);"
+>
+
+    <header class="at-contact-header">
+        <p class="at-eyebrow">{% trans "Contact" %}</p>
+
+        <h1 class="at-heading-1">
+            {% trans "Let’s start gently" %}
+        </h1>
+
+        <p class="at-body-lg">
+            {% trans "Send us a message and we will get back to you soon." %}
+        </p>
+    </header>
+    <div class="at-section-divider"></div>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if "contact" in message.tags %}
+                <div class="at-alert at-alert-success" role="alert">
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <div class="at-alert-content">
+                        <h3 class="at-alert-title">
+                            {% trans "Message sent successfully" %}
+                        </h3>
+
+                        <p class="at-alert-text">
+                            {{ message }}
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <div class="at-contact-info">
+
+        <div class="at-contact-item">
+            <div class="at-contact-label">
+                <i class="bi bi-geo-alt"></i>
+            </div>
+            <p>{% trans "Coming soon in Vilnius" %}</p>
+        </div>
+
+        <div class="at-contact-item">
+            <span class="at-contact-icons">
+                <i class="bi bi-telephone"></i>
+                <i class="bi bi-whatsapp"></i>
+            </span>
+            <a href="tel:+370XXXXXXXX">+370 XXX XXXXX</a>
+        </div>
+
+        <div class="at-contact-item">
+            <div class="at-contact-label">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <a href="mailto:info@aterapija.lt">info@aterapija.lt</a>
+        </div>
+
+    </div>
+<div class="at-section-divider"></div>
+   <div class="at-contact-card at-form-card">
+
+        <form method="post" class="at-contact-form" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <button type="submit" class="at-btn at-btn-primary at-btn-hero">
+                {% trans "Send message" %}
+            </button>
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

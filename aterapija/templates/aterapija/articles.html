@@ -1,0 +1,133 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content static %}
+
+{% block title %}{% trans "Meaningful readings" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<div class="at-articles-page">
+
+    {% include "aterapija/includes/today_insight_card.html" with compact=False %}
+
+    <div class="at-section-divider"></div>
+
+    <section class="at-reading-categories">
+
+        <p class="at-eyebrow">
+            {% trans "Articles" %}
+        </p>
+
+        {% regroup articles by category as article_categories %}
+
+        <div class="at-reading-categories-list">
+
+            {% for category in article_categories %}
+
+                <section class="at-reading-category">
+
+                    <h2 class="at-heading-2">
+                        {{ category.grouper.name }}
+                    </h2>
+
+                    {% if category.grouper.description %}
+                        <p class="at-body at-category-description">
+                            {{ category.grouper.description }}
+                        </p>
+                    {% endif %}
+
+                    <div class="at-reading-links">
+
+                        {% for article in category.list %}
+                            <a
+                                href="{% url 'aterapija:article_detail' article.slug %}"
+                                class="at-reading-link">
+
+                                <span>{{ article|localized_title }}</span>
+                                <span class="at-reading-arrow">→</span>
+
+                            </a>
+                        {% endfor %}
+
+                    </div>
+
+                </section>
+
+            {% empty %}
+
+                <p class="at-body">
+                    {% trans "No published articles are available yet." %}
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    <div class="at-section-divider"></div>
+
+    <section class="at-insight-archive">
+
+    <p class="at-eyebrow">
+        {% trans "Archive" %}
+    </p>
+
+    <h2 class="at-heading-2">
+        {% trans "Past insights" %}
+    </h2>
+
+    <div class="at-archive-list">
+
+        {% for advice in old_advice_items %}
+
+            <a href="{{ advice.get_absolute_url }}" class="at-archive-link">
+
+                <span class="at-archive-date">
+                    {{ advice.published_date|date:"F j, Y" }}
+                </span>
+
+                <span class="at-archive-title">
+                    {{ advice.title }}
+                </span>
+
+                <span class="at-archive-arrow">→</span>
+
+            </a>
+
+        {% empty %}
+
+            <p class="at-body">
+                {% trans "No previous insights have been saved yet." %}
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    {% if archive_page.has_other_pages %}
+    <nav class="at-archive-pagination">
+
+     {% if archive_page.has_previous %}
+<a href="?archive_page={{ archive_page.previous_page_number }}"
+   class="at-btn at-btn-secondary at-btn-hero">
+    {% trans "Newer" %}
+</a>
+
+{% endif %}
+
+{% if archive_page.has_next %}
+<a href="?archive_page={{ archive_page.next_page_number }}"
+   class="at-btn at-btn-secondary at-btn-hero">
+    {% trans "Older" %}
+</a>
+
+{% endif %}
+
+    </nav>
+{% endif %}
+
+</section>
+
+</div>
+
+{% endblock %}

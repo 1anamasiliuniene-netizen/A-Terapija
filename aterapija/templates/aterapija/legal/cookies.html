@@ -1,0 +1,163 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Cookies Policy" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<article class="at-legal-page">
+
+    <a
+        href="{% url 'aterapija:home' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to home" %}
+    </a>
+
+    <header class="at-legal-header">
+
+        <p class="at-eyebrow">
+            {% trans "Legal information" %}
+        </p>
+
+        <h1 class="at-heading-1">
+            {% trans "Cookies Policy" %}
+        </h1>
+
+        <p class="at-legal-updated">
+            {% trans "Last updated: January 2025" %}
+        </p>
+
+    </header>
+
+    <div class="at-legal-content">
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "1. What Are Cookies?" %}</h2>
+
+            <p>
+                {% trans "Cookies are small text files that are placed on your computer or mobile device when you visit our website. They help us remember your preferences and understand how you use our site." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "2. Types of Cookies We Use" %}</h2>
+
+            <ul>
+
+                <li>
+                    <strong>{% trans "Essential Cookies" %}</strong> —
+                    {% trans "Necessary for the website to function properly, including user authentication and security features." %}
+                </li>
+
+                <li>
+                    <strong>{% trans "Preference Cookies" %}</strong> —
+                    {% trans "Remember your choices, such as language preferences and theme settings." %}
+                </li>
+
+                <li>
+                    <strong>{% trans "Analytics Cookies" %}</strong> —
+                    {% trans "Help us understand how the website is used so we can improve it." %}
+                </li>
+
+                <li>
+                    <strong>{% trans "Marketing Cookies" %}</strong> —
+                    {% trans "May be used to display relevant content or measure campaign performance." %}
+                </li>
+
+            </ul>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "3. How to Control Cookies" %}</h2>
+
+            <p>
+                {% trans "You can control cookies through your browser settings. Blocking cookies may affect the availability of some website features." %}
+            </p>
+
+            <p>
+                {% trans "Common browser settings:" %}
+            </p>
+
+            <ul>
+
+                <li>{% trans "Chrome — Settings → Privacy and Security → Cookies and Other Site Data" %}</li>
+                <li>{% trans "Firefox — Settings → Privacy & Security → Cookies and Site Data" %}</li>
+                <li>{% trans "Safari — Preferences → Privacy → Cookies and Website Data" %}</li>
+                <li>{% trans "Edge — Settings → Privacy → Cookies and Other Site Permissions" %}</li>
+
+            </ul>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "4. Third-Party Cookies" %}</h2>
+
+            <p>
+                {% trans "Some cookies may be placed by third-party services that provide analytics or other website functionality. These providers manage their cookies according to their own privacy policies." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "5. Cookie Duration" %}</h2>
+
+            <p>
+                {% trans "Session cookies are deleted when you close your browser. Persistent cookies remain on your device until they expire or are manually removed." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "6. Your Consent" %}</h2>
+
+            <p>
+                {% trans "By continuing to use this website, you agree to the use of cookies described in this policy. You may withdraw your consent at any time by changing your browser settings." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "7. Contact" %}</h2>
+
+            <p>
+                {% trans "If you have any questions about this Cookies Policy, please contact us:" %}
+            </p>
+
+            <address class="at-legal-address">
+
+                <strong>A Terapija</strong><br>
+
+                {% trans "Email" %}:
+                <a href="mailto:info@aterapija.lt">
+                    info@aterapija.lt
+                </a>
+
+                <br>
+
+                {% trans "Phone" %}:
+                <a href="tel:+37060123456">
+                    +370&nbsp;6&nbsp;012&nbsp;3456
+                </a>
+
+            </address>
+
+        </section>
+
+    </div>
+
+</article>
+
+{% endblock %}

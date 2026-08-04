@@ -1,0 +1,124 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}
+    {% if object %}
+        {% trans "Edit service" %}
+    {% else %}
+        {% trans "Create service" %}
+    {% endif %}
+    | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:therapist_service_list' %}"
+       class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to services" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Service management" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% if object %}
+                    {% trans "Edit service" %}
+                {% else %}
+                    {% trans "Create service" %}
+                {% endif %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Create or update a service, choose its category, duration, price and public visibility." %}
+            </p>
+
+        </div>
+
+        <a href="{% url 'aterapija:therapist_service_category_add' %}"
+           class="at-btn at-btn-secondary">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            {% trans "Add category" %}
+        </a>
+
+    </header>
+
+    <div class="at-admin-form-card">
+
+        <form method="post"
+              enctype="multipart/form-data"
+              class="at-admin-form"
+              novalidate>
+
+            {% csrf_token %}
+
+            <div class="at-admin-form-fields">
+                {{ form.category|as_crispy_field }}
+                {{ form.name|as_crispy_field }}
+                {{ form.title_lt|as_crispy_field }}
+                {{ form.title_en|as_crispy_field }}
+                {{ form.short_description|as_crispy_field }}
+                {{ form.full_description|as_crispy_field }}
+                {{ form.description_lt|as_crispy_field }}
+                {{ form.description_en|as_crispy_field }}
+                {{ form.duration_minutes|as_crispy_field }}
+                {{ form.price|as_crispy_field }}
+
+                <div class="at-form-group">
+                    <span class="at-label">{% trans "Is active" %}</span>
+
+                    <div class="at-switch-field">
+                        <label class="at-switch" for="{{ form.is_active.id_for_label }}">
+                            {{ form.is_active }}
+                            <span class="at-switch__slider" aria-hidden="true"></span>
+                        </label>
+
+                        <label for="{{ form.is_active.id_for_label }}" class="at-switch-field__label">
+                            {% trans "Active" %}
+                        </label>
+                    </div>
+
+                    {% if form.is_active.help_text %}
+                    <span class="at-helper">{{ form.is_active.help_text }}</span>
+                    {% endif %}
+
+                    {% for error in form.is_active.errors %}
+                    <span class="at-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="at-admin-form-actions">
+
+                <a href="{% url 'aterapija:therapist_service_list' %}"
+                   class="at-btn at-btn-secondary">
+                    {% trans "Cancel" %}
+                </a>
+
+                <button type="submit"
+                        class="at-btn at-btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i>
+
+                    {% if object %}
+                        {% trans "Save changes" %}
+                    {% else %}
+                        {% trans "Create service" %}
+                    {% endif %}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

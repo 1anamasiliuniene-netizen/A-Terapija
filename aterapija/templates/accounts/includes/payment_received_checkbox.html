@@ -1,0 +1,20 @@
+{% load i18n %}
+<form method="post" action="{{ payment_toggle_url }}" class="at-payment-toggle">
+    {% csrf_token %}
+
+    <input type="hidden" name="next" value="{{ request.path }}">
+
+    <label class="at-switch">
+        {% blocktrans with name=booking.client_name asvar aria_label %}Payment received for {{ name }}{% endblocktrans %}
+        <input
+            type="checkbox"
+            name="payment_received"
+            {% if booking.payment_received %}checked{% endif %}
+            onchange="this.form.submit()"
+            aria-label="{{ aria_label }}"
+        >
+
+        <span class="at-switch__slider"></span>
+    </label>
+
+</form>

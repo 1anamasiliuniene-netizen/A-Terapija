@@ -1,0 +1,194 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "My Services" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page at-therapist-services-page">
+
+    <a
+        href="{% url 'aterapija:therapist_dashboard' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to therapist dashboard" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Service management" %}</p>
+
+            <h1 class="at-heading-1">
+                {% trans "My services" %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% blocktrans trimmed %}
+                Manage the services connected to your therapist profile,
+                update their details or control whether they are publicly visible.
+                {% endblocktrans %}
+            </p>
+        </div>
+
+        <div class="at-admin-page-actions">
+
+            <a
+                href="{% url 'aterapija:therapist_service_add' %}"
+                class="at-btn at-btn-primary"
+            >
+                <i class="bi bi-plus-lg" aria-hidden="true"></i>
+                {% trans "Create service" %}
+            </a>
+
+            <a
+                href="{% url 'aterapija:therapist_service_category_add' %}"
+                class="at-btn at-btn-secondary"
+            >
+                {% trans "Add category" %}
+            </a>
+
+            {% if available_services_count %}
+                <a
+                    href="{% url 'aterapija:therapist_service_link' %}"
+                    class="at-btn at-btn-secondary"
+                >
+                    {% trans "Link existing service" %}
+                </a>
+            {% endif %}
+
+        </div>
+
+    </header>
+
+    {% if services %}
+
+        <div class="at-therapist-service-list">
+
+            {% for service in services %}
+
+                <article class="at-therapist-service-card">
+
+                    <div class="at-therapist-service-content">
+
+                        <div class="at-therapist-service-meta">
+
+                            <span>
+                                {{ service.category.name }}
+                            </span>
+
+                            <span>
+                                {% blocktrans with minutes=service.duration_minutes %}{{ minutes }} min{% endblocktrans %}
+                            </span>
+
+                            <span>
+                                €{{ service.price }}
+                            </span>
+
+                            <span
+                                class="at-status-badge {% if service.is_active %}at-status-badge--active{% else %}at-status-badge--inactive{% endif %}"
+                            >
+                                {% if service.is_active %}
+                                    {% trans "Active" %}
+                                {% else %}
+                                    {% trans "Hidden" %}
+                                {% endif %}
+                            </span>
+
+                        </div>
+
+                        <h2 class="at-heading-3 at-therapist-service-title">
+                            {{ service|localized_title }}
+                        </h2>
+
+                        {% with description=service|localized_short_description %}
+                            {% if description %}
+                                <p class="at-therapist-service-summary">
+                                    {{ description }}
+                                </p>
+                            {% endif %}
+                        {% endwith %}
+
+                    </div>
+
+                    <div class="at-admin-row-actions">
+
+                        <a
+                            href="{% url 'aterapija:service_detail' service.slug %}"
+                            class="at-admin-table-action"
+                        >
+                            <i class="bi bi-eye" aria-hidden="true"></i>
+                            {% trans "View" %}
+                        </a>
+
+                        <a
+                            href="{% url 'aterapija:therapist_service_edit' service.pk %}"
+                            class="at-admin-table-action"
+                        >
+                            <i class="bi bi-pencil" aria-hidden="true"></i>
+                            {% trans "Edit" %}
+                        </a>
+
+                        <a
+                            href="{% url 'aterapija:therapist_service_delete' service.pk %}"
+                            class="at-admin-table-action at-admin-table-action-delete"
+                        >
+                            <i class="bi bi-trash3" aria-hidden="true"></i>
+                            {% trans "Delete" %}
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="at-empty-state">
+
+            <div class="at-empty-state-icon" aria-hidden="true">
+                <i class="bi bi-grid"></i>
+            </div>
+
+            <h2 class="at-heading-3">
+                {% trans "No services yet" %}
+            </h2>
+
+            <p>
+                {% blocktrans trimmed %}
+                No services are currently connected to your therapist profile.
+                Create a new service or link an existing one to get started.
+                {% endblocktrans %}
+            </p>
+
+            <div class="at-empty-state-actions">
+
+                <a
+                    href="{% url 'aterapija:therapist_service_add' %}"
+                    class="at-btn at-btn-primary"
+                >
+                    {% trans "Create service" %}
+                </a>
+
+                {% if available_services_count %}
+                    <a
+                        href="{% url 'aterapija:therapist_service_link' %}"
+                        class="at-btn at-btn-secondary"
+                    >
+                        {% trans "Link existing service" %}
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

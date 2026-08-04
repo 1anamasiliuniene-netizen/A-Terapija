@@ -1,0 +1,381 @@
+{% extends "aterapija/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "About" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-hero">
+
+    <div class="row align-items-center g-5">
+
+        <div class="col-lg-8">
+
+            <p class="at-eyebrow">
+                {% if about_page %}{{ about_page.display_hero_eyebrow }}{% else %}{% trans "About A Terapija" %}{% endif %}
+            </p>
+
+            <h1 class="at-display at-hero-title">
+                {% if about_page %}
+                    {{ about_page.display_hero_title|linebreaksbr }}
+                {% else %}
+                    {% blocktrans trimmed %}
+                    Therapy that helps<br>
+                    you return to yourself
+                    {% endblocktrans %}
+                {% endif %}
+            </h1>
+
+            <p class="at-body-lg at-hero-text">
+                {% if about_page %}
+                    {{ about_page.display_hero_subtitle|linebreaksbr }}
+                {% else %}
+                    {% blocktrans trimmed %}
+                    A gentle space where therapeutic care, body awareness
+                    and mindful presence meet.
+                    {% endblocktrans %}
+                {% endif %}
+            </p>
+
+            <div class="at-hero-actions d-flex gap-3 flex-wrap">
+
+                <a
+                    href="{% url 'aterapija:booking_create' %}"
+                    class="at-btn at-btn-primary at-btn-hero"
+                >
+                    {% trans "Book consultation" %}
+                </a>
+
+                {% if therapists %}
+                    <a
+                        href="#therapists"
+                        class="at-btn at-btn-secondary at-btn-hero"
+                    >
+                        {% trans "Meet our therapists" %}
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 at-hero-image">
+
+            <img
+                src="{% static 'images/logo.png' %}"
+                alt="{% trans 'A Terapija logo' %}"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="at-section-divider"></div>
+
+<section class="at-about-section">
+
+    <div class="at-approach-layout">
+
+        <div class="at-approach-text">
+
+            <p class="at-eyebrow">
+                {% if about_page %}{{ about_page.display_story_eyebrow }}{% else %}{% trans "Our approach" %}{% endif %}
+            </p>
+
+            <h2 class="at-heading-1">
+                {% if about_page %}
+                    {{ about_page.display_story_title }}
+                {% else %}
+                    {% blocktrans trimmed %}
+                    Healing begins when we feel safe enough
+                    to understand ourselves
+                    {% endblocktrans %}
+                {% endif %}
+            </h2>
+
+            <p class="at-body">
+                {% if about_page and about_page.display_story_text_1 %}
+                    {{ about_page.display_story_text_1 }}
+                {% else %}
+                    {% blocktrans trimmed %}
+                    A Terapija was created as a calm, professional and human
+                    space for people who want to feel better in their body,
+                    emotions and everyday life.
+                    {% endblocktrans %}
+                {% endif %}
+            </p>
+
+            <p class="at-body">
+                {% if about_page and about_page.display_story_text_2 %}
+                    {{ about_page.display_story_text_2 }}
+                {% else %}
+                    {% blocktrans trimmed %}
+                    We believe that therapy should feel clear, respectful
+                    and supportive — never cold, rushed or overwhelming.
+                    {% endblocktrans %}
+                {% endif %}
+            </p>
+
+        </div>
+
+        <div
+            class="at-journey-circle"
+            aria-label="{% if about_page %}{{ about_page.display_process_title }}{% else %}{% trans 'Therapy process' %}{% endif %}"
+        >
+
+            <div class="at-journey-line"></div>
+
+            <div class="at-journey-step step-1">
+
+                <span class="at-journey-start"></span>
+
+                <h3>{% if about_page %}{{ about_page.display_process_1_title }}{% else %}{% trans "Assess" %}{% endif %}</h3>
+
+                <small>
+                    {% if about_page and about_page.display_process_1_text %}{{ about_page.display_process_1_text }}{% else %}{% trans "We clarify your needs" %}{% endif %}
+                </small>
+
+            </div>
+
+            <div class="at-journey-step step-2">
+
+                <h3>{% if about_page %}{{ about_page.display_process_2_title }}{% else %}{% trans "Book" %}{% endif %}</h3>
+
+                <small>
+                    {% if about_page and about_page.display_process_2_text %}{{ about_page.display_process_2_text }}{% else %}{% trans "Choose a suitable time" %}{% endif %}
+                </small>
+
+            </div>
+
+            <div class="at-journey-step step-3">
+
+                <h3>{% if about_page %}{{ about_page.display_process_3_title }}{% else %}{% trans "Heal" %}{% endif %}</h3>
+
+                <small>
+                    {% if about_page and about_page.display_process_3_text %}{{ about_page.display_process_3_text }}{% else %}{% trans "Your session is personalised" %}{% endif %}
+                </small>
+
+            </div>
+
+            <div class="at-journey-step step-4">
+
+                <h3>{% if about_page %}{{ about_page.display_process_4_title }}{% else %}{% trans "Integrate" %}{% endif %}</h3>
+
+                <small>
+                    {% if about_page and about_page.display_process_4_text %}{{ about_page.display_process_4_text }}{% else %}{% trans "You leave with support" %}{% endif %}
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% if about_page and about_page.display_mission or about_page.display_vision or about_page.display_values %}
+
+<div class="at-section-divider"></div>
+
+<section class="at-about-section">
+
+    <div class="row g-4">
+
+        {% if about_page.display_mission %}
+            <div class="col-md-4">
+                <article class="at-info-card h-100">
+                    <p class="at-eyebrow">{% trans "Mission" %}</p>
+                    <p class="at-body">{{ about_page.display_mission }}</p>
+                </article>
+            </div>
+        {% endif %}
+
+        {% if about_page.display_vision %}
+            <div class="col-md-4">
+                <article class="at-info-card h-100">
+                    <p class="at-eyebrow">{% trans "Vision" %}</p>
+                    <p class="at-body">{{ about_page.display_vision }}</p>
+                </article>
+            </div>
+        {% endif %}
+
+        {% if about_page.display_values %}
+            <div class="col-md-4">
+                <article class="at-info-card h-100">
+                    <p class="at-eyebrow">{% trans "Values" %}</p>
+                    <p class="at-body">{{ about_page.display_values }}</p>
+                </article>
+            </div>
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+{% if therapists %}
+
+    <div class="at-section-divider"></div>
+
+    <section
+        class="at-about-section"
+        id="therapists"
+    >
+
+        <div class="at-section-label">
+
+            <p class="at-eyebrow">
+                {% if about_page %}{{ about_page.display_therapist_eyebrow }}{% else %}{% trans "Meet our therapists" %}{% endif %}
+            </p>
+
+            {% if about_page and about_page.display_therapist_title %}
+                <h2 class="at-heading-2">{{ about_page.display_therapist_title }}</h2>
+            {% endif %}
+
+            {% if about_page and about_page.display_therapist_intro %}
+                <p class="at-body">{{ about_page.display_therapist_intro }}</p>
+            {% endif %}
+
+        </div>
+
+        <div class="at-therapist-list">
+
+            {% for therapist in therapists %}
+
+                <article class="at-therapist-mini-card">
+
+                    <div class="at-therapist-mini-photo-wrap">
+
+                        {% if therapist.profile_photo %}
+
+                            <img
+                                src="{{ therapist.profile_photo.url }}"
+                                alt="{{ therapist.full_name }}"
+                                class="at-therapist-mini-photo"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="{% static 'images/therapist.jpg' %}"
+                                alt="{{ therapist.full_name }}"
+                                class="at-therapist-mini-photo"
+                            >
+
+                        {% endif %}
+
+                        {% if therapist.languages %}
+
+                            <div class="at-therapist-mini-languages">
+
+                                <span>
+                                    {{ therapist.languages }}
+                                </span>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="at-therapist-mini-content">
+
+                        <h3 class="at-heading-3">
+                            {{ therapist.full_name }}
+                        </h3>
+
+                        {% if therapist.specializations %}
+
+                            <p class="at-therapist-mini-specialization">
+                                {% trans therapist.specializations %}
+                            </p>
+
+                        {% endif %}
+
+                        {% if therapist.experience %}
+
+                            <p class="at-therapist-mini-meta">
+                                {% trans therapist.experience %}
+                            </p>
+
+                        {% endif %}
+
+                        {% if therapist.active_services %}
+
+                            <div class="at-therapist-mini-services">
+
+                                {% for service in therapist.active_services|slice:":2" %}
+
+                                    <a href="{% url 'aterapija:service_detail' service.slug %}">
+                                        {% trans service.display_title %}
+                                    </a>
+
+                                {% endfor %}
+
+                                {% if therapist.active_services|length > 2 %}
+
+                                    <a
+                                        href="{% url 'aterapija:therapist_detail' therapist.pk %}"
+                                        class="at-more-services"
+                                    >
+                                        {% blocktrans with count=therapist.active_services|length|add:"-2" %}+{{ count }} more{% endblocktrans %}
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        {% endif %}
+
+                        <a
+                            href="{% url 'aterapija:therapist_detail' therapist.pk %}"
+                            class="at-btn at-btn-secondary at-btn-sm"
+                        >
+                            {% trans "Read more" %}
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+{% endif %}
+
+<div class="at-section-divider"></div>
+
+<section class="at-about-section">
+
+    <div class="at-cta">
+
+        <p class="at-eyebrow">
+            {% if about_page %}{{ about_page.display_cta_eyebrow }}{% else %}{% trans "Begin gently" %}{% endif %}
+        </p>
+
+        <h2 class="at-heading-1">
+            {% if about_page %}{{ about_page.display_cta_title }}{% else %}{% trans "Ready to take care of yourself?" %}{% endif %}
+        </h2>
+
+        <p class="at-body">
+            {% if about_page and about_page.display_cta_text %}{{ about_page.display_cta_text }}{% else %}{% trans "Start with one clear, supportive step." %}{% endif %}
+        </p>
+
+        <a
+            href="{% url 'aterapija:booking_create' %}"
+            class="at-btn at-btn-primary at-btn-hero"
+        >
+            {% trans "Book appointment" %}
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

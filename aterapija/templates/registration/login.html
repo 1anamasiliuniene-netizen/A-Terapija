@@ -1,0 +1,64 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}{% trans "Login" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-auth-page at-form-page">
+
+  <header class="at-auth-header at-form-page-header">
+    <p class="at-eyebrow">{% trans "Welcome back" %}</p>
+
+    <h1 class="at-heading-1">
+      {% trans "Sign in to continue" %}
+    </h1>
+
+    <p class="at-body">
+      {% trans "Access your bookings, questionnaire results, and personal therapy journey." %}
+    </p>
+  </header>
+
+  <div class="at-auth-card at-form-card">
+
+    <form method="post" novalidate class="at-auth-form at-form-content">
+      {% csrf_token %}
+
+      {% if request.GET.next %}
+        <input
+          type="hidden"
+          name="next"
+          value="{{ request.GET.next }}"
+        >
+      {% endif %}
+
+      {{ form|crispy }}
+
+      <button type="submit" class="at-btn at-btn-primary">
+        {% trans "Sign in" %}
+      </button>
+    </form>
+
+    <a
+      class="at-auth-link"
+      href="{% url 'aterapija:password_reset' %}"
+    >
+      {% trans "Forgot your password?" %}
+    </a>
+
+    <p class="at-auth-new">
+      {% trans "New here?" %}
+    </p>
+
+    <a
+      class="at-btn at-btn-accent"
+      href="{% url 'aterapija:register' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}"
+    >
+      {% trans "Create an account" %}
+    </a>
+
+  </div>
+
+</section>
+
+{% endblock %}

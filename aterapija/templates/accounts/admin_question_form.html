@@ -1,0 +1,99 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+{% block title %}
+{% if object %}{% trans "Edit Question" %}{% else %}{% trans "Add Question" %}{% endif %} | A Terapija
+{% endblock %}
+{% block content %}
+
+<section class="at-admin-page">
+    <a href="{% url 'aterapija:admin_question_list' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to questionnaire" %}
+    </a>
+
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Content management" %}</p>
+
+            <h1 class="at-heading-1">
+                {% if object %}
+                {% trans "Edit question" %}
+                {% else %}
+                {% trans "Add question" %}
+                {% endif %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Create and organise questions for the client questionnaire. Questions can be reordered, hidden, and configured with answer options." %}
+            </p>
+        </div>
+    </header>
+
+    <div class="at-admin-form-card">
+        <form method="post" class="at-admin-form" novalidate>
+            {% csrf_token %}
+
+            <div class="at-admin-form-fields">
+                {{ form.question_text|as_crispy_field }}
+                {{ form.question_type|as_crispy_field }}
+                {{ form.order|as_crispy_field }}
+
+                <div class="at-form-group">
+                    <span class="at-label">{% trans "Is active" %}</span>
+
+                    <div class="at-switch-field">
+                        <label class="at-switch" for="{{ form.is_active.id_for_label }}">
+                            {{ form.is_active }}
+                            <span class="at-switch__slider" aria-hidden="true"></span>
+                        </label>
+
+                        <label for="{{ form.is_active.id_for_label }}" class="at-switch-field__label">
+                            {% trans "Active" %}
+                        </label>
+                    </div>
+
+                    {% for error in form.is_active.errors %}
+                    <span class="at-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <section class="at-admin-form-section">
+                <header class="at-admin-form-section-header">
+                    <h2 class="at-heading-3">{% trans "Answer options" %}</h2>
+
+                    <p class="at-admin-form-section-intro">
+                        {% trans "Add options for single-choice and multiple-choice questions. Text and textarea questions ignore these options." %}
+                    </p>
+                </header>
+
+                {{ option_formset.management_form }}
+
+                <div class="at-admin-option-list">
+                    {% for option_form in option_formset %}
+                    <div class="at-admin-option-card">
+                        {{ option_form|crispy }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <div class="at-admin-form-actions">
+                <a href="{% url 'aterapija:admin_question_list' %}" class="at-btn at-btn-secondary">
+                    {% trans "Cancel" %}
+                </a>
+
+                <button type="submit" class="at-btn at-btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i>
+
+                    {% if object %}
+                    {% trans "Save changes" %}
+                    {% else %}
+                    {% trans "Save question" %}
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

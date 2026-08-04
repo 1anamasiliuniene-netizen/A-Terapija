@@ -1,0 +1,52 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Appointment Confirmed" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section class="at-booking-page">
+
+    <header class="at-booking-header">
+
+        <p class="at-eyebrow">
+            {% trans "Appointment confirmed" %}
+        </p>
+
+        <h1 class="at-heading-1">
+            {% trans "Your appointment is booked" %}
+        </h1>
+
+        <p class="at-booking-intro">
+            {% trans "Your appointment has been added to your dashboard, where you can view all the details." %}
+        </p>
+
+        <p class="at-booking-intro">
+            {% trans "If your plans change, you can reschedule or cancel your appointment from your dashboard up to 24 hours before it starts." %}
+        </p>
+
+    </header>
+
+    <div class="d-flex flex-wrap gap-3">
+
+        <a
+            href="{% url 'aterapija:client_dashboard' %}"
+            class="at-btn at-btn-primary"
+        >
+            {% trans "View dashboard" %}
+        </a>
+
+        <a
+            href="{% url 'aterapija:services' %}"
+            class="at-btn at-btn-secondary"
+        >
+            {% trans "Back to services" %}
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

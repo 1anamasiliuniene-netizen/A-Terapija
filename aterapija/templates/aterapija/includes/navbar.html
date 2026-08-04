@@ -1,0 +1,154 @@
+{% load i18n %}
+{% load static %}
+
+{% get_current_language as CURRENT_LANGUAGE %}
+
+<nav class="navbar navbar-expand-lg at-navbar">
+  <div class="container at-navbar-container">
+
+    <a class="at-navbar-brand" href="{% url 'aterapija:home' %}">
+      <img
+        src="{% static 'images/logo.png' %}"
+        alt="{% trans 'A Terapija' %}"
+        class="at-navbar-logo">
+</a>
+
+    <button
+            class="navbar-toggler at-navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="{% trans 'Toggle navigation' %}">
+      <span class="at-toggler-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+
+      <ul class="navbar-nav at-navbar-menu mx-lg-auto">
+        <li class="nav-item">
+          <a class="at-nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'aterapija:home' %}">
+            {% trans "Home" %}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="at-nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'aterapija:about' %}">
+            {% trans "About" %}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="at-nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}" href="{% url 'aterapija:services' %}">
+            {% trans "Services" %}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          {% if is_admin_user %}
+            <a class="at-nav-link" href="{% url 'aterapija:admin_assessment_list' %}">
+              {% trans "Help me choose" %}
+            </a>
+          {% else %}
+            <a class="at-nav-link {% if request.resolver_match.url_name == 'assessment' %}active{% endif %}" href="{% url 'aterapija:assessment' %}">
+              {% trans "Help me choose" %}
+            </a>
+          {% endif %}
+        </li>
+
+        <li class="nav-item">
+          <a class="at-nav-link {% if request.resolver_match.url_name == 'articles' %}active{% endif %}" href="{% url 'aterapija:articles' %}">
+            {% trans "Articles" %}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          {% if is_admin_user %}
+            <a class="at-nav-link" href="{% url 'aterapija:admin_contact_message_list' %}">
+              {% trans "Contact" %}
+            </a>
+          {% else %}
+            <a class="at-nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'aterapija:contact' %}">
+              {% trans "Contact" %}
+            </a>
+          {% endif %}
+        </li>
+      </ul>
+
+      <div class="at-navbar-actions">
+
+       <form action="{% url 'set_language' %}" method="post" class="at-language-switcher">
+  {% csrf_token %}
+  <input name="next" type="hidden" value="{{ request.path }}">
+
+  {% if CURRENT_LANGUAGE == "lt" %}
+    <button type="submit" name="language" value="en" class="at-round-toggle">EN</button>
+  {% else %}
+    <button type="submit" name="language" value="lt" class="at-round-toggle">LT</button>
+  {% endif %}
+</form>
+
+        <button
+          id="theme-toggle"
+          class="at-theme-toggle"
+          type="button"
+          data-label-light="{% trans 'Switch to Day mode' %}"
+          data-label-dark="{% trans 'Switch to Evening mode' %}"
+          aria-label="{% trans 'Switch to Evening mode' %}"
+          title="{% trans 'Switch to Evening mode' %}"
+        >
+          <i class="bi bi-sun-fill d-none" data-theme-icon="sun" aria-hidden="true"></i>
+          <i class="bi bi-moon-fill d-none" data-theme-icon="moon" aria-hidden="true"></i>
+        </button>
+
+        {% if user.is_authenticated %}
+
+          {% if is_admin_user or user.therapist_profile %}
+            <a class="at-icon-link at-notification-link {% if unread_notification_count %}has-unread{% endif %}"
+               href="{% url 'aterapija:notifications' %}"
+               aria-label="{% trans 'Notifications' %}">
+              <i class="bi bi-bell"></i>
+              {% if unread_notification_count %}
+              {% endif %}
+            </a>
+          {% endif %}
+
+          <div class="dropdown">
+            <button class="at-profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {% if user.admin_profile.profile_picture %}
+              <img src="{{ user.admin_profile.profile_picture.url }}" alt="{{ user.first_name|default:user.username }}">
+              {% elif user.client_profile.profile_picture %}
+              <img src="{{ user.client_profile.profile_picture.url }}" alt="{{ user.first_name|default:user.username }}">
+              {% elif user.therapist_profile.profile_photo %}
+              <img src="{{ user.therapist_profile.profile_photo.url }}" alt="{{ user.first_name|default:user.username }}">
+              {% else %}
+              <span>{{ user.username|first|upper }}</span>
+              {% endif %}
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end at-dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'aterapija:dashboard' %}">{% trans "Personal dashboard" %}</a></li>
+              <li><a class="dropdown-item" href="{% url 'aterapija:profile' %}">{% trans "Profile" %}</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form method="post" action="{% url 'aterapija:logout' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+
+        {% else %}
+          <a class="at-nav-link" href="{% url 'aterapija:login' %}">{% trans "Sign in" %}</a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</nav>

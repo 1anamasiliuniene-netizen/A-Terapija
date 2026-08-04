@@ -1,0 +1,170 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}
+    {% trans "Bookings" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a
+        href="{% url 'aterapija:admin_dashboard' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to admin dashboard" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Booking management" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% trans "Bookings" %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Review client bookings, payment status, appointment details and current booking status." %}
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'aterapija:admin_booking_request_add' %}"
+            class="at-btn at-btn-primary"
+        >
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            {% trans "Add booking" %}
+        </a>
+
+    </header>
+
+    {% if booking_requests %}
+
+        <div class="at-admin-booking-list">
+
+            {% for booking_request in booking_requests %}
+
+                <article class="at-admin-booking-card">
+
+                    <div class="at-admin-booking-content">
+
+                        <div class="at-admin-booking-meta">
+
+                            <span>
+                                <i class="bi bi-calendar3" aria-hidden="true"></i>
+                                {{ booking_request.preferred_date|date:"M j, Y" }}
+                            </span>
+
+                            <span>
+                                <i class="bi bi-clock" aria-hidden="true"></i>
+                                {{ booking_request.preferred_time|time:"H:i" }}
+                            </span>
+
+                            <span>
+                                €{{ booking_request.service.price }}
+                            </span>
+
+                            <span class="at-status-badge">
+                                {{ booking_request.get_status_display }}
+                            </span>
+
+                        </div>
+
+                        <h2 class="at-heading-3 at-admin-booking-title">
+                            {{ booking_request.client_name }}
+                        </h2>
+
+                        <div class="at-admin-booking-details">
+
+                            <p>
+                                <strong>{% trans "Service:" %}</strong>
+                                {{ booking_request.service|localized_title }}
+                            </p>
+
+                            <p>
+                                <strong>{% trans "Therapist:" %}</strong>
+                                {{ booking_request.therapist.full_name }}
+                            </p>
+
+                            {% if booking_request.client_phone %}
+                                <p>
+                                    <strong>{% trans "Phone:" %}</strong>
+                                    {{ booking_request.client_phone }}
+                                </p>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="at-admin-booking-side">
+
+                        <div class="at-admin-booking-payment">
+                            <span class="at-admin-booking-payment-label">
+                                {% trans "Payment received" %}
+                            </span>
+
+                            {% url 'aterapija:admin_booking_payment_toggle' booking_request.pk as payment_toggle_url %}
+
+                            {% include "accounts/includes/payment_received_checkbox.html" with booking=booking_request payment_toggle_url=payment_toggle_url %}
+                        </div>
+
+                        <div class="at-admin-row-actions">
+
+                            <a
+                                href="{% url 'aterapija:admin_booking_request_detail' booking_request.pk %}"
+                                class="at-admin-table-action"
+                            >
+                                <i class="bi bi-eye" aria-hidden="true"></i>
+                                {% trans "View" %}
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="at-admin-empty-state">
+
+            <i class="bi bi-calendar2-check" aria-hidden="true"></i>
+
+            <div>
+
+                <h2 class="at-admin-empty-title">
+                    {% trans "No bookings yet" %}
+                </h2>
+
+                <p class="at-admin-empty-text">
+                    {% trans "Created client bookings will appear here." %}
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'aterapija:admin_booking_request_add' %}"
+                class="at-btn at-btn-primary"
+            >
+                {% trans "Add booking" %}
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

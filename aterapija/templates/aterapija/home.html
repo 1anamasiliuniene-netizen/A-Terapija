@@ -1,0 +1,79 @@
+{% extends "aterapija/base.html" %}
+{% load i18n static %}
+{% load static %}
+{% block title %}{% trans "Home" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO================= -->
+
+<section class="at-hero at-hero-home">
+    <div class="row align-items-center g-5">
+
+        <!-- LEFT -->
+        <div class="col-lg-8">
+
+            <p class="at-eyebrow">
+                {% trans "Your wellbeing starts here" %}
+            </p>
+
+            <h1 class="at-display at-hero-title">
+                {% trans "Restore your mind, body and wellbeing" %}
+            </h1>
+
+            <p class="at-body-lg at-hero-text">
+                {% trans "Evidence-based therapies and wellbeing practices to help you restore balance and be yourself again" %}
+            </p>
+
+            <div class="at-hero-actions d-flex gap-3 flex-wrap">
+
+                <a href="{% url 'aterapija:services' %}"
+                   class="at-btn at-btn-primary at-btn-hero">
+                    {% trans "Explore services" %}
+                </a>
+
+                <a href="{% url 'aterapija:articles' %}"
+                   class="at-btn at-btn-secondary at-btn-hero">
+                    {% trans "Explore articles" %}
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-lg-4 at-hero-image">
+
+            <img
+                src="{% static 'images/hero.png' %}"
+                alt="{% trans 'Hummingbird carrying a flower' %}">
+
+        </div>
+
+    </div>
+</section>
+
+<div class="at-section-divider"></div>
+
+<!-- Quick paths -->
+<section class="at-paths-section">
+    <div class="at-hero-paths">
+    <a href="{% url 'aterapija:services' %}" class="at-path-card">
+        <span>{% trans "I know what I need" %}</span>
+        <small>{% trans "Browse therapies and book directly" %}</small>
+    </a>
+    <a href="{% url 'aterapija:assessment' %}" class="at-path-card at-path-card-featured">
+        <span>{% trans "Help me choose" %}</span>
+        <small>{% trans "Answer a few gentle questions to discover the most suitable therapy" %}</small>
+    </a>
+    <a href="{% url 'aterapija:articles' %}" class="at-path-card">
+        <span>{% trans "I'd like to learn first" %}</span>
+        <small>{% trans "Explore practical articles and wellbeing insights" %}</small>
+    </a>
+</div>
+</section>
+
+<div class="at-section-divider"></div>
+
+{% include "aterapija/includes/today_insight_card.html" with compact=True %}
+{% endblock %}

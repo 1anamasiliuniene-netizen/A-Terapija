@@ -1,0 +1,101 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{{ service|localized_title }} | A Terapija{% endblock %}
+
+{% block content %}
+
+<div
+  class="at-service-detail-page"
+  style="--at-page-width: var(--at-width-wide); --at-content-width: var(--at-width-content); --at-text-width: var(--at-width-narrow);"
+>
+
+  <a href="{% url 'aterapija:services' %}" class="at-back-link">
+    ← {% trans "Back to services" %}
+  </a>
+
+  <article class="at-service-detail-hero">
+
+    <p class="at-eyebrow mb-3">
+      {{ service.category.name }}
+    </p>
+
+    <h1 class="at-heading-1 mb-4">
+      {{ service|localized_title }}
+    </h1>
+
+    <p class="at-body-lg at-service-detail-intro">
+      {{ service|localized_short_description }}
+    </p>
+
+    <div class="at-service-detail-content">
+      {{ service|localized_description|linebreaks }}
+    </div>
+
+    <div class="at-service-detail-meta">
+      <div class="at-service-detail-meta-item">
+        <span>{% trans "Duration" %}</span>
+        <strong>{% blocktrans with minutes=service.duration_minutes %}{{ minutes }} min{% endblocktrans %}</strong>
+      </div>
+
+      <div class="at-service-detail-meta-item">
+        <span>{% trans "Price" %}</span>
+        <strong>{{ service.price }} €</strong>
+      </div>
+    </div>
+
+    <div class="at-service-detail-actions">
+      <a href="{% url 'aterapija:booking_for_service' service.slug %}" class="at-btn at-btn-primary">
+        {% trans "Request booking" %}
+      </a>
+    </div>
+
+  </article>
+
+
+  <hr class="at-section-divider my-5">
+
+
+  <section class="at-service-therapists">
+
+    <div class="at-section-header mb-4">
+      <h2 class="at-heading-2 mb-2">
+        {% trans "Offered by" %}
+      </h2>
+    </div>
+
+    <div class="row g-4">
+{% for therapist in service.therapists.all %}
+    {% if therapist.is_active %}
+        <div class="at-service-therapist">
+            <article class="card at-service-card h-100">
+                <div class="card-body">
+                    <h3 class="at-heading-3">
+                        {{ therapist.full_name }}
+                    </h3>
+                    <p class="at-body">
+                        {{ therapist|localized_bio|truncatewords:30 }}
+                    </p>
+                    <div class="at-service-card-footer">
+                      <a href="{% url 'aterapija:therapist_detail' therapist.pk %}"
+                         class="at-card-link">
+                        {% trans "Meet the therapist" %} →
+                      </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    {% endif %}
+{% empty %}
+
+    <p class="at-body">
+        {% trans "No therapist is linked to this service yet." %}
+    </p>
+
+{% endfor %}    </div>
+
+  </section>
+
+</div>
+
+{% endblock %}

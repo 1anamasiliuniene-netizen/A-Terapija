@@ -1,0 +1,120 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Questionnaire Editor" %} | A Terapija{% endblock %}
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:admin_dashboard' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to admin dashboard" %}
+    </a>
+
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Content management" %}</p>
+
+            <h1 class="at-heading-1">{% trans "Questionnaire Editor" %}</h1>
+            <p class="at-admin-page-intro">
+                {% trans "Create, organise and manage the questions shown in the client questionnaire." %}
+            </p>
+        </div>
+
+        <a href="{% url 'aterapija:admin_question_add' %}" class="at-btn at-btn-primary">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            {% trans "Add question" %}
+        </a>
+    </header>
+
+    {% if questions %}
+    <div class="at-admin-table-card">
+        <div class="table-responsive">
+            <table class="table at-admin-table align-middle">
+                <thead>
+                <tr>
+                    <th>{% trans "Order" %}</th>
+                    <th>{% trans "Question" %}</th>
+                    <th>{% trans "Type" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Options" %}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for question in questions %}
+                <tr>
+                    <td>
+              <span class="at-admin-order-number">
+                {{ question.order }}
+              </span>
+                    </td>
+
+                    <td>
+                        <strong class="at-admin-table-title">
+                            {{ question.question_text }}
+                        </strong>
+                    </td>
+
+                    <td>
+              <span class="at-admin-table-meta">
+                {{ question.get_question_type_display }}
+              </span>
+                    </td>
+
+                    <td>
+              <span class="at-status-badge {% if question.is_active %}at-status-badge--active{% else %}at-status-badge--inactive{% endif %}">
+                {% if question.is_active %}
+                  {% trans "Active" %}
+                {% else %}
+                  {% trans "Hidden" %}
+                {% endif %}
+              </span>
+                    </td>
+
+                    <td>
+              <span class="at-admin-item-count">
+                {{ question.answer_options.count }}
+              </span>
+                    </td>
+
+                    <td>
+                        <div class="at-admin-row-actions">
+                            <a
+                                    href="{% url 'aterapija:admin_question_edit' question.pk %}"
+                                    class="at-btn at-btn-outline-primary at-btn-sm"
+                            >
+                                <i class="bi bi-pencil" aria-hidden="true"></i>
+                                {% trans "Edit" %}
+                            </a>
+
+                            <a
+                                    href="{% url 'aterapija:admin_question_delete' question.pk %}"
+                                    class="at-btn at-btn-outline-danger at-btn-sm"
+                            >
+                                <i class="bi bi-trash3" aria-hidden="true"></i>
+                                {% trans "Delete" %}
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="at-admin-empty-state">
+        <i class="bi bi-ui-checks" aria-hidden="true"></i>
+        <div>
+            <h2 class="at-admin-empty-title">{% trans "No questions yet" %}</h2>
+            <p class="at-admin-empty-text">
+                {% trans "Add the first question to start building the questionnaire." %}
+            </p>
+        </div>
+        <a href="{% url 'aterapija:admin_question_add' %}" class="btn btn-primary">
+            {% trans "Add question" %}
+        </a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,3709 @@
+@import url("core.css");
+@import url("public.css");
+
+/* ==========================================================
+   22. SHARED FORM PAGES
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Page layout
+---------------------------------------------------------- */
+
+.at-form-page {
+    width: 100%;
+    max-width: var(--at-page-width, var(--at-width-content));
+    margin-inline: auto;
+    padding-top: var(--at-space-7);
+    padding-bottom: var(--at-space-8);
+}
+
+.at-form-page-header {
+    max-width: var(--at-page-width, var(--at-width-content));
+    margin-bottom: var(--at-space-6);
+}
+
+.at-form-page-header .at-heading-1 {
+    margin-bottom: var(--at-space-5);
+}
+
+.at-form-page-header .at-body {
+    margin-bottom: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Card
+---------------------------------------------------------- */
+
+.at-form-card {
+    width: 100%;
+    max-width: var(--at-contact-width);
+    padding: var(--at-space-6);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-shadow-sm);
+}
+
+
+/* ----------------------------------------------------------
+   Form
+---------------------------------------------------------- */
+
+.at-form-content {
+    width: 100%;
+}
+
+.at-form-content .mb-3 {
+    margin-bottom: var(--at-space-5) !important;
+}
+
+.at-form-content label {
+    display: block;
+    margin-bottom: var(--at-space-2);
+
+    color: var(--at-text);
+    font-weight: 600;
+}
+
+
+/* ----------------------------------------------------------
+   Controls
+---------------------------------------------------------- */
+
+.at-form-content .form-control,
+.at-form-content .form-select,
+.at-form-content .at-input,
+.at-form-content .at-textarea,
+.at-admin-form .form-control,
+.at-admin-form .form-select {
+    width: 100%;
+    padding:
+        var(--at-space-4)
+        var(--at-space-5);
+
+    background: var(--at-surface);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+
+    color: var(--at-text);
+
+    transition:
+        background var(--at-transition),
+        border-color var(--at-transition),
+        box-shadow var(--at-transition);
+}
+
+.at-form-content .form-control,
+.at-form-content .at-input {
+    min-height: var(--at-btn-height);
+}
+
+.at-form-content .at-textarea {
+    min-height: 220px;
+    resize: vertical;
+}
+
+.at-form-content .form-control::placeholder,
+.at-form-content .at-input::placeholder,
+.at-form-content .at-textarea::placeholder {
+    color: var(--at-text-muted);
+    opacity: .75;
+}
+
+.at-form-content .form-control:focus,
+.at-form-content .form-select:focus,
+.at-form-content .at-input:focus,
+.at-form-content .at-textarea:focus,
+.at-admin-form .form-control:focus,
+.at-admin-form .form-select:focus {
+    background: var(--at-surface-soft);
+    border-color: var(--at-orchid);
+    box-shadow: 0 0 0 var(--at-space-1) rgba(217, 163, 175, .16);
+
+    color: var(--at-text);
+    outline: none;
+}
+
+.at-form-content .form-select,
+.at-admin-form .form-select {
+    padding-right: 3rem;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M5 7l4 4 4-4' fill='none' stroke='%23D9A3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+.at-admin-form .form-select option {
+    background: var(--at-sage-700);
+    color: var(--at-cream);
+}
+
+/* ----------------------------------------------------------
+   Evening mode
+---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .at-input,
+[data-bs-theme="dark"] .at-textarea,
+[data-bs-theme="dark"] .at-select,
+[data-bs-theme="dark"] .form-select {
+    background-color: var(--at-surface-input);
+    border-color: var(--at-border-color);
+    color: var(--at-cream);
+}
+
+
+/* ----------------------------------------------------------
+   Mobile
+---------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+    .at-form-page {
+        padding-top: var(--at-space-5);
+    }
+
+    .at-form-card {
+        padding: var(--at-space-5);
+    }
+
+    .at-form-content .at-btn {
+        width: 100%;
+    }
+}
+
+/* ----------------------------------------------------------
+   Browser autofill
+---------------------------------------------------------- */
+
+.at-form-content input:-webkit-autofill,
+.at-form-content input:-webkit-autofill:hover,
+.at-form-content input:-webkit-autofill:focus,
+.at-form-content textarea:-webkit-autofill,
+.at-form-content select:-webkit-autofill {
+    -webkit-text-fill-color: var(--at-text);
+    -webkit-box-shadow:
+        0 0 0 1000px var(--at-surface) inset;
+    box-shadow:
+        0 0 0 1000px var(--at-surface) inset;
+
+    border-color: var(--at-border-color);
+    caret-color: var(--at-text);
+
+    transition: background-color 9999s ease-out;
+}
+
+[data-bs-theme="dark"] .at-form-content input:-webkit-autofill,
+[data-bs-theme="dark"] .at-form-content input:-webkit-autofill:hover,
+[data-bs-theme="dark"] .at-form-content input:-webkit-autofill:focus,
+[data-bs-theme="dark"] .at-form-content textarea:-webkit-autofill,
+[data-bs-theme="dark"] .at-form-content select:-webkit-autofill {
+    -webkit-text-fill-color: var(--at-cream);
+    -webkit-box-shadow:
+        0 0 0 1000px var(--at-surface-soft) inset;
+    box-shadow:
+        0 0 0 1000px var(--at-surface-soft) inset;
+
+    border-color: var(--at-border-color);
+    caret-color: var(--at-cream);
+}
+
+/* ==========================================================
+   23. CONTACT PAGE
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Page layout
+---------------------------------------------------------- */
+
+.at-contact-page .at-section-divider {
+    width: 100%;
+    max-width: var(--at-contact-width);
+    margin: var(--at-space-divider) auto;
+}
+
+
+/* ----------------------------------------------------------
+   Contact information
+---------------------------------------------------------- */
+
+.at-contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--at-space-7);
+
+    max-width: var(--at-contact-width);
+    margin: var(--at-space-7) 0;
+}
+
+.at-contact-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .75rem;
+
+    color: var(--at-text-muted);
+    font-size: 1.05rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.at-contact-item p,
+.at-contact-item a {
+    margin: 0;
+}
+
+.at-contact-item a {
+    color: var(--at-text-muted);
+    text-decoration: none;
+}
+
+.at-contact-item a:hover {
+    color: var(--at-orchid);
+}
+
+.at-contact-item i,
+.at-contact-icons i {
+    color: var(--at-orchid);
+}
+
+.at-contact-icons {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-1);
+}
+
+/* ----------------------------------------------------------
+   Contact form
+---------------------------------------------------------- */
+
+.at-contact-form .at-textarea {
+    min-height: 220px;
+}
+
+/* ----------------------------------------------------------
+   Mobile
+---------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+    .at-contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--at-space-2);
+
+        width: fit-content;
+        margin: var(--at-space-6) auto var(--at-space-7);
+    }
+
+    .at-contact-item {
+        justify-content: center;
+        min-width: 0;
+    }
+}
+
+/* ==========================================================
+   24. AUTHENTICATION PAGES
+   ========================================================== */
+
+.at-auth-form .at-btn {
+    margin-top: var(--at-space-2);
+}
+
+.at-auth-link {
+    display: inline-block;
+    margin-top: var(--at-space-5);
+
+    color: var(--at-text-muted);
+    font-weight: 600;
+}
+
+.at-auth-link:hover {
+    color: var(--at-orchid);
+}
+
+.at-auth-new {
+    margin:
+        var(--at-space-6)
+        0
+        var(--at-space-3);
+
+    color: var(--at-text-muted);
+}
+
+/* ==========================================================
+   25. SHARED DASHBOARDS
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Page layout
+---------------------------------------------------------- */
+
+.at-dashboard-page {
+    width: 100%;
+    max-width: var(--at-page-width, var(--at-width-xxl));
+    margin-inline: auto;
+    padding-top: var(--at-space-7);
+    padding-bottom: var(--at-space-8);
+}
+
+.at-dashboard-header {
+    max-width: var(--at-contact-width);
+    margin-bottom: var(--at-space-8);
+}
+
+.at-dashboard-header .at-heading-1 {
+    margin-bottom: var(--at-space-5);
+}
+
+.at-dashboard-header .at-body {
+    max-width: 48rem;
+    margin-bottom: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Actions
+---------------------------------------------------------- */
+
+.at-dashboard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-space-3);
+
+    margin-top: var(--at-space-6);
+}
+
+
+/* ----------------------------------------------------------
+   Sections
+---------------------------------------------------------- */
+
+.at-dashboard-section {
+    margin-top: var(--at-space-section);
+}
+
+.at-dashboard-section:first-of-type {
+    margin-top: 0;
+}
+
+.at-dashboard-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--at-space-5);
+
+    margin-bottom: var(--at-space-5);
+}
+
+.at-dashboard-section-header .at-heading-2,
+.at-dashboard-section-header .at-card-eyebrow {
+    margin-bottom: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Shared cards
+---------------------------------------------------------- */
+
+.at-dashboard-card {
+    width: 100%;
+    padding: var(--at-space-6);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-shadow-sm);
+}
+
+
+/* ----------------------------------------------------------
+   Statistics
+---------------------------------------------------------- */
+
+.at-dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--at-space-5);
+}
+
+.at-stat-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 180px;
+    padding: var(--at-space-6);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-shadow-sm);
+}
+
+.at-stat-label {
+    margin-bottom: var(--at-space-4);
+
+    color: var(--at-text-muted);
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.at-stat-value {
+    margin-bottom: var(--at-space-3);
+
+    color: var(--at-text);
+    font-family: var(--at-font-display);
+    font-size: clamp(2.4rem, 4vw, 3.25rem);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.at-stat-meta {
+    margin-top: auto;
+
+    color: var(--at-text-muted);
+    font-size: .95rem;
+}
+
+
+/* ----------------------------------------------------------
+   Dashboard tables
+---------------------------------------------------------- */
+
+.at-dashboard-table-card {
+    overflow: hidden;
+
+    width: 100%;
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-shadow-sm);
+}
+
+.at-dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    color: var(--at-text);
+}
+
+.at-dashboard-table th,
+.at-dashboard-table td {
+    padding:
+        var(--at-space-4)
+        var(--at-space-5);
+
+    border-bottom: 1px solid var(--at-border-color);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.at-dashboard-table th {
+    color: var(--at-text-muted);
+    font-size: .85rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.at-dashboard-table td {
+    color: var(--at-text-muted);
+}
+
+.at-dashboard-table td strong {
+    color: var(--at-text);
+}
+
+.at-dashboard-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.at-dashboard-table tbody tr {
+    transition: background var(--at-transition);
+}
+
+.at-dashboard-table tbody tr:hover {
+    background: var(--at-surface-soft);
+}
+
+.at-table-time {
+    display: block;
+    color: var(--at-text);
+    font-weight: 700;
+}
+
+/* ----------------------------------------------------------
+   Status
+---------------------------------------------------------- */
+
+.at-status {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: var(--at-btn-sm-height);
+    padding-inline: var(--at-space-4);
+
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-pill);
+
+    color: var(--at-text);
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.at-status-approved {
+    background: rgba(111, 131, 117, .12);
+    border-color: rgba(111, 131, 117, .28);
+}
+
+.at-status-cancelled {
+    background: rgba(217, 163, 175, .12);
+    border-color: rgba(217, 163, 175, .35);
+    color: var(--at-orchid-strong);
+}
+
+
+/* ----------------------------------------------------------
+   Empty state
+---------------------------------------------------------- */
+
+.at-empty-state {
+    width: 100%;
+    max-width: var(--at-contact-width);
+    padding: var(--at-space-6);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+}
+
+
+/* ----------------------------------------------------------
+   Evening mode
+---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-dashboard-card,
+[data-bs-theme="dark"] .at-stat-card,
+[data-bs-theme="dark"] .at-dashboard-table-card,
+[data-bs-theme="dark"] .at-empty-state {
+    background: rgba(255, 255, 255, .06);
+    border-color: var(--at-card-border);
+}
+
+[data-bs-theme="dark"] .at-dashboard-table tbody tr:hover {
+    background: rgba(251, 246, 238, .06);
+}
+
+
+/* ----------------------------------------------------------
+   Tablet and mobile
+---------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+    .at-dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .at-dashboard-page {
+        padding-top: var(--at-space-5);
+    }
+
+    .at-dashboard-actions,
+    .at-dashboard-section-header {
+        flex-direction: column;
+    }
+
+    .at-dashboard-actions {
+        align-items: stretch;
+    }
+
+    .at-dashboard-actions .at-btn,
+    .at-dashboard-section-header .at-btn {
+        width: 100%;
+    }
+
+    .at-dashboard-table-card {
+        padding: var(--at-space-4);
+    }
+
+    .at-dashboard-table thead {
+        display: none;
+    }
+
+    .at-dashboard-table,
+    .at-dashboard-table tbody,
+    .at-dashboard-table tr,
+    .at-dashboard-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .at-dashboard-table tr {
+        padding-block: var(--at-space-4);
+        border-bottom: 1px solid var(--at-border-color);
+    }
+
+    .at-dashboard-table tr:last-child {
+        border-bottom: 0;
+    }
+
+    .at-dashboard-table td {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--at-space-5);
+
+        padding:
+            var(--at-space-2)
+            0;
+
+        border: 0;
+        text-align: right;
+    }
+
+    .at-dashboard-table td::before {
+        content: attr(data-label);
+
+        color: var(--at-text-muted);
+        font-size: .85rem;
+        font-weight: 800;
+        text-align: left;
+        text-transform: uppercase;
+    }
+}
+
+/* ----------------------------------------------------------
+   Row actions
+---------------------------------------------------------- */
+
+.at-dashboard-row-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--at-space-2);
+}
+
+.at-dashboard-row-actions form {
+    margin: 0;
+}
+
+@media (max-width: 767.98px) {
+    .at-dashboard-row-actions {
+        flex-direction: column;
+        align-items: stretch;
+
+        margin-top: var(--at-space-4);
+    }
+
+    .at-dashboard-row-actions::before {
+        display: none;
+    }
+
+    .at-dashboard-row-actions,
+    .at-dashboard-row-actions form,
+    .at-dashboard-row-actions .at-btn {
+        width: 100%;
+    }
+}
+
+/* ==========================================================
+   26. SLOT DAY CARDS
+   ========================================================== */
+
+.at-slot-days {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--at-space-5);
+}
+
+.at-slot-day-card.is-today {
+    border-color: var(--at-orchid-strong);
+    box-shadow:
+        0 0 0 2px rgba(197, 127, 144, .10),
+        var(--at-card-shadow);
+}
+
+.at-slot-day-card.is-today .at-slot-day-card__header {
+    border-bottom-color: rgba(197, 127, 144, .45);
+}
+
+[data-bs-theme="dark"] .at-slot-day-card.is-today {
+    border-color: var(--at-orchid);
+    box-shadow:
+        0 0 0 2px rgba(217, 163, 175, .08),
+        var(--at-card-shadow);
+}
+
+.at-slot-day-card {
+    width: 100%;
+    max-width: 340px;
+    padding: var(--at-space-5);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-slot-day-card__header {
+    margin-bottom: var(--at-space-4);
+    padding-bottom: var(--at-space-3);
+    border-bottom: 1px solid var(--at-border-color);
+}
+
+.at-slot-day-card__title {
+    margin: 0;
+    color: var(--at-text);
+    font-family: var(--at-font-display);
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.at-slot-day-card__slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-space-3);
+}
+
+.at-slot-choice {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 5.5rem;
+    min-height: 52px;
+    padding: .65rem 1rem;
+    border: 1px solid var(--at-orchid-strong);
+    border-radius: var(--at-radius-md);
+    background: transparent;
+    color: var(--at-text);
+    font: inherit;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        border-color .2s ease,
+        background-color .2s ease,
+        color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+.at-slot-choice:hover {
+    border-color: var(--at-orchid-strong);
+    background: rgba(197, 127, 144, .08);
+    box-shadow:
+        0 0 0 3px rgba(197,127,144,.10),
+        0 8px 18px rgba(197,127,144,.12);
+    transform: translateY(-1px);
+    color: var(--at-text);
+}
+
+.at-slot-choice:focus-visible {
+    outline: 3px solid rgba(197, 127, 144, .25);
+    outline-offset: 2px;
+}
+
+.at-slot-choice.is-selected {
+    border-color: var(--at-orchid-strong);
+    background: var(--at-orchid-strong);
+    color: var(--at-white);
+    box-shadow: 0 6px 16px rgba(197, 127, 144, .22);
+}
+
+.at-slot-choice.is-selected:hover {
+    background: var(--at-orchid);
+    color: var(--at-sage-700);
+}
+
+.at-slot-choice__time {
+    font-weight: 800;
+}
+
+.at-slot-choice__meta {
+    display: block;
+    margin-top: .2rem;
+    font-size: .75rem;
+    font-weight: 600;
+    opacity: .82;
+}
+
+.at-slot-days-empty {
+    margin: 0;
+}
+
+.at-slot-days-empty p {
+    margin: 0;
+}
+
+
+/* Responsive
+   ---------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+    .at-slot-days {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 575.98px) {
+    .at-slot-days {
+        grid-template-columns: 1fr;
+        gap: var(--at-space-4);
+    }
+
+    .at-slot-day-card {
+        padding: var(--at-space-4);
+    }
+
+    .at-slot-day-card__slots {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .at-slot-choice {
+        width: 100%;
+        min-width: 0;
+        padding-inline: .5rem;
+    }
+}
+
+
+/* Evening mode
+   ---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-slot-choice {
+    border-color: rgba(251, 246, 238, .42);
+    color: var(--at-text);
+}
+
+[data-bs-theme="dark"] .at-slot-choice:hover {
+    border-color: rgba(251, 246, 238, .7);
+    background: rgba(251, 246, 238, .08);
+}
+
+[data-bs-theme="dark"] .at-slot-choice.is-selected {
+    border-color: var(--at-orchid);
+    background: var(--at-orchid);
+    color: var(--at-sage-700);
+}
+
+[data-bs-theme="dark"] .at-slot-choice.is-selected:hover {
+    border-color: var(--at-orchid-strong);
+    background: var(--at-orchid-strong);
+    color: var(--at-white);
+}
+
+/* ==========================================================
+   27. THERAPIST WEEK SCHEDULE
+   ========================================================== */
+
+.at-week-schedule {
+    min-width: 0;
+}
+
+.at-week-schedule__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-space-3) var(--at-space-5);
+    margin-bottom: var(--at-space-4);
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--at-text-muted);
+}
+
+.at-week-schedule__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+    color: var(--at-text-muted);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.at-week-schedule__legend-mark {
+    width: .85rem;
+    height: .85rem;
+    flex: 0 0 auto;
+    border: 1px solid var(--at-text-muted);
+    border-radius: 50%;
+}
+
+.at-week-schedule__legend-mark.is-booking {
+    border-color: rgba(197, 127, 144, .55);
+    background: rgba(217,163,175,.20);
+}
+
+.at-week-schedule__legend-mark.is-buffer {
+    border-color: rgba(185, 200, 188, .22);
+    background: rgba(111,131,117,.12);
+}
+
+.at-week-schedule__legend-mark.is-unavailable {
+    background: rgba(48, 70, 61, .48);
+    color: var(--at-cream);
+    font-weight: 700;
+}
+
+.at-week-schedule__legend-mark.is-free {
+    background: transparent;
+}
+
+.at-week-schedule__table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-week-schedule__table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--at-text);
+}
+
+.at-week-schedule__table th,
+.at-week-schedule__table td {
+    border-right: 1px solid var(--at-border-color);
+    border-bottom: 1px solid var(--at-border-color);
+}
+
+.at-week-schedule__table th:last-child,
+.at-week-schedule__table td:last-child {
+    border-right: 0;
+}
+
+.at-week-schedule__table tbody tr:last-child th,
+.at-week-schedule__table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.at-week-schedule__table thead th {
+    padding: var(--at-space-4);
+    background: var(--at-surface-soft);
+    color: var(--at-text);
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.at-week-schedule__time-heading {
+    min-width: 5.5rem;
+    text-align: left !important;
+}
+
+.at-week-schedule__day,
+.at-week-schedule__date {
+    display: block;
+}
+
+.at-week-schedule__day {
+    font-family: var(--at-font-display);
+    font-size: 1.2rem;
+    line-height: 1.1;
+}
+
+.at-week-schedule__date {
+    margin-top: .2rem;
+    color: var(--at-text-muted);
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.at-week-schedule__time {
+    width: 5.5rem;
+    padding: var(--at-space-3);
+    background: var(--at-surface-soft);
+    color: var(--at-text);
+    font-size: .875rem;
+    font-weight: 800;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.at-week-schedule__cell {
+    min-width: 7rem;
+    height: 3.5rem;
+    padding: var(--at-space-2);
+    background: transparent;
+    text-align: center;
+    vertical-align: middle;
+    transition:
+        background-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.at-week-schedule__cell-label {
+    display: block;
+    max-width: 9rem;
+    margin-inline: auto;
+    overflow: hidden;
+    color: inherit;
+    font-size: .78rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.at-week-schedule__cell.is-booking {
+    background: rgba(197, 127, 144, .2);
+    color: var(--at-sage-700);
+}
+
+.at-week-schedule__cell.is-buffer {
+    background: rgba(185, 200, 188, .28);
+    color: var(--at-sage-700);
+}
+
+[data-bs-theme="dark"] .at-week-schedule__cell.is-buffer {
+    background: rgba(185, 200, 188, .12);
+    color: var(--at-cream);
+}
+
+.at-week-schedule__cell.is-unavailable {
+    background: rgba(48, 70, 61, .48);
+    color: var(--at-cream);
+    font-weight: 700;
+}
+
+[data-bs-theme="dark"] .at-week-schedule__cell.is-unavailable {
+    background: rgba(251, 246, 238, .16);
+    color: var(--at-cream);
+}
+
+.at-week-schedule__cell.is-free {
+    color: var(--at-text-muted);
+}
+
+.at-week-schedule__cell:hover {
+    box-shadow: inset 0 0 0 2px rgba(197, 127, 144, .16);
+}
+
+
+/* Evening mode
+   ---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-week-schedule__table thead th,
+[data-bs-theme="dark"] .at-week-schedule__time {
+    background: rgba(251, 246, 238, .05);
+}
+
+[data-bs-theme="dark"] .at-week-schedule__cell.is-booking {
+    background: rgba(217, 163, 175, .2);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-week-schedule__cell.is-free {
+    color: rgba(251, 246, 238, .48);
+}
+
+
+/* Small screens
+   ---------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+    .at-week-schedule__legend {
+        gap: var(--at-space-3);
+    }
+
+    .at-week-schedule__table {
+        min-width: 760px;
+    }
+
+    .at-week-schedule__table thead th {
+        padding: var(--at-space-3);
+    }
+
+    .at-week-schedule__cell {
+        min-width: 6.25rem;
+        height: 3.25rem;
+    }
+}
+
+/* ==========================================================
+   28. BUSY PERIOD LIST
+   ========================================================== */
+
+.at-busy-period-list {
+    display: grid;
+    gap: var(--at-space-4);
+}
+
+.at-busy-period-card {
+    padding: var(--at-space-5);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-busy-period-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--at-space-3);
+    margin-bottom: var(--at-space-3);
+    flex-wrap: wrap;
+}
+
+.at-busy-period-card__date {
+    color: var(--at-text-muted);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.at-busy-period-card__title {
+    margin: 0 0 .4rem;
+    font-family: var(--at-font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--at-text);
+}
+
+.at-busy-period-card__therapist,
+.at-busy-period-card__time,
+.at-busy-period-card__detail {
+    margin: 0;
+    color: var(--at-text-muted);
+    font-size: .95rem;
+    line-height: 1.5;
+}
+
+.at-busy-period-card__therapist {
+    margin-bottom: .25rem;
+}
+
+.at-busy-period-card__time {
+    margin-bottom: .35rem;
+    font-weight: 600;
+    color: var(--at-text);
+}
+
+.at-busy-period-card__detail {
+    padding-top: var(--at-space-3);
+    margin-top: var(--at-space-3);
+    border-top: 1px solid var(--at-border-color);
+}
+
+
+/* Status chips
+   ---------------------------------------------------------- */
+
+.at-status-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .35rem .8rem;
+    border-radius: var(--at-radius-pill);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.at-status-booking {
+    background: rgba(217, 163, 175, .18);
+    color: var(--at-orchid-strong);
+    border: 1px solid rgba(217, 163, 175, .45);
+}
+
+.at-status-unavailable {
+    background: rgba(48, 70, 61, .12);
+    color: var(--at-sage-700);
+    border: 1px solid rgba(48, 70, 61, .28);
+}
+
+
+/* Hover
+   ---------------------------------------------------------- */
+
+.at-busy-period-card:hover {
+    border-color: rgba(197, 127, 144, .30);
+    transform: translateY(-1px);
+    transition:
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+
+/* Evening mode
+   ---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-status-booking {
+    background: rgba(217, 163, 175, .18);
+    border-color: rgba(217, 163, 175, .35);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-status-unavailable {
+    background: rgba(251, 246, 238, .10);
+    border-color: rgba(251, 246, 238, .20);
+    color: var(--at-cream);
+}
+
+
+/* Mobile
+   ---------------------------------------------------------- */
+
+@media (max-width: 576px) {
+
+    .at-busy-period-card {
+        padding: var(--at-space-4);
+    }
+
+    .at-busy-period-card__header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+/* ==========================================================
+   29. PAYMENT SWITCH
+   ========================================================== */
+
+.at-payment-toggle {
+    display: inline-flex;
+    align-items: center;
+}
+
+.at-switch {
+    position: relative;
+    display: inline-flex;
+    width: 3rem;
+    height: 1.6rem;
+    cursor: pointer;
+}
+
+.at-switch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.at-switch__slider {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--at-radius-pill);
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    transition: .25s ease;
+    position: relative;
+}
+
+.at-switch__slider::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    background: var(--at-white);
+    box-shadow: var(--at-shadow-sm);
+    transition: .25s ease;
+}
+
+.at-switch input:checked + .at-switch__slider {
+    background: var(--at-orchid);
+    border-color: var(--at-orchid-strong);
+}
+
+.at-switch input:checked + .at-switch__slider::before {
+    transform: translateX(1.35rem);
+}
+
+.at-switch input:focus-visible + .at-switch__slider {
+    outline: 2px solid var(--at-orchid);
+    outline-offset: 3px;
+}
+
+.at-switch-field {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-3);
+}
+
+.at-switch-field__label {
+    margin: 0;
+    color: var(--at-text);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.at-switch-form-group {
+    margin-bottom: var(--at-space-5);
+}
+
+[data-bs-theme="dark"] .at-switch__slider {
+    background: rgba(251,246,238,.08);
+    border-color: rgba(251,246,238,.18);
+}
+
+[data-bs-theme="dark"] .at-switch__slider::before {
+    background: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-switch input:checked + .at-switch__slider {
+    background: var(--at-orchid);
+    border-color: var(--at-orchid);
+}
+/* ==========================================================
+   30. BOOKINGS TABLE — MOBILE POLISH
+   ========================================================== */
+
+.at-table-datetime {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .2rem;
+    min-width: 9rem;
+}
+
+@media (max-width: 767.98px) {
+    .at-dashboard-table tbody tr {
+        display: block;
+        min-width: 0;
+        padding: var(--at-space-3);
+
+        background: rgba(255, 255, 255, .35);
+        border: 1px solid rgba(48, 70, 61, .14);
+        border-radius: var(--at-radius-lg);
+
+        transition:
+            background var(--at-transition),
+            border-color var(--at-transition),
+            box-shadow var(--at-transition),
+            transform var(--at-transition);
+    }
+
+    .at-dashboard-table tbody tr + tr {
+        margin-top: var(--at-space-4);
+    }
+
+    .at-dashboard-table td {
+        display: grid;
+        grid-template-columns: minmax(7.5rem, .8fr) minmax(0, 1.4fr);
+        align-items: center;
+        gap: var(--at-space-3);
+
+        min-width: 0;
+        min-height: 4.25rem;
+        padding: .7rem 0;
+
+        border: 0;
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+
+    .at-dashboard-table td + td {
+        border-top: 1px solid rgba(48, 70, 61, .08);
+    }
+
+    .at-dashboard-table td::before {
+        color: var(--at-text-muted);
+        font-size: .82rem;
+        font-weight: 800;
+        letter-spacing: .03em;
+        text-align: left;
+        text-transform: uppercase;
+    }
+
+    .at-dashboard-table td > * {
+        max-width: 100%;
+        justify-self: end;
+        text-align: right;
+    }
+
+    .at-dashboard-table td strong,
+    .at-dashboard-table td .fw-semibold {
+        color: var(--at-text);
+        font-weight: 800;
+    }
+
+    .at-dashboard-table td[data-label="Status"] {
+        padding-bottom: 0;
+    }
+
+    .at-dashboard-table .at-payment-toggle,
+    .at-dashboard-table .at-status,
+    .at-dashboard-table .at-status-chip {
+        justify-self: end;
+    }
+
+    [data-bs-theme="dark"] .at-dashboard-table tbody tr {
+        background: rgba(251, 246, 238, .07);
+        border-color: rgba(251, 246, 238, .08);
+    }
+
+    [data-bs-theme="dark"] .at-dashboard-table td + td {
+        border-top-color: rgba(251, 246, 238, .07);
+    }
+
+    [data-bs-theme="dark"] .at-dashboard-table tbody tr:hover {
+        background: rgba(251, 246, 238, .12);
+        border-color: rgba(217, 163, 175, .18);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, .04),
+            0 10px 26px rgba(10, 18, 15, .20);
+        transform: translateY(-2px);
+    }
+}
+
+/* ==========================================================
+   SHARED ADMIN CRUD PAGES
+   ========================================================== */
+
+.at-admin-page {
+    width: min(1200px, 100%);
+    margin-inline: auto;
+    padding-block: var(--at-space-6) var(--at-space-9);
+}
+
+.at-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+    margin-bottom: var(--at-space-6);
+    color: var(--at-text-muted);
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.at-back-link:hover {
+    color: var(--at-orchid-strong);
+    transform: translateX(-3px);
+}
+
+.at-admin-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--at-space-6);
+    margin-bottom: var(--at-space-7);
+}
+
+.at-admin-page-heading {
+    max-width: 44rem;
+}
+
+.at-admin-page-heading .at-eyebrow {
+    margin-bottom: var(--at-space-2);
+}
+
+.at-admin-page-heading .at-heading-1 {
+    margin-bottom: var(--at-space-3);
+}
+
+.at-admin-page-intro {
+    margin: 0;
+    max-width: 42rem;
+    color: var(--at-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.at-admin-page-header > .btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--at-space-2);
+}
+
+
+/* ----------------------------------------------------------
+   Advice schedule and grouped lists
+   ---------------------------------------------------------- */
+
+.at-admin-list-sections {
+    display: grid;
+    gap: var(--at-space-7);
+}
+
+.at-admin-list-section {
+    padding: var(--at-space-6);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-list-section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--at-space-4);
+    margin-bottom: var(--at-space-5);
+}
+
+.at-admin-list-section-header .at-heading-3 {
+    margin-bottom: var(--at-space-1);
+}
+
+.at-admin-section-meta {
+    margin: 0;
+    color: var(--at-text-muted);
+    font-size: 0.925rem;
+}
+
+.at-admin-item-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    padding-inline: var(--at-space-2);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-pill);
+    background: var(--at-surface-soft);
+    color: var(--at-text);
+    font-size: 0.875rem;
+    font-weight: 800;
+}
+
+.at-admin-item-list {
+    display: grid;
+    gap: var(--at-space-3);
+}
+
+.at-admin-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--at-space-5);
+    padding: var(--at-space-4) var(--at-space-5);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+    background: var(--at-surface-main);
+    color: var(--at-text);
+    text-decoration: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.at-admin-list-item:hover {
+    border-color: var(--at-orchid);
+    color: var(--at-text);
+    box-shadow: var(--at-shadow-sm);
+    transform: translateY(-1px);
+}
+
+.at-admin-list-item-main {
+    min-width: 0;
+}
+
+.at-admin-list-item-title {
+    margin: 0 0 var(--at-space-2);
+    font-family: var(--at-font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.at-admin-list-item-date {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-2);
+    margin: 0;
+    color: var(--at-text-muted);
+    font-size: 0.925rem;
+}
+
+.at-admin-list-item-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-3);
+    flex-shrink: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Status badges
+   ---------------------------------------------------------- */
+
+.at-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.875rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid transparent;
+    border-radius: var(--at-radius-pill);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.at-status-badge--active {
+    border-color: rgba(48, 70, 61, 0.18);
+    background: rgba(185, 200, 188, 0.45);
+    color: var(--at-sage-700);
+}
+
+.at-status-badge--scheduled {
+    border-color: rgba(197, 127, 144, 0.22);
+    background: rgba(217, 163, 175, 0.22);
+    color: var(--at-sage-700);
+}
+
+.at-status-badge--archived {
+    border-color: var(--at-border-color);
+    background: var(--at-surface-soft);
+    color: var(--at-text-muted);
+}
+
+.at-status-badge--inactive {
+    border-color: var(--at-border-color);
+    background: transparent;
+    color: var(--at-text-muted);
+}
+
+
+/* ----------------------------------------------------------
+   Empty states
+   ---------------------------------------------------------- */
+
+.at-admin-empty-state {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-4);
+    padding: var(--at-space-5);
+    border: 1px dashed var(--at-border-color);
+    border-radius: var(--at-radius-md);
+    background: var(--at-surface-soft);
+}
+
+.at-admin-empty-state > i {
+    flex-shrink: 0;
+    color: var(--at-orchid-strong);
+    font-size: 1.75rem;
+}
+
+.at-admin-empty-state > div {
+    flex: 1;
+}
+
+.at-admin-empty-title {
+    margin: 0 0 var(--at-space-1);
+    font-family: var(--at-font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.at-admin-empty-text {
+    margin: 0;
+    color: var(--at-text-muted);
+}
+
+
+/* ----------------------------------------------------------
+   CRUD tables
+   ---------------------------------------------------------- */
+
+.at-admin-table-card {
+    overflow: hidden;
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-table {
+    margin: 0;
+    color: var(--at-text);
+    vertical-align: middle;
+}
+
+.at-admin-table > :not(caption) > * > * {
+    padding: var(--at-space-4);
+    border-bottom-color: var(--at-border-color);
+    background: transparent;
+    color: inherit;
+}
+
+.at-admin-table thead th {
+    border-bottom-width: 1px;
+    background: var(--at-surface-soft);
+    color: var(--at-text-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.at-admin-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.at-admin-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.at-admin-table tbody tr:hover {
+    background: var(--at-surface-soft);
+}
+
+.at-admin-table-title {
+    color: var(--at-text);
+    font-weight: 800;
+}
+
+.at-admin-table-meta {
+    color: var(--at-text-muted);
+}
+
+.at-admin-order-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--at-surface-soft);
+    color: var(--at-text);
+    font-weight: 800;
+}
+
+.at-admin-row-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-4);
+    white-space: nowrap;
+}
+
+.at-admin-row-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+}
+.at-admin-row-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+
+    padding: var(--at-space-2);
+
+    background: transparent;
+    border: 0;
+
+    color: var(--at-text);
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        color var(--at-transition),
+        transform var(--at-transition);
+}
+
+.at-admin-row-action:hover {
+    color: var(--at-orchid);
+    transform: translateY(-1px);
+}
+
+.at-admin-row-action--delete:hover {
+    color: #d77887;
+}
+
+.at-admin-table-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-4);
+
+    color: var(--at-text);
+    font-weight: 700;
+    text-decoration: none;
+
+    transition: color .2s ease;
+}
+
+.at-admin-table-action:hover {
+    color: var(--at-orchid);
+}
+
+.at-admin-table-action-delete:hover {
+    color: #d77887;
+}
+/* ----------------------------------------------------------
+   Therapist admin table
+   ---------------------------------------------------------- */
+
+.at-therapist-admin-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.at-therapist-admin-table th:nth-child(1),
+.at-therapist-admin-table td:nth-child(1) {
+    width: 12rem;
+}
+
+.at-therapist-admin-table th:nth-child(2),
+.at-therapist-admin-table td:nth-child(2) {
+    width: 18rem;
+}
+
+.at-therapist-admin-table th:nth-child(3),
+.at-therapist-admin-table td:nth-child(3) {
+    width: 14rem;
+    white-space: nowrap;
+}
+
+.at-therapist-admin-table th:nth-child(4),
+.at-therapist-admin-table td:nth-child(4) {
+    width: 12rem;
+    white-space: nowrap;
+}
+
+.at-therapist-admin-table th:nth-child(5),
+.at-therapist-admin-table td:nth-child(5) {
+    width: auto;
+}
+
+.at-therapist-admin-table th:nth-child(6),
+.at-therapist-admin-table td:nth-child(6) {
+    width: 8rem;
+}
+
+.at-therapist-admin-table .at-admin-table-title {
+    white-space: nowrap;
+}
+
+.at-therapist-admin-table td:nth-child(5) > div + div {
+    margin-top: .25rem;
+}
+
+/* ----------------------------------------------------------
+   Article management list
+   ---------------------------------------------------------- */
+
+.at-admin-article-list {
+    display: grid;
+    gap: var(--at-space-4);
+}
+
+.at-admin-article-card {
+    display: grid;
+    grid-template-columns: 160px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--at-space-5);
+
+    padding: var(--at-space-5);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-article-card--no-image {
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.at-admin-article-image {
+    overflow: hidden;
+
+    width: 160px;
+    height: 110px;
+
+    border-radius: var(--at-radius-md);
+}
+
+.at-admin-article-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.at-admin-article-content {
+    min-width: 0;
+}
+
+.at-admin-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--at-space-3);
+
+    margin-bottom: var(--at-space-3);
+
+    color: var(--at-text-muted);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.at-admin-article-meta > span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+}
+
+.at-admin-article-title {
+    margin-bottom: var(--at-space-2);
+}
+
+.at-admin-article-summary {
+    display: -webkit-box;
+    overflow: hidden;
+
+    margin: 0;
+
+    color: var(--at-text-muted);
+    line-height: 1.6;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.at-admin-article-card .at-admin-row-actions {
+    align-self: center;
+}
+
+
+/* Mobile */
+
+@media (max-width: 767.98px) {
+    .at-admin-article-card {
+        grid-template-columns: 1fr;
+    }
+
+    .at-admin-article-image {
+        width: 100%;
+        height: 220px;
+    }
+
+    .at-admin-article-card .at-admin-row-actions {
+        justify-content: flex-start;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   CRUD forms
+   ---------------------------------------------------------- */
+
+.at-admin-form-card {
+    width: min(860px, 100%);
+    padding: var(--at-space-7);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-form {
+    display: grid;
+    gap: var(--at-space-7);
+}
+
+.at-admin-form-fields > :last-child {
+    margin-bottom: 0;
+}
+
+.at-admin-form-section {
+    padding-top: var(--at-space-6);
+    border-top: 1px solid var(--at-border-color);
+}
+
+.at-admin-form-section-header {
+    margin-bottom: var(--at-space-5);
+}
+
+.at-admin-form-section-header .at-heading-3 {
+    margin-bottom: var(--at-space-2);
+}
+
+.at-admin-form-section-intro {
+    margin: 0;
+    color: var(--at-text-muted);
+}
+
+.at-admin-option-list {
+    display: grid;
+    gap: var(--at-space-4);
+}
+
+.at-admin-option-card {
+    padding: var(--at-space-5);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+    background: var(--at-surface-soft);
+}
+
+.at-admin-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--at-space-3);
+    padding-top: var(--at-space-5);
+    border-top: 1px solid var(--at-border-color);
+}
+
+.at-admin-form-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--at-space-2);
+}
+
+/* ----------------------------------------------------------
+   Therapist profile photo field
+   ---------------------------------------------------------- */
+
+.at-therapist-admin-form input[type="file"],
+.at-article-admin-form input[type="file"] {
+    display: block;
+    width: 100%;
+    margin-top: var(--at-space-3);
+    padding: var(--at-space-2);
+
+    background: var(--at-surface-main);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+
+    color: var(--at-text);
+    font-size: .95rem;
+}
+
+.at-therapist-admin-form input[type="file"]::file-selector-button,
+.at-article-admin-form input[type="file"]::file-selector-button {
+    min-height: var(--at-btn-sm-height);
+    margin-right: var(--at-space-4);
+    padding-inline: var(--at-space-5);
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-pill);
+
+    color: var(--at-text);
+    cursor: pointer;
+    font-weight: 700;
+
+    transition:
+        background var(--at-transition),
+        border-color var(--at-transition),
+        color var(--at-transition);
+}
+
+.at-therapist-admin-form input[type="file"]::file-selector-button:hover,
+.at-article-admin-form input[type="file"]::file-selector-button:hover {
+    background: var(--at-sage-500);
+    border-color: var(--at-sage-500);
+    color: var(--at-white);
+}
+
+/* Current uploaded file link */
+
+.at-therapist-admin-form a[href*="therapist_profiles"] {
+    display: inline-block;
+    max-width: 100%;
+    margin:
+        var(--at-space-2)
+        var(--at-space-3)
+        var(--at-space-2)
+        0;
+
+    color: var(--at-text);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.at-therapist-admin-form a[href*="therapist_profiles"]:hover {
+    color: var(--at-orchid-strong);
+}
+
+/* Clear current photo checkbox */
+
+.at-therapist-admin-form input[type="checkbox"][name$="-clear"] {
+    appearance: none;
+    -webkit-appearance: none;
+
+    display: inline-grid;
+    place-content: center;
+
+    width: 1.1rem;
+    height: 1.1rem;
+    margin:
+        0
+        var(--at-space-2)
+        0
+        var(--at-space-4);
+
+    background: var(--at-surface-main);
+    border: 1.5px solid var(--at-border-color);
+    border-radius: 4px;
+
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.at-therapist-admin-form input[type="checkbox"][name$="-clear"]::before {
+    content: "";
+
+    width: .55rem;
+    height: .32rem;
+
+    border-left: 2px solid var(--at-white);
+    border-bottom: 2px solid var(--at-white);
+
+    transform: rotate(-45deg) scale(0);
+    transition: transform 150ms ease;
+}
+
+.at-therapist-admin-form input[type="checkbox"][name$="-clear"]:checked {
+    background: var(--at-orchid-strong);
+    border-color: var(--at-orchid-strong);
+}
+
+.at-therapist-admin-form input[type="checkbox"][name$="-clear"]:checked::before {
+    transform: rotate(-45deg) scale(1);
+}
+
+.at-therapist-admin-form input[type="checkbox"][name$="-clear"]:focus-visible {
+    outline: 3px solid rgba(217, 163, 175, .2);
+    outline-offset: 2px;
+}
+
+
+/* Evening mode */
+
+[data-bs-theme="dark"]
+.at-therapist-admin-form input[type="file"],
+[data-bs-theme="dark"]
+.at-article-admin-form input[type="file"] {
+    background: var(--at-surface-input);
+    border-color: rgba(251, 246, 238, .16);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"]
+.at-therapist-admin-form input[type="file"]::file-selector-button,
+[data-bs-theme="dark"]
+.at-article-admin-form input[type="file"]::file-selector-button {
+    background: rgba(251, 246, 238, .08);
+    border-color: rgba(251, 246, 238, .18);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"]
+.at-therapist-admin-form input[type="checkbox"][name$="-clear"],
+[data-bs-theme="dark"]
+.at-article-admin-form input[type="checkbox"][name$="-clear"] {
+    background: rgba(251, 246, 238, .06);
+    border-color: rgba(251, 246, 238, .25);
+}
+
+[data-bs-theme="dark"]
+.at-therapist-admin-form input[type="checkbox"][name$="-clear"]:checked,
+[data-bs-theme="dark"]
+.at-article-admin-form input[type="checkbox"][name$="-clear"]:checked {
+    background: var(--at-orchid);
+    border-color: var(--at-orchid);
+}
+
+/* ----------------------------------------------------------
+   Admin checkboxes
+   ---------------------------------------------------------- */
+
+.at-admin-form .form-check {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-3);
+
+    min-height: 1.75rem;
+    margin-bottom: var(--at-space-2);
+    padding-left: 0;
+}
+
+.at-admin-form .form-check-input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+
+    display: inline-grid;
+    place-content: center;
+    flex: 0 0 auto;
+
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+
+    background: var(--at-surface-main);
+    border: 1.5px solid var(--at-border-color);
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--at-transition),
+        border-color var(--at-transition),
+        box-shadow var(--at-transition);
+}
+
+.at-admin-form .form-check-input[type="checkbox"]::before {
+    content: "";
+
+    width: .55rem;
+    height: .32rem;
+
+    border-left: 2px solid var(--at-white);
+    border-bottom: 2px solid var(--at-white);
+
+    transform: rotate(-45deg) scale(0);
+    transform-origin: center;
+
+    transition: transform 150ms ease;
+}
+
+.at-admin-form .form-check-input[type="checkbox"]:checked {
+    background: var(--at-orchid-strong);
+    border-color: var(--at-orchid-strong);
+}
+
+.at-admin-form .form-check-input[type="checkbox"]:checked::before {
+    transform: rotate(-45deg) scale(1);
+}
+
+.at-admin-form .form-check-input[type="checkbox"]:hover {
+    border-color: var(--at-orchid);
+}
+
+.at-admin-form .form-check-input[type="checkbox"]:focus {
+    border-color: var(--at-orchid);
+    box-shadow: 0 0 0 3px rgba(217, 163, 175, .18);
+    outline: none;
+}
+
+.at-admin-form .form-check-label {
+    margin: 0;
+
+    color: var(--at-text);
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+
+/* Evening mode */
+
+[data-bs-theme="dark"]
+.at-admin-form .form-check-input[type="checkbox"] {
+    background: rgba(251, 246, 238, .06);
+    border-color: rgba(251, 246, 238, .25);
+}
+
+[data-bs-theme="dark"]
+.at-admin-form .form-check-input[type="checkbox"]:hover {
+    background: rgba(251, 246, 238, .1);
+    border-color: var(--at-orchid);
+}
+
+[data-bs-theme="dark"]
+.at-admin-form .form-check-input[type="checkbox"]:checked {
+    background: var(--at-orchid);
+    border-color: var(--at-orchid);
+}
+
+/* ----------------------------------------------------------
+   Delete confirmation
+   ---------------------------------------------------------- */
+
+.at-admin-confirm-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--at-space-5);
+    width: min(760px, 100%);
+    padding: var(--at-space-7);
+    border: 1px solid rgba(197, 127, 144, 0.32);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-confirm-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: rgba(217, 163, 175, 0.22);
+    color: var(--at-orchid-strong);
+    font-size: 1.4rem;
+}
+
+.at-admin-confirm-content .at-heading-1 {
+    margin-bottom: var(--at-space-4);
+}
+
+.at-admin-confirm-text {
+    margin-bottom: var(--at-space-3);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.at-admin-confirm-warning {
+    margin: 0;
+    color: var(--at-text-muted);
+    font-size: 0.925rem;
+}
+
+.at-admin-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--at-space-3);
+    margin-top: var(--at-space-6);
+}
+
+.at-admin-confirm-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--at-space-2);
+}
+
+
+/* ----------------------------------------------------------
+   Evening mode
+   ---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-admin-list-item {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+[data-bs-theme="dark"] .at-status-badge--active {
+    border-color: rgba(185, 200, 188, 0.16);
+    background: rgba(185, 200, 188, 0.12);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-status-badge--scheduled {
+    border-color: rgba(217, 163, 175, 0.2);
+    background: rgba(217, 163, 175, 0.12);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-status-badge--archived,
+[data-bs-theme="dark"] .at-status-badge--inactive {
+    color: var(--at-text-muted);
+}
+
+[data-bs-theme="dark"] .at-admin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+/* ----------------------------------------------------------
+   Article image preview
+   ---------------------------------------------------------- */
+
+.at-admin-article-preview {
+    overflow: hidden;
+
+    width: var(--at-media-width-card);
+    height: 160px;
+    margin-bottom: var(--at-space-6);
+
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+    box-shadow: var(--at-shadow-sm);
+}
+
+.at-admin-article-preview img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* ----------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+    .at-admin-page {
+        padding-top: var(--at-space-4);
+    }
+
+    .at-admin-page-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .at-admin-page-header > .btn {
+        align-self: flex-start;
+    }
+
+    .at-admin-list-section,
+    .at-admin-form-card,
+    .at-admin-confirm-card {
+        padding: var(--at-space-5);
+    }
+
+    .at-admin-list-item {
+        align-items: flex-start;
+    }
+
+    .at-admin-list-item-actions {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .at-admin-empty-state {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .at-admin-empty-state .btn {
+        width: 100%;
+    }
+
+    .at-admin-form-actions,
+    .at-admin-confirm-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .at-admin-form-actions .btn,
+    .at-admin-confirm-actions .btn {
+        width: 100%;
+    }
+
+    .at-admin-confirm-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .at-admin-list-item {
+        flex-direction: column;
+    }
+
+    .at-admin-list-item-actions {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .at-admin-table-card {
+        border-radius: var(--at-radius-md);
+    }
+}
+
+/* ==========================================================
+   31. SHARED PROFILES
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Picture
+---------------------------------------------------------- */
+
+.at-profile-picture {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: var(--at-space-6);
+}
+
+.at-profile-image,
+.at-profile-placeholder {
+    width: 112px;
+    height: 112px;
+
+    border: 2px solid var(--at-border-color);
+    border-radius: 50%;
+    box-shadow: var(--at-shadow-sm);
+}
+
+.at-profile-image {
+    display: block;
+    object-fit: cover;
+}
+
+.at-profile-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--at-surface-soft);
+
+    color: var(--at-text);
+    font-family: var(--at-font-display);
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+
+/* ----------------------------------------------------------
+   Form
+---------------------------------------------------------- */
+
+.at-profile-form .at-btn {
+    margin-top: var(--at-space-2);
+}
+
+
+/* ----------------------------------------------------------
+   File control
+---------------------------------------------------------- */
+
+.at-profile-form input[type="file"] {
+    width: 100%;
+    padding: var(--at-space-2);
+
+    background: var(--at-surface);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+
+    color: var(--at-text);
+}
+
+.at-profile-form input[type="file"]::file-selector-button {
+    min-height: var(--at-btn-sm-height);
+    margin-right: var(--at-space-4);
+    padding-inline: var(--at-btn-sm-padding-x);
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-pill);
+
+    color: var(--at-text);
+    cursor: pointer;
+    font-weight: 700;
+
+    transition:
+        background var(--at-transition),
+        border-color var(--at-transition),
+        color var(--at-transition);
+}
+
+.at-profile-form input[type="file"]::file-selector-button:hover {
+    background: var(--at-sage-500);
+    border-color: var(--at-sage-500);
+    color: var(--at-white);
+}
+
+/* ----------------------------------------------------------
+   Evening mode
+---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-profile-form input[type="file"] {
+    background: var(--at-surface-soft);
+    border-color: var(--at-border-color);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"]
+.at-profile-form input[type="file"]::file-selector-button {
+    background: var(--at-surface-soft);
+    border-color: var(--at-border-color);
+    color: var(--at-cream);
+}
+
+/* ----------------------------------------------------------
+   Mobile
+---------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+    .at-profile-picture {
+        justify-content: center;
+    }
+}
+/* ==========================================================
+   32. POSTPONE BOOKING
+   ========================================================== */
+
+.at-postpone-page {
+    max-width: var(--at-contact-width);
+    margin-inline: auto;
+}
+
+.at-postpone-page .at-form-page__header {
+    margin-bottom: var(--at-space-5);
+}
+
+.at-postpone-page__summary {
+    max-width: 42rem;
+    margin-bottom: var(--at-space-3);
+    color: var(--at-text-muted);
+}
+
+.at-postpone-page .at-form-section {
+    margin-top: var(--at-space-6);
+}
+
+.at-postpone-page .at-form-section__header {
+    margin-bottom: var(--at-space-4);
+}
+
+.at-postpone-form #div_id_preferred_date,
+.at-postpone-form #div_id_preferred_time {
+    display: none;
+}
+
+.at-postpone-form {
+    max-width: 42rem;
+}
+
+.at-postpone-page .at-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+    margin-bottom: var(--at-space-5);
+    color: var(--at-text-muted);
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+.at-postpone-page .at-back-link:hover {
+    color: var(--at-orchid-strong);
+    transform: translateX(-2px);
+}
+
+.at-postpone-page .at-back-link:focus-visible {
+    outline: 3px solid rgba(197, 127, 144, .22);
+    outline-offset: 3px;
+    border-radius: var(--at-radius-sm);
+}
+
+@media (max-width: 575.98px) {
+    .at-postpone-form {
+        max-width: none;
+    }
+
+    .at-form-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .at-form-actions .at-btn {
+        width: 100%;
+    }
+}
+
+/* ==========================================================
+   33. POSTPONE DATE PICKER
+   ========================================================== */
+
+.at-postpone-date-form {
+    max-width: 42rem;
+}
+
+.at-postpone-date-form__fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: var(--at-space-4);
+}
+
+.at-postpone-date-form__fields .at-btn {
+    min-width: 10rem;
+}
+
+@media (max-width: 575.98px) {
+    .at-postpone-date-form__fields {
+        grid-template-columns: 1fr;
+    }
+
+    .at-postpone-date-form__fields .at-btn {
+        width: 100%;
+    }
+}
+/* ==========================================================
+   34. NOTIFICATIONS
+   ========================================================== */
+
+.at-notification-list {
+    display: grid;
+    gap: var(--at-space-5);
+}
+
+.at-notification-card {
+    padding: var(--at-space-6);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    background: var(--at-card-bg);
+    box-shadow: var(--at-card-shadow);
+    transition:
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.at-notification-card:hover {
+    border-color: rgba(197,127,144,.28);
+    transform: translateY(-2px);
+}
+
+.at-notification-card.is-unread {
+    border-left: 4px solid var(--at-orchid);
+}
+
+.at-notification-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--at-space-4);
+    margin-bottom: var(--at-space-3);
+}
+
+.at-notification-card__actions {
+    margin-top: var(--at-space-5);
+}
+
+.at-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--at-space-7);
+    gap: var(--at-space-4);
+}
+
+.at-pagination__info {
+    color: var(--at-text-muted);
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+@media (max-width: 767.98px) {
+
+    .at-notification-card {
+        padding: var(--at-space-5);
+    }
+
+    .at-pagination {
+        flex-direction: column;
+    }
+
+    .at-pagination .at-btn {
+        width: 100%;
+    }
+}
+
+/* ----------------------------------------------------------
+   Therapist service management list
+   ---------------------------------------------------------- */
+
+.at-therapist-service-list {
+    display: grid;
+    gap: var(--at-space-4);
+}
+
+.at-therapist-service-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--at-space-5);
+
+    padding: var(--at-space-5);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-therapist-service-content {
+    min-width: 0;
+}
+
+.at-therapist-service-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--at-space-3);
+
+    margin-bottom: var(--at-space-3);
+
+    color: var(--at-text-muted);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.at-therapist-service-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-3);
+
+    margin-bottom: var(--at-space-3);
+}
+
+.at-therapist-service-meta .at-status-badge {
+    margin-left: auto;
+
+    padding: .25rem .7rem;
+    min-height: 1.8rem;
+
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.at-therapist-service-meta .at-status-badge {
+    margin-left: auto;
+}
+
+.at-therapist-service-title {
+    margin-bottom: var(--at-space-2);
+}
+
+.at-therapist-service-summary {
+    display: -webkit-box;
+    overflow: hidden;
+
+    margin: 0;
+
+    color: var(--at-text-muted);
+    line-height: 1.6;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.at-therapist-service-card .at-admin-row-actions {
+    align-self: center;
+}
+
+
+/* Mobile */
+
+@media (max-width: 767.98px) {
+
+    .at-therapist-service-card {
+        grid-template-columns: 1fr;
+    }
+
+    .at-therapist-service-card .at-admin-row-actions {
+        justify-content: flex-start;
+    }
+
+}
+
+/* ==========================================================
+   ADMIN SERVICE LIST
+   ========================================================== */
+
+.at-admin-service-list {
+    display: grid;
+    gap: var(--at-space-4);
+}
+
+.at-admin-service-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--at-space-6);
+
+    padding: var(--at-space-5);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-service-content {
+    min-width: 0;
+}
+
+.at-admin-service-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--at-space-3);
+
+    margin-bottom: var(--at-space-3);
+
+    color: var(--at-text-muted);
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.at-admin-service-meta .at-status-badge {
+    margin-left: auto;
+}
+
+.at-admin-service-title {
+    margin-bottom: var(--at-space-2);
+}
+
+.at-admin-service-summary {
+    margin: 0 0 var(--at-space-3);
+
+    color: var(--at-text-muted);
+    line-height: 1.65;
+}
+
+.at-admin-service-therapists {
+    margin: 0;
+
+    color: var(--at-text-muted);
+    font-size: .95rem;
+}
+
+.at-admin-service-card .at-admin-row-actions {
+    align-self: center;
+}
+
+@media (max-width: 64rem) {
+
+    .at-admin-service-card {
+        grid-template-columns: 1fr;
+    }
+
+    .at-admin-service-meta .at-status-badge {
+        margin-left: 0;
+    }
+
+    .at-admin-service-card .at-admin-row-actions {
+        justify-content: flex-start;
+    }
+}
+
+/* ----------------------------------------------------------
+   Assessment result list
+   ---------------------------------------------------------- */
+
+.at-admin-result-list {
+    display: grid;
+    gap: var(--at-space-3);
+}
+
+.at-admin-result-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: var(--at-space-5);
+
+    padding: var(--at-space-5);
+
+    color: var(--at-text);
+    text-decoration: none;
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-card-shadow);
+
+    transition:
+        border-color var(--at-transition-fast),
+        transform var(--at-transition-fast),
+        box-shadow var(--at-transition-fast);
+}
+
+.at-admin-result-card:hover {
+    color: var(--at-text);
+    border-color: var(--at-orchid);
+    transform: translateY(-1px);
+}
+
+.at-admin-result-content {
+    min-width: 0;
+}
+
+.at-admin-result-title {
+    margin-bottom: var(--at-space-2);
+}
+
+.at-admin-result-meta,
+.at-admin-result-date {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-2);
+
+    margin: 0;
+
+    color: var(--at-text-muted);
+    font-size: .9rem;
+}
+
+.at-admin-result-date {
+    white-space: nowrap;
+}
+
+.at-admin-result-arrow {
+    color: var(--at-text-muted);
+    font-size: 1.1rem;
+}
+
+
+/* Mobile */
+
+@media (max-width: 767.98px) {
+
+    .at-admin-result-card {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: var(--at-space-3);
+    }
+
+    .at-admin-result-date {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .at-admin-result-arrow {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
+
+/* ----------------------------------------------------------
+   Assessment result detail
+   ---------------------------------------------------------- */
+
+.at-admin-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--at-space-5);
+}
+
+.at-admin-detail-card {
+    padding: var(--at-space-6);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-detail-card--wide {
+    grid-column: 1 / -1;
+}
+
+.at-admin-detail-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--at-space-4);
+
+    margin-bottom: var(--at-space-5);
+}
+
+.at-admin-detail-card-header .at-heading-3,
+.at-admin-detail-card-header .at-eyebrow {
+    margin-bottom: 0;
+}
+
+.at-admin-detail-card-header > i {
+    color: var(--at-text-muted);
+    font-size: 1.35rem;
+}
+
+.at-admin-detail-list {
+    display: grid;
+    gap: var(--at-space-3);
+    margin: 0;
+}
+
+.at-admin-detail-row {
+    display: grid;
+    grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr);
+    gap: var(--at-space-4);
+
+    padding-top: var(--at-space-3);
+    border-top: 1px solid var(--at-border-color);
+}
+
+.at-admin-detail-row:first-child {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.at-admin-detail-row dt {
+    color: var(--at-text-muted);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.at-admin-detail-row dd {
+    margin: 0;
+    color: var(--at-text);
+}
+
+.at-admin-answer-list {
+    display: grid;
+    gap: var(--at-space-4);
+}
+
+.at-admin-answer-card {
+    padding: var(--at-space-5);
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+}
+
+.at-admin-answer-question {
+    margin: 0 0 var(--at-space-2);
+
+    color: var(--at-text);
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.at-admin-answer-text {
+    margin: 0;
+    color: var(--at-text-muted);
+    line-height: 1.7;
+}
+
+.at-admin-service-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-space-3);
+}
+
+.at-admin-service-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+
+    padding: .65rem 1rem;
+
+    color: var(--at-text);
+    font-size: .9rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    border-radius: 999px;
+
+    transition:
+        color var(--at-transition-fast),
+        border-color var(--at-transition-fast),
+        background-color var(--at-transition-fast);
+}
+
+.at-admin-service-chip:hover,
+.at-admin-service-chip:focus-visible {
+    color: var(--at-orchid-strong);
+    border-color: var(--at-orchid);
+    background: var(--at-card-bg);
+}
+
+.at-admin-inline-empty {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-3);
+
+    color: var(--at-text-muted);
+}
+
+.at-admin-inline-empty p {
+    margin: 0;
+}
+
+
+/* Mobile */
+
+@media (max-width: 767.98px) {
+
+    .at-admin-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .at-admin-detail-card--wide {
+        grid-column: auto;
+    }
+
+    .at-admin-detail-card {
+        padding: var(--at-space-5);
+    }
+
+    .at-admin-detail-row {
+        grid-template-columns: 1fr;
+        gap: .25rem;
+    }
+}
+
+/* ----------------------------------------------------------
+   Admin booking list
+   ---------------------------------------------------------- */
+
+.at-admin-bookings-page .at-admin-page-intro {
+    max-width: none;
+}
+
+.at-admin-page-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--at-space-3);
+    margin-bottom: var(--at-space-4);
+}
+
+.at-admin-page-actions form {
+    margin: 0;
+}
+
+.at-admin-booking-list {
+    display: grid;
+    gap: var(--at-space-4);
+}
+
+.at-admin-booking-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--at-space-6);
+
+    padding: var(--at-space-5);
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-card-shadow);
+}
+
+.at-admin-booking-content {
+    min-width: 0;
+}
+
+.at-admin-booking-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--at-space-3);
+
+    margin-bottom: var(--at-space-3);
+
+    color: var(--at-text-muted);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.at-admin-booking-meta > span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--at-space-2);
+}
+
+.at-admin-booking-meta .at-status-badge {
+    margin-left: auto;
+}
+
+.at-admin-booking-title {
+    margin-bottom: var(--at-space-3);
+}
+
+.at-admin-booking-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-space-2) var(--at-space-5);
+}
+
+.at-admin-booking-details p {
+    margin: 0;
+    color: var(--at-text-muted);
+    font-size: .95rem;
+}
+
+.at-admin-booking-details strong {
+    color: var(--at-text);
+}
+
+.at-admin-booking-side {
+    display: grid;
+    justify-items: end;
+    gap: var(--at-space-4);
+}
+
+.at-admin-booking-payment {
+    display: grid;
+    justify-items: end;
+    gap: var(--at-space-2);
+}
+
+.at-admin-booking-payment-label {
+    color: var(--at-text-muted);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.at-admin-booking-payment .form-check-input {
+    border: 3px solid var(--at-orchid);
+}
+
+
+/* Mobile */
+
+@media (max-width: 767.98px) {
+
+    .at-admin-booking-card {
+        grid-template-columns: 1fr;
+    }
+
+    .at-admin-booking-meta .at-status-badge {
+        margin-left: 0;
+    }
+
+    .at-admin-booking-details {
+        display: grid;
+        gap: var(--at-space-2);
+    }
+
+    .at-admin-booking-side {
+        justify-items: start;
+        padding-top: var(--at-space-4);
+        border-top: 1px solid var(--at-border-color);
+    }
+
+    .at-admin-booking-payment {
+        justify-items: start;
+    }
+
+    .at-admin-booking-card .at-admin-row-actions {
+        justify-content: flex-start;
+    }
+
+}
+
+/* ----------------------------------------------------------
+   Admin detail list
+   ---------------------------------------------------------- */
+
+.at-admin-details {
+    display: grid;
+    grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+    margin: 0;
+}
+
+.at-admin-details dt,
+.at-admin-details dd {
+    padding: var(--at-space-4) 0;
+    border-bottom: 1px solid var(--at-border-color);
+}
+
+.at-admin-details dt {
+    color: var(--at-text-muted);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.at-admin-details dd {
+    margin: 0;
+    color: var(--at-text);
+    line-height: 1.65;
+}
+
+.at-admin-details dt:last-of-type,
+.at-admin-details dd:last-of-type {
+    border-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+
+    .at-admin-details {
+        grid-template-columns: 1fr;
+    }
+
+    .at-admin-details dt {
+        padding-bottom: var(--at-space-1);
+        border-bottom: 0;
+    }
+
+    .at-admin-details dd {
+        padding-top: 0;
+    }
+
+}
+
+/* ----------------------------------------------------------
+   Admin booking form
+   ---------------------------------------------------------- */
+
+.at-admin-booking-form-page {
+    display: grid;
+    gap: var(--at-space-5);
+}
+
+.at-admin-booking-form-page .at-back-link,
+.at-admin-booking-form-page .at-admin-page-header {
+    margin-bottom: 0;
+}
+
+.at-admin-booking-form-page > .at-admin-form-card {
+    width: 100%;
+    max-width: none;
+}
+
+
+/* ----------------------------------------------------------
+   Slot search
+   ---------------------------------------------------------- */
+
+.at-admin-slot-search {
+    display: grid;
+    grid-template-columns:
+        minmax(14rem, 1.4fr)
+        minmax(13rem, 1.2fr)
+        minmax(10rem, .8fr)
+        minmax(10rem, .8fr)
+        auto;
+    align-items: end;
+    gap: var(--at-space-3);
+
+    width: 100%;
+    max-width: 70rem;
+}
+
+.at-admin-slot-search-field {
+    display: grid;
+    gap: var(--at-space-2);
+    min-width: 0;
+}
+
+.at-admin-slot-search-field label {
+    margin: 0;
+
+    color: var(--at-text);
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.at-admin-slot-search .at-input,
+.at-admin-slot-search .at-select {
+    width: 100%;
+    height: 3.25rem;
+    padding: 0 var(--at-space-3);
+
+    background-color: var(--at-surface-main);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-sm);
+
+    color: var(--at-text);
+    font: inherit;
+
+    transition:
+        background-color var(--at-transition),
+        border-color var(--at-transition),
+        box-shadow var(--at-transition);
+}
+
+.at-admin-slot-search .at-select {
+    appearance: none;
+    -webkit-appearance: none;
+
+    padding-right: 2.75rem;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M5 7l4 4 4-4' fill='none' stroke='%236F8375' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+.at-admin-slot-search .at-input:focus,
+.at-admin-slot-search .at-select:focus {
+    background-color: var(--at-surface-main);
+    border-color: var(--at-orchid);
+    color: var(--at-text);
+
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(217, 163, 175, .18);
+}
+
+.at-admin-slot-search .at-btn {
+    min-width: 8.75rem;
+    height: 3.25rem;
+    padding-inline: var(--at-space-5);
+
+    white-space: nowrap;
+}
+
+/* ----------------------------------------------------------
+   Evening mode
+   ---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-admin-slot-search .at-input,
+[data-bs-theme="dark"] .at-admin-slot-search .at-select {
+    background-color: var(--at-surface-input);
+    border-color: var(--at-border-color);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-admin-slot-search .at-input:focus,
+[data-bs-theme="dark"] .at-admin-slot-search .at-select:focus {
+    background-color: var(--at-surface-input);
+    border-color: var(--at-orchid);
+    color: var(--at-cream);
+}
+
+
+/* ----------------------------------------------------------
+   Busy periods
+   ---------------------------------------------------------- */
+
+.at-admin-booking-busy-details {
+    margin-top: var(--at-space-6);
+    padding-top: var(--at-space-5);
+    border-top: 1px solid var(--at-border-color);
+}
+
+.at-admin-booking-busy-details summary {
+    width: fit-content;
+
+    color: var(--at-text);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.at-admin-booking-busy-content {
+    margin-top: var(--at-space-4);
+}
+
+
+/* ----------------------------------------------------------
+   Selected appointment status
+   ---------------------------------------------------------- */
+
+.at-admin-selection-status {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--at-space-3);
+
+    padding: var(--at-space-4) var(--at-space-5);
+
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+}
+
+.at-admin-selection-status > i {
+    margin-top: .15rem;
+    font-size: 1.1rem;
+}
+
+.at-admin-selection-status strong {
+    color: var(--at-text);
+}
+
+.at-admin-selection-status p {
+    margin: .2rem 0 0;
+    color: var(--at-text-muted);
+}
+
+.at-admin-selection-status--success {
+    background: var(--at-surface-soft);
+}
+
+.at-admin-selection-status--warning {
+    background: var(--at-card-bg);
+}
+
+
+/* ----------------------------------------------------------
+   Payment field
+   ---------------------------------------------------------- */
+
+.at-admin-payment-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--at-space-5);
+
+    width: 100%;
+    padding: var(--at-space-5);
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+}
+
+.at-admin-payment-label {
+    margin: 0;
+
+    color: var(--at-text);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.at-admin-payment-field .at-switch {
+    flex-shrink: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Client action
+   ---------------------------------------------------------- */
+
+.at-admin-booking-client-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--at-space-4);
+
+    padding: var(--at-space-4);
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-md);
+}
+
+.at-admin-booking-client-action p {
+    margin: 0;
+    color: var(--at-text-muted);
+}
+
+
+/* ----------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------- */
+
+@media (max-width: 64rem) {
+
+    .at-admin-slot-search {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .at-admin-slot-search .at-btn {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 767.98px) {
+
+    .at-admin-slot-search {
+        grid-template-columns: 1fr;
+    }
+
+    .at-admin-booking-client-action {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .at-admin-booking-client-action .at-btn {
+        width: 100%;
+    }
+
+}

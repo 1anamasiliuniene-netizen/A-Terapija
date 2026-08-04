@@ -1,0 +1,57 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}{% trans "Profile" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-form-page">
+
+  <header class="at-form-page-header">
+    <p class="at-eyebrow">{% trans "Your account" %}</p>
+
+    <h1 class="at-heading-1">
+      {% trans "Profile" %}
+    </h1>
+
+    <p class="at-body">
+      {% trans "Update your personal details and profile picture." %}
+    </p>
+  </header>
+
+  <div class="at-form-card">
+
+    <div class="at-profile-picture">
+      {% if user.client_profile.profile_picture %}
+        <img
+          src="{{ user.client_profile.profile_picture.url }}"
+          alt="{% trans 'Profile picture' %}"
+          class="at-profile-image"
+        >
+      {% else %}
+        <div class="at-profile-placeholder" aria-hidden="true">
+          {{ user.username|first|upper }}
+        </div>
+      {% endif %}
+    </div>
+
+    <form
+      method="post"
+      enctype="multipart/form-data"
+      novalidate
+      class="at-profile-form at-form-content"
+    >
+      {% csrf_token %}
+
+      {{ form|crispy }}
+
+      <button type="submit" class="at-btn at-btn-primary">
+        {% trans "Save profile" %}
+      </button>
+    </form>
+
+  </div>
+
+</section>
+
+{% endblock %}

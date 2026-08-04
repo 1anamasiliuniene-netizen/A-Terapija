@@ -1,0 +1,236 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Client Dashboard" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section
+        class="at-dashboard-page at-client-dashboard"
+        style="--at-page-width: var(--at-width-xxl);"
+>
+
+    <header class="at-dashboard-header">
+        <p class="at-eyebrow">{% trans "My space" %}</p>
+
+        <div class="at-dashboard-actions">
+            <a
+                    href="{% url 'aterapija:assessment' %}"
+                    class="at-btn at-btn-primary"
+            >
+                {% trans "Help me choose" %}
+            </a>
+
+            <a
+                    href="{% url 'aterapija:services' %}"
+                    class="at-btn at-btn-secondary"
+            >
+                {% trans "Browse services" %}
+            </a>
+        </div>
+    </header>
+
+    <section class="at-dashboard-section">
+
+        <div class="at-dashboard-section-header">
+            <h2 class="at-heading-2">
+                {% trans "Upcoming appointments (soonest first)" %}
+            </h2>
+        </div>
+
+        {% if upcoming_bookings %}
+
+        <div class="at-dashboard-table-card">
+
+            <div class="table-responsive">
+                <table class="at-dashboard-table">
+
+                    <thead>
+                    <tr>
+                        <th scope="col">{% trans "Service" %}</th>
+                        <th scope="col">{% trans "Therapist" %}</th>
+                        <th scope="col">{% trans "Date" %}</th>
+                        <th scope="col">{% trans "Time" %}</th>
+                        <th scope="col">{% trans "Status" %}</th>
+                        <th scope="col">
+                            <span class="visually-hidden">{% trans "Actions" %}</span>
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for booking in upcoming_bookings %}
+                    <tr>
+
+                        <td data-label="{% trans 'Service' %}">
+                            <strong>
+                                {{ booking.service|localized_title }}
+                            </strong>
+                        </td>
+
+                        <td data-label="{% trans 'Therapist' %}">
+                            {{ booking.therapist.full_name }}
+                        </td>
+
+                        <td data-label="{% trans 'Date' %}">
+                            {{ booking.preferred_date|date:"M j, Y" }}
+                        </td>
+
+                        <td data-label="{% trans 'Time' %}">
+                            {{ booking.preferred_time|time:"H:i" }}
+                        </td>
+
+                        <td data-label="{% trans 'Status' %}">
+                                        <span class="at-status at-status-{{ booking.status }}">
+                                            {{ booking.get_status_display }}
+                                        </span>
+                        </td>
+
+                        <td
+                                class="at-dashboard-row-actions"
+                                data-label="{% trans 'Actions' %}"
+                        >
+                            <a
+                                    class="at-btn at-btn-secondary at-btn-sm"
+                                    href="{% url 'aterapija:client_booking_postpone' booking.pk %}"
+                            >
+                                {% trans "Postpone" %}
+                            </a>
+
+                            <form
+                                    method="post"
+                                    action="{% url 'aterapija:client_booking_cancel' booking.pk %}"
+                            >
+                                {% csrf_token %}
+
+                                <button
+                                        type="submit"
+                                        class="at-btn at-btn-accent at-btn-sm"
+                                >
+                                    {% trans "Cancel" %}
+                                </button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="at-empty-state">
+            <h3 class="at-heading-3">
+                {% trans "No upcoming appointments" %}
+            </h3>
+
+            <p class="at-body">
+                {% trans "Browse the available services or complete the short assessment to find a suitable starting point." %}
+            </p>
+
+            <a
+                    href="{% url 'aterapija:services' %}"
+                    class="at-btn at-btn-primary"
+            >
+                {% trans "Browse services" %}
+            </a>
+        </div>
+
+        {% endif %}
+
+    </section>
+
+    {% if past_bookings %}
+
+    <section class="at-dashboard-section">
+
+        <details class="at-dashboard-history">
+
+            <summary class="at-dashboard-history-summary">
+
+                <h2 class="at-heading-2">
+
+                    {% trans "Booking history (latest first)" %}
+
+                </h2>
+
+                <div class="at-dashboard-history-meta">
+                    <span class="at-dashboard-history-count">
+                        {{ past_bookings|length }}
+                    </span>
+
+                    <i class="bi bi-chevron-down"></i>
+
+                </div>
+
+            </summary>
+
+            <div class="at-dashboard-history-content">
+
+                <div class="at-dashboard-table-card">
+
+                    <div class="table-responsive">
+                        <table class="at-dashboard-table">
+
+                            <thead>
+                            <tr>
+                                <th scope="col">{% trans "Service" %}</th>
+                                <th scope="col">{% trans "Therapist" %}</th>
+                                <th scope="col">{% trans "Date" %}</th>
+                                <th scope="col">{% trans "Time" %}</th>
+                                <th scope="col">{% trans "Status" %}</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for booking in past_bookings %}
+                            <tr>
+
+                                <td data-label="{% trans 'Service' %}">
+                                    <strong>
+                                        {{ booking.service|localized_title }}
+                                    </strong>
+                                </td>
+
+                                <td data-label="{% trans 'Therapist' %}">
+                                    {{ booking.therapist.full_name }}
+                                </td>
+
+                                <td data-label="{% trans 'Date' %}">
+                                    {{ booking.preferred_date|date:"M j, Y" }}
+                                </td>
+
+                                <td data-label="{% trans 'Time' %}">
+                                    {{ booking.preferred_time|time:"H:i" }}
+                                </td>
+
+                                <td data-label="{% trans 'Status' %}">
+                                                <span class="at-status at-status-{{ booking.status }}">
+                                                    {{ booking.get_status_display }}
+                                                </span>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </details>
+
+    </section>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

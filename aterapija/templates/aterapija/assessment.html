@@ -1,0 +1,137 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Help me choose" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<div
+    class="at-choose-page"
+    style="--at-page-width: var(--at-width-wide); --at-text-width: var(--at-width-narrow);"
+>
+
+    <!-- Header -->
+    <header class="at-choose-header">
+        <h1 class="at-heading-1 mb-3">
+            {% trans "Let’s find what feels right" %}
+        </h1>
+        <p class="at-body-lg at-text-muted mb-5">
+        {% trans "Answer a few gentle questions to help us understand your current needs. Based on your answers, we'll recommend the therapies that may suit you best." %}
+    </p>
+
+    <div class="at-section-divider"></div>
+
+    </header>
+
+    {% if questions %}
+
+    <form method="post" class="at-choose-form">
+        {% csrf_token %}
+
+        {% for question in questions %}
+
+            <section class="at-question">
+
+                <h2 class="at-heading-3 mb-4">
+                    {{ question.question_text }}
+                </h2>
+
+                {% if question.question_type == "text" %}
+
+                    <input
+                        type="text"
+                        name="question_{{ question.pk }}"
+                        class="form-control at-form-control">
+
+                {% elif question.question_type == "textarea" %}
+
+                    <textarea
+                        name="question_{{ question.pk }}"
+                        rows="5"
+                        class="form-control at-form-control"></textarea>
+
+                {% else %}
+
+                    <div class="at-answer-list">
+
+                        {% for option in question.answer_options.all %}
+
+                            <div class="at-answer-item">
+
+                                <input
+                                    id="answer-{{ option.id }}"
+                                    class="at-answer-input"
+                                    type="{% if question.question_type == 'single' %}radio{% else %}checkbox{% endif %}"
+                                    name="answers"
+                                    value="{{ option.id }}">
+
+                                <label
+                                    for="answer-{{ option.id }}"
+                                    class="at-answer-label">
+
+                                    {{ option.answer_text }}
+
+                                </label>
+
+                            </div>
+
+                        {% empty %}
+
+                            <p class="at-body text-muted">
+                                {% trans "No answer options have been added yet." %}
+                            </p>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            </section>
+
+            {% if not forloop.last %}
+                <hr class="at-section-divider">
+            {% endif %}
+        {% endfor %}
+
+      <hr class="at-section-divider">
+
+                {% if not user.is_authenticated %}
+            <div class="at-login-note">
+
+                <h3 class="at-heading-3 mb-2">
+                    {% trans "Before you continue" %}
+                </h3>
+
+                <p class="at-body mb-0">
+    {% trans "We'll save your answers securely and suggest the services that best match what you've shared. If you're new to A Terapija, you'll be asked to create a free account before viewing your recommendations. Your answers will be saved automatically, so you won't need to complete the questionnaire again." %}
+</p>
+
+            </div>
+        {% endif %}
+
+        <div class="at-choose-actions">
+
+            <button
+                type="submit"
+                class="at-btn at-btn-primary at-btn-hero">
+
+                {% trans "View my recommendations" %}
+
+            </button>
+
+        </div>
+
+    </form>
+
+    {% else %}
+
+        <p class="at-body">
+            {% trans "No active wellbeing questions are available yet." %}
+        </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

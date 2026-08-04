@@ -1,0 +1,244 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Advice Schedule" %} | A Terapija{% endblock %}
+{% block content %}
+<section class="at-admin-page">
+    <a href="{% url 'aterapija:admin_dashboard' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to admin dashboard" %}
+    </a>
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Content management" %}</p>
+            <h1 class="at-heading-1">{% trans "Advice Schedule" %}</h1>
+            <p class="at-admin-page-intro">
+                {% trans "Add advice for future dates. Public pages show advice only when its publish date arrives." %}
+            </p>
+        </div>
+        <a href="{% url 'aterapija:admin_advice_add' %}" class="at-btn at-btn-primary">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            {% trans "Add advice" %}
+        </a>
+    </header>
+    <div class="at-admin-list-sections">
+        <section class="at-admin-list-section">
+            <header class="at-admin-list-section-header">
+                <div>
+                    <h2 class="at-heading-3">{% trans "Today" %}</h2>
+                    <p class="at-admin-section-meta">
+                        {{ today|date:"F j, Y" }}
+                    </p>
+                </div>
+
+                <span class="at-admin-item-count">
+      {{ today_advice_items|length }}
+    </span>
+            </header>
+
+            {% if today_advice_items %}
+            <div class="at-admin-item-list">
+                {% for advice in today_advice_items %}
+                <a
+                        href="{% url 'aterapija:admin_advice_edit' advice.pk %}"
+                        class="at-admin-list-item"
+                >
+                    <div class="at-admin-list-item-main">
+                        <h3 class="at-admin-list-item-title">
+                            {{ advice.title }}
+                        </h3>
+
+                        <p class="at-admin-list-item-date">
+                            <i class="bi bi-calendar3" aria-hidden="true"></i>
+                            {{ advice.published_date|date:"F j, Y" }}
+                        </p>
+                    </div>
+
+                    <div class="at-admin-list-item-actions">
+            <span class="at-status-badge {% if advice.is_active %}at-status-badge--active{% else %}at-status-badge--inactive{% endif %}">
+              {% if advice.is_active %}
+                {% trans "Active" %}
+              {% else %}
+                {% trans "Inactive" %}
+              {% endif %}
+            </span>
+
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="at-admin-empty-state">
+                <i class="bi bi-calendar-check" aria-hidden="true"></i>
+
+                <div>
+                    <h3 class="at-admin-empty-title">{% trans "Nothing scheduled for today" %}</h3>
+                    <p class="at-admin-empty-text">
+                        {% trans "Advice added for today will appear here." %}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="at-admin-list-section">
+            <header class="at-admin-list-section-header">
+                <div>
+                    <h2 class="at-heading-3">{% trans "Upcoming" %}</h2>
+                    <p class="at-admin-section-meta">
+                        {% trans "Advice prepared for future publication" %}
+                    </p>
+                </div>
+
+                <span class="at-admin-item-count">
+      {{ future_advice_items|length }}
+    </span>
+            </header>
+
+            {% if future_advice_items %}
+            <div class="at-admin-item-list">
+                {% for advice in future_advice_items %}
+                <a
+                        href="{% url 'aterapija:admin_advice_edit' advice.pk %}"
+                        class="at-admin-list-item"
+                >
+                    <div class="at-admin-list-item-main">
+                        <h3 class="at-admin-list-item-title">
+                            {{ advice.title }}
+                        </h3>
+
+                        <p class="at-admin-list-item-date">
+                            <i class="bi bi-calendar3" aria-hidden="true"></i>
+                            {{ advice.published_date|date:"F j, Y" }}
+                        </p>
+                    </div>
+
+                    <div class="at-admin-list-item-actions">
+            <span class="at-status-badge {% if advice.is_active %}at-status-badge--scheduled{% else %}at-status-badge--inactive{% endif %}">
+              {% if advice.is_active %}
+                {% trans "Scheduled" %}
+              {% else %}
+                {% trans "Inactive" %}
+              {% endif %}
+            </span>
+
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="at-admin-empty-state">
+                <i class="bi bi-calendar-plus" aria-hidden="true"></i>
+
+                <div>
+                    <h3 class="at-admin-empty-title">{% trans "No upcoming advice" %}</h3>
+                    <p class="at-admin-empty-text">
+                        {% trans "Add advice and choose a future publication date." %}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+        </section>
+        <section class="at-admin-list-section">
+            <header class="at-admin-list-section-header">
+                <div>
+                    <h2 class="at-heading-3">{% trans "Previous" %}</h2>
+                    <p class="at-admin-section-meta">
+                        {% trans "Advice from earlier publication dates" %}
+                    </p>
+                </div>
+
+                <span class="at-admin-item-count">
+                    {{ past_advice_items.paginator.count }}
+                </span>
+            </header>
+
+            {% if past_advice_items %}
+                <div class="at-admin-item-list">
+                    {% for advice in past_advice_items %}
+                        <a
+                            href="{% url 'aterapija:admin_advice_edit' advice.pk %}"
+                            class="at-admin-list-item"
+                        >
+                            <div class="at-admin-list-item-main">
+                                <h3 class="at-admin-list-item-title">
+                                    {{ advice.title }}
+                                </h3>
+
+                                <p class="at-admin-list-item-date">
+                                    <i class="bi bi-calendar3" aria-hidden="true"></i>
+                                    {{ advice.published_date|date:"F j, Y" }}
+                                </p>
+                            </div>
+
+                            <div class="at-admin-list-item-actions">
+                                <span class="at-status-badge {% if advice.is_active %}at-status-badge--archived{% else %}at-status-badge--inactive{% endif %}">
+                                    {% if advice.is_active %}
+                                        {% trans "Archived" %}
+                                    {% else %}
+                                        {% trans "Inactive" %}
+                                    {% endif %}
+                                </span>
+
+                                <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="at-admin-empty-state">
+                    <i class="bi bi-archive" aria-hidden="true"></i>
+
+                    <div>
+                        <h3 class="at-admin-empty-title">{% trans "No previous advice" %}</h3>
+                        <p class="at-admin-empty-text">
+                            {% trans "Published advice will be kept here for reference." %}
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if past_advice_items.paginator.num_pages > 1 %}
+                <nav class="at-pagination" aria-label="{% trans 'Previous advice pages' %}">
+                    {% if past_advice_items.has_previous %}
+                        <a
+                            href="?past_page={{ past_advice_items.previous_page_number }}"
+                            class="at-pagination-link"
+                        >
+                            <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                            {% trans "Previous" %}
+                        </a>
+                    {% else %}
+                        <span class="at-pagination-link is-disabled">
+                            <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                            {% trans "Previous" %}
+                        </span>
+                    {% endif %}
+
+                    <span class="at-pagination-status">
+                        {% blocktrans with num=past_advice_items.number total=past_advice_items.paginator.num_pages %}
+                            Page {{ num }} of {{ total }}
+                        {% endblocktrans %}
+                    </span>
+
+                    {% if past_advice_items.has_next %}
+                        <a
+                            href="?past_page={{ past_advice_items.next_page_number }}"
+                            class="at-pagination-link"
+                        >
+                            {% trans "Next" %}
+                            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                        </a>
+                    {% else %}
+                        <span class="at-pagination-link is-disabled">
+                            {% trans "Next" %}
+                            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                        </span>
+                    {% endif %}
+                </nav>
+            {% endif %}
+        </section>
+    </div>
+</section>
+{% endblock %}

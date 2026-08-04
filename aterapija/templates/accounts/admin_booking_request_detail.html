@@ -1,0 +1,123 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Booking" %} | A Terapija{% endblock %}
+
+{% block content %}
+{% trans "Not provided" as not_provided %}
+{% trans "Any therapist" as any_therapist %}
+{% trans "No message" as no_message %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:admin_booking_request_list' %}"
+       class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to bookings" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Booking management" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% trans "Booking" %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Review booking details, payment status and client information." %}
+            </p>
+
+        </div>
+
+    </header>
+
+    <div class="at-admin-page-actions">
+
+        <a href="{% url 'aterapija:admin_booking_request_edit' booking_request.pk %}"
+           class="at-btn at-btn-primary">
+            {% trans "Edit booking" %}
+        </a>
+
+        {% if booking_request.status == "approved" %}
+
+        <form method="post"
+              action="{% url 'aterapija:admin_booking_request_cancel' booking_request.pk %}">
+
+            {% csrf_token %}
+
+            <button type="submit"
+                    class="at-btn at-btn-accent">
+                {% trans "Cancel booking" %}
+            </button>
+
+        </form>
+
+        {% endif %}
+
+    </div>
+
+    </header>
+
+    <div class="at-admin-form-card">
+
+        <dl class="at-admin-details">
+
+            <dt>{% trans "Client" %}</dt>
+            <dd>{{ booking_request.client_name }}</dd>
+
+            <dt>{% trans "Email" %}</dt>
+            <dd>{{ booking_request.client_email }}</dd>
+
+            <dt>{% trans "Phone" %}</dt>
+            <dd>{{ booking_request.client_phone|default:not_provided }}</dd>
+
+            <dt>{% trans "Service" %}</dt>
+            <dd>
+                {{ booking_request.service|localized_title }}
+                (€{{ booking_request.service.price }})
+            </dd>
+
+            <dt>{% trans "Payment received" %}</dt>
+            <dd>
+                {% if booking_request.payment_received %}
+                <span class="at-status-badge at-status-badge--active">
+                        {% trans "Yes" %}
+                    </span>
+                {% else %}
+                <span class="at-status-badge at-status-badge--inactive">
+                        {% trans "No" %}
+                    </span>
+                {% endif %}
+            </dd>
+
+            <dt>{% trans "Therapist" %}</dt>
+            <dd>{{ booking_request.therapist.full_name|default:any_therapist }}</dd>
+
+            <dt>{% trans "Appointment" %}</dt>
+            <dd>
+                {{ booking_request.preferred_date|date:"M j, Y" }}
+                {{ booking_request.preferred_time|time:"H:i" }}
+            </dd>
+
+            <dt>{% trans "Status" %}</dt>
+            <dd>
+                <span class="at-status-badge {% if booking_request.status == 'approved' %}at-status-badge--active{% else %}at-status-badge--inactive{% endif %}">
+                    {{ booking_request.get_status_display }}
+                </span>
+            </dd>
+
+            <dt>{% trans "Message" %}</dt>
+            <dd>{{ booking_request.message|default:no_message|linebreaksbr }}</dd>
+
+        </dl>
+
+    </div>
+
+</section>
+
+{% endblock %}

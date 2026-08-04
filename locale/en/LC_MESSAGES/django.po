@@ -1,0 +1,2129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-30 14:46+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: aterapija/forms.py:58
+msgid "Enter your name"
+msgstr ""
+
+#: aterapija/forms.py:59
+msgid "Enter your email"
+msgstr ""
+
+#: aterapija/forms.py:60
+msgid "Subject"
+msgstr ""
+
+#: aterapija/forms.py:61
+msgid "How can we help?"
+msgstr ""
+
+#: aterapija/forms.py:93 aterapija/forms.py:172
+msgid "Internal/fallback service name"
+msgstr "Internal/fallback service name"
+
+#: aterapija/forms.py:94 aterapija/forms.py:173 aterapija/forms.py:889
+msgid "Lithuanian title"
+msgstr "Lithuanian title"
+
+#: aterapija/forms.py:95 aterapija/forms.py:174 aterapija/forms.py:890
+msgid "English title"
+msgstr "English title"
+
+#: aterapija/forms.py:96 aterapija/forms.py:175
+msgid "Fallback short description"
+msgstr "Fallback short description"
+
+#: aterapija/forms.py:97 aterapija/forms.py:176
+msgid "Fallback full description"
+msgstr "Fallback full description"
+
+#: aterapija/forms.py:98 aterapija/forms.py:177
+msgid "Lithuanian description"
+msgstr "Lithuanian description"
+
+#: aterapija/forms.py:99 aterapija/forms.py:178
+msgid "English description"
+msgstr "English description"
+
+#: aterapija/forms.py:107 aterapija/forms.py:189
+msgid "Save service"
+msgstr "Save service"
+
+#: aterapija/forms.py:122
+#: aterapija/templates/accounts/article_category_form.html:55
+#: aterapija/templates/accounts/therapist_service_category_form.html:58
+msgid "Save category"
+msgstr "Save category"
+
+#: aterapija/forms.py:140
+#: aterapija/templates/accounts/therapist_service_link.html:58
+#| msgid "View service"
+msgid "Link services"
+msgstr "View service"
+
+#: aterapija/forms.py:244 aterapija/templates/aterapija/booking_form.html:16
+msgid "Book appointment"
+msgstr "Book appointment"
+
+#: aterapija/forms.py:442
+#: aterapija/templates/accounts/admin_booking_request_form.html:376
+#| msgid "Request booking"
+msgid "Save booking"
+msgstr "Request booking"
+
+#: aterapija/forms.py:578 aterapija/forms.py:812
+msgid "Fallback biography"
+msgstr "Fallback biography"
+
+#: aterapija/forms.py:579 aterapija/forms.py:813
+msgid "Lithuanian biography"
+msgstr "Lithuanian biography"
+
+#: aterapija/forms.py:580 aterapija/forms.py:814
+msgid "English biography"
+msgstr "English biography"
+
+#: aterapija/forms.py:811
+#| msgid "Personal dashboard"
+msgid "Personal quote"
+msgstr "Personal quote"
+
+#: aterapija/forms.py:832
+msgid "Save profile"
+msgstr "Save profile"
+
+#: aterapija/forms.py:862
+msgid "Remove current image"
+msgstr "Remove current image"
+
+#: aterapija/forms.py:888
+msgid "Fallback title"
+msgstr "Fallback title"
+
+#: aterapija/forms.py:938
+msgid "Category"
+msgstr "Category"
+
+#: aterapija/forms.py
+msgid "Duration minutes"
+msgstr "Duration minutes"
+
+#: aterapija/forms.py:942
+msgid "Summary"
+msgstr "Summary"
+
+#: aterapija/forms.py:943
+msgid "Image"
+msgstr "Image"
+
+#: aterapija/forms.py:947
+msgid "Translated to English"
+msgstr "Translated to English"
+
+#: aterapija/forms.py:949
+msgid "Published"
+msgstr "Published"
+
+#: aterapija/forms.py:891
+msgid "Fallback content"
+msgstr "Fallback content"
+
+#: aterapija/forms.py:892
+msgid "Lithuanian content"
+msgstr "Lithuanian content"
+
+#: aterapija/forms.py:893
+msgid "English content"
+msgstr "English content"
+
+#: aterapija/forms.py:903
+#: aterapija/templates/accounts/article_manage_form.html:73
+msgid "Save article"
+msgstr "Save article"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:5
+msgid "Booking"
+msgstr "Booking"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:17
+#| msgid "Back to articles"
+msgid "Back to bookings"
+msgstr "Back to articles"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:25
+#: aterapija/templates/accounts/admin_booking_request_list.html:25
+#| msgid "Book appointment"
+msgid "Booking management"
+msgstr "Book appointment"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:30
+#| msgid "Request booking"
+msgid "Edit booking"
+msgstr "Request booking"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:32
+#: aterapija/templates/accounts/admin_booking_request_list.html:43
+#: aterapija/templates/accounts/admin_booking_request_list.html:161
+#| msgid "Request booking"
+msgid "Add booking"
+msgstr "Request booking"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:37
+#| msgid ""
+#| "Choose a service and time first, then select the existing client. New "
+#| "clients are created separately."
+msgid ""
+"Choose a service and available time first, then select an existing client. "
+"New clients are created separately."
+msgstr ""
+"Choose a service and time first, then select the existing client. New "
+"clients are created separately."
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:49
+msgid "Step 1"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:53
+#: aterapija/templates/aterapija/booking_form.html:97
+#| msgid "Available times"
+msgid "Find available times"
+msgstr "Available times"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:57
+#| msgid "Choose a service to see available start times."
+msgid ""
+"Choose a service, therapist and date range to view available appointment "
+"slots."
+msgstr "Choose a service to see available start times."
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:70
+#: aterapija/templates/aterapija/booking_form.html:29
+msgid "Service"
+msgstr "Service"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:80
+#: aterapija/templates/aterapija/booking_form.html:39
+msgid "Choose service"
+msgstr "Choose service"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:100
+#: aterapija/templates/aterapija/_therapist_detail_content.html:21
+#| msgid "Therapists"
+msgid "Therapist"
+msgstr "Therapist"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:109
+#: aterapija/templates/aterapija/booking_form.html:80
+msgid "Any therapist"
+msgstr "Any therapist"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:129
+msgid "From"
+msgstr "From"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:145
+msgid "To"
+msgstr "To"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:162
+#| msgid "Show times"
+msgid "Show slots"
+msgstr "Show times"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:176
+msgid "Step 2"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:180
+#: aterapija/templates/accounts/client_booking_postpone.html:89
+#: aterapija/templates/aterapija/booking_form.html:107
+msgid "Available times"
+msgstr "Available times"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:184
+#| msgid "Select an available time above before saving a booking."
+msgid "Choose one available time to continue with the booking."
+msgstr "Select an available time above before saving a booking."
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:196
+msgid "Busy and booked periods"
+msgstr "Busy and booked periods"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:218
+#| msgid "Book appointment"
+msgid "Selected appointment"
+msgstr "Book appointment"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:222
+#, python-format
+#| msgid ""
+#| "Selected slot: %(service_title)s with %(therapist_name)s on %(date)s at "
+#| "%(time)s."
+msgid ""
+"\n"
+"                        %(service_title)s with %(therapist_name)s on "
+"%(date)s at %(time)s.\n"
+"                    "
+msgstr ""
+"\n"
+"                        Selected slot: %(service_title)s with "
+"%(therapist_name)s on %(date)s at %(time)s.\n"
+"                    "
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:240
+#| msgid "Book appointment"
+msgid "No appointment selected"
+msgstr "Book appointment"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:244
+#| msgid "Select an available time above before saving a booking."
+msgid "Select an available time above before saving the booking."
+msgstr "Select an available time above before saving a booking."
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:258
+msgid "Step 3"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:262
+msgid "Client and booking details"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:266
+msgid ""
+"Select the client, review the booking information and save the appointment."
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:284
+#| msgid "Booking was saved."
+msgid "Booking was not saved."
+msgstr "Booking was saved."
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:351
+msgid "The client is not in the system yet?"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:358
+#: aterapija/templates/accounts/admin_client_form.html:29
+msgid "Add new client"
+msgstr "Add new client"
+
+#: aterapija/templates/accounts/admin_booking_request_form.html:369
+#: aterapija/templates/accounts/admin_client_form.html:96
+#: aterapija/templates/accounts/article_category_form.html:49
+#: aterapija/templates/accounts/article_manage_form.html:68
+#: aterapija/templates/accounts/client_booking_postpone.html:131
+#: aterapija/templates/accounts/therapist_service_category_form.html:52
+#: aterapija/templates/accounts/therapist_service_form.html:68
+#: aterapija/templates/accounts/therapist_service_link.html:52
+msgid "Cancel"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:5
+#: aterapija/templates/accounts/admin_booking_request_list.html:29
+#| msgid "Booking was saved."
+msgid "Bookings"
+msgstr "Booking was saved."
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:17
+msgid "Back to admin dashboard"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_about_form.html:4
+#: aterapija/templates/accounts/admin_about_form.html:18
+#: aterapija/templates/accounts/admin_dashboard.html:28
+msgid "Edit about page"
+msgstr "Edit about page"
+
+#: aterapija/templates/accounts/admin_about_form.html:21
+msgid "Update the public about page sections, process text, and call to action."
+msgstr "Update the public about page sections, process text, and call to action."
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:33
+msgid ""
+"Review client bookings, payment status, appointment details and current "
+"booking status."
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:87
+#| msgid "Service"
+msgid "Service:"
+msgstr "Service"
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:92
+#| msgid "Therapists"
+msgid "Therapist:"
+msgstr "Therapists"
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:98
+msgid "Phone:"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:111
+msgid "Payment received"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:126
+msgid "View"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:148
+#| msgid "Back to articles"
+msgid "No bookings yet"
+msgstr "Back to articles"
+
+#: aterapija/templates/accounts/admin_booking_request_list.html:152
+msgid "Created client bookings will appear here."
+msgstr ""
+
+#: aterapija/templates/accounts/admin_client_form.html:5
+#| msgid "Add new client"
+msgid "Add client"
+msgstr "Add new client"
+
+#: aterapija/templates/accounts/admin_client_form.html:17
+#| msgid "Back to articles"
+msgid "Back to booking"
+msgstr "Back to articles"
+
+#: aterapija/templates/accounts/admin_client_form.html:25
+msgid "Client management"
+msgstr ""
+
+#: aterapija/templates/accounts/admin_client_form.html:33
+msgid ""
+"Create the client profile here, then return to the booking page and select "
+"the client from the list."
+msgstr ""
+
+#: aterapija/templates/accounts/admin_client_form.html:45
+#| msgid "View details"
+msgid "Client details"
+msgstr "View details"
+
+#: aterapija/templates/accounts/admin_client_form.html:49
+#| msgid "Save profile"
+msgid "Create client profile"
+msgstr "Save profile"
+
+#: aterapija/templates/accounts/admin_client_form.html:53
+msgid "Enter the client's contact and account information."
+msgstr ""
+
+#: aterapija/templates/accounts/admin_client_form.html:71
+#| msgid "Article was created."
+msgid "The client was not created."
+msgstr "Article was created."
+
+#: aterapija/templates/accounts/admin_client_form.html:103
+msgid "Create client"
+msgstr ""
+
+#: aterapija/templates/accounts/article_category_form.html:5
+#: aterapija/templates/accounts/article_category_form.html:25
+#| msgid "Save category"
+msgid "Add article category"
+msgstr "Save category"
+
+#: aterapija/templates/accounts/article_category_form.html:14
+#| msgid "Back to articles"
+msgid "Back to article form"
+msgstr "Back to articles"
+
+#: aterapija/templates/accounts/article_category_form.html:21
+#: aterapija/templates/accounts/article_manage_form.html:24
+msgid "Content management"
+msgstr ""
+
+#: aterapija/templates/accounts/article_category_form.html:29
+msgid ""
+"Create a new category to organise articles and make content easier to manage."
+msgstr ""
+
+#: aterapija/templates/accounts/article_manage_form.html:6
+#: aterapija/templates/accounts/article_manage_form.html:28
+#| msgid "Read article"
+msgid "Edit article"
+msgstr "Read article"
+
+#: aterapija/templates/accounts/article_manage_form.html:8
+#: aterapija/templates/accounts/article_manage_form.html:30
+#| msgid "Read article"
+msgid "Add article"
+msgstr "Read article"
+
+#: aterapija/templates/accounts/article_manage_form.html:19
+#: aterapija/templates/aterapija/article_detail.html:17
+msgid "Back to articles"
+msgstr "Back to articles"
+
+#: aterapija/templates/accounts/article_manage_form.html:35
+msgid ""
+"Create or update article content, category, publication status, and image."
+msgstr ""
+
+#: aterapija/templates/accounts/article_manage_form.html:42
+#| msgid "Save category"
+msgid "Add new category"
+msgstr "Save category"
+
+#: aterapija/templates/accounts/client_booking_postpone.html:5
+#| msgid "Booking"
+msgid "Postpone Booking"
+msgstr "Booking"
+
+#: aterapija/templates/accounts/client_booking_postpone.html:21
+#| msgid "Back to articles"
+msgid "Back to client dashboard"
+msgstr "Back to articles"
+
+#: aterapija/templates/accounts/client_booking_postpone.html:25
+#| msgid "Book Appointment"
+msgid "Appointment"
+msgstr "Book Appointment"
+
+#: aterapija/templates/accounts/client_booking_postpone.html:29
+#| msgid "Request booking"
+msgid "Postpone booking"
+msgstr "Request booking"
+
+#: aterapija/templates/accounts/client_booking_postpone.html:34
+msgid "with"
+msgstr ""
+
+#: aterapija/templates/accounts/client_booking_postpone.html:43
+msgid "Schedule"
+msgstr ""
+
+#: aterapija/templates/accounts/client_booking_postpone.html:47
+msgid "Choose a new date"
+msgstr ""
+
+#: aterapija/templates/accounts/client_booking_postpone.html:62
+#| msgid "Book appointment"
+msgid "New appointment date"
+msgstr "Book appointment"
+
+#: aterapija/templates/accounts/client_booking_postpone.html:79
+msgid "Show times"
+msgstr "Show times"
+
+#: aterapija/templates/accounts/client_booking_postpone.html:103
+#| msgid "No available times match this selection."
+msgid "No available times on this date. Please choose another date."
+msgstr "No available times match this selection."
+
+#: aterapija/templates/accounts/client_booking_postpone.html:124
+msgid "Postpone to selected time"
+msgstr ""
+
+#: aterapija/templates/accounts/includes/busy_period_list.html:10
+#| msgid "Booking"
+msgid "Booked"
+msgstr "Booking"
+
+#: aterapija/templates/accounts/includes/busy_period_list.html:12
+msgid "Blocked"
+msgstr ""
+
+#: aterapija/templates/accounts/includes/busy_period_list.html:46
+msgid "No busy periods in this range."
+msgstr ""
+
+#: aterapija/templates/accounts/includes/slot_day_cards.html:27
+msgid "Selected"
+msgstr "Selected"
+
+#: aterapija/templates/accounts/includes/slot_day_cards.html:64
+msgid "No available times match this selection."
+msgstr "No available times match this selection."
+
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:5
+msgid "Schedule legend"
+msgstr ""
+
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:8
+#| msgid "Book Appointment"
+msgid "Appointment time"
+msgstr "Book Appointment"
+
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:13
+msgid "Transition time"
+msgstr ""
+
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:18
+msgid "Blocked time"
+msgstr ""
+
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:23
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:79
+msgid "Free"
+msgstr ""
+
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:32
+msgid "Time"
+msgstr ""
+
+#: aterapija/templates/accounts/includes/therapist_week_schedule.html:71
+#| msgid "Duration:"
+msgid "Transition"
+msgstr "Duration:"
+
+#: aterapija/templates/accounts/notification_list.html:5
+#: aterapija/templates/accounts/notification_list.html:19
+#: aterapija/templates/aterapija/includes/navbar.html:114
+msgid "Notifications"
+msgstr "Notifications"
+
+#: aterapija/templates/accounts/notification_list.html:15
+msgid "Activity"
+msgstr ""
+
+#: aterapija/templates/accounts/notification_list.html:23
+msgid "Review recent activity and keep track of important updates."
+msgstr ""
+
+#: aterapija/templates/accounts/notification_list.html:37
+msgid "Mark all as read"
+msgstr ""
+
+#: aterapija/templates/accounts/notification_list.html:68
+msgid "New"
+msgstr ""
+
+#: aterapija/templates/accounts/notification_list.html:88
+#: aterapija/templates/accounts/notification_list.html:103
+msgid "Open"
+msgstr ""
+
+#: aterapija/templates/accounts/notification_list.html:122
+#| msgid "Notifications"
+msgid "Notifications pagination"
+msgstr "Notifications"
+
+#: aterapija/templates/accounts/notification_list.html:130
+#: aterapija/templates/accounts/notification_list.html:134
+#| msgid "Previous Advice"
+msgid "Previous"
+msgstr "Previous Advice"
+
+#: aterapija/templates/accounts/notification_list.html:139
+#, python-format
+msgid ""
+"\n"
+"                        Page %(page)s of %(pages)s\n"
+"                    "
+msgstr ""
+
+#: aterapija/templates/accounts/notification_list.html:149
+#: aterapija/templates/accounts/notification_list.html:153
+msgid "Next"
+msgstr ""
+
+#: aterapija/templates/accounts/notification_list.html:166
+#| msgid "Notifications"
+msgid "No notifications yet"
+msgstr "Notifications"
+
+#: aterapija/templates/accounts/notification_list.html:170
+msgid "You're all caught up."
+msgstr ""
+
+#: aterapija/templates/accounts/therapist_service_category_form.html:5
+#: aterapija/templates/accounts/therapist_service_category_form.html:27
+#| msgid "Save category"
+msgid "Add service category"
+msgstr "Save category"
+
+#: aterapija/templates/accounts/therapist_service_category_form.html:15
+#| msgid "Back to services"
+msgid "Back to service form"
+msgstr "Back to services"
+
+#: aterapija/templates/accounts/therapist_service_category_form.html:23
+#: aterapija/templates/accounts/therapist_service_form.html:28
+#: aterapija/templates/accounts/therapist_service_link.html:23
+#| msgid "Service was deleted."
+msgid "Service management"
+msgstr "Service was deleted."
+
+#: aterapija/templates/accounts/therapist_service_category_form.html:31
+msgid ""
+"Create a new category to organise services and make them easier to manage."
+msgstr ""
+
+#: aterapija/templates/accounts/therapist_service_form.html:6
+#: aterapija/templates/accounts/therapist_service_form.html:33
+#| msgid "View service"
+msgid "Edit service"
+msgstr "View service"
+
+#: aterapija/templates/accounts/therapist_service_form.html:8
+#: aterapija/templates/accounts/therapist_service_form.html:35
+#: aterapija/templates/accounts/therapist_service_form.html:78
+#| msgid "Related services"
+msgid "Create service"
+msgstr "Related services"
+
+#: aterapija/templates/accounts/therapist_service_form.html:20
+#: aterapija/templates/accounts/therapist_service_link.html:15
+#: aterapija/templates/aterapija/booking_thanks.html:45
+#: aterapija/templates/aterapija/service_detail.html:14
+msgid "Back to services"
+msgstr "Back to services"
+
+#: aterapija/templates/accounts/therapist_service_form.html:40
+msgid ""
+"Create or update a service, choose its category, duration, price and public "
+"visibility."
+msgstr ""
+
+#: aterapija/templates/accounts/therapist_service_form.html:48
+#| msgid "Save category"
+msgid "Add category"
+msgstr "Save category"
+
+#: aterapija/templates/accounts/therapist_service_form.html:76
+#| msgid "Save category"
+msgid "Save changes"
+msgstr "Save category"
+
+#: aterapija/templates/accounts/therapist_service_link.html:5
+#| msgid "View service"
+msgid "Link Services"
+msgstr "View service"
+
+#: aterapija/templates/accounts/therapist_service_link.html:27
+#| msgid "View service"
+msgid "Link existing services"
+msgstr "View service"
+
+#: aterapija/templates/accounts/therapist_service_link.html:31
+msgid ""
+"Select one or more existing services to make them available through your "
+"therapist profile."
+msgstr ""
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:40
+#: aterapija/templates/aterapija/therapists.html:27
+msgid "Experience:"
+msgstr "Experience:"
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:47
+#: aterapija/templates/aterapija/therapists.html:24
+msgid "Languages:"
+msgstr "Languages:"
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:54
+#: aterapija/templates/aterapija/therapists.html:21
+msgid "Specializations:"
+msgstr "Specializations:"
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:64
+#| msgid "Book a service"
+msgid "Book a session"
+msgstr "Book a service"
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:76
+#| msgid "English biography"
+msgid "Biography"
+msgstr "English biography"
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:80
+msgid "Therapeutic presence"
+msgstr ""
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:94
+#: aterapija/templates/aterapija/includes/navbar.html:48
+#: aterapija/templates/aterapija/services.html:4
+#: aterapija/templates/aterapija/services.html:12
+msgid "Services"
+msgstr "Services"
+
+#: aterapija/templates/aterapija/_therapist_detail_content.html:98
+msgid "Areas of support"
+msgstr ""
+
+#: aterapija/templates/aterapija/article_detail.html:45
+msgid "This article is currently available only in Lithuanian."
+msgstr "This article is currently available only in Lithuanian."
+
+#: aterapija/templates/aterapija/article_detail.html:77
+msgid "Continue exploring"
+msgstr ""
+
+#: aterapija/templates/aterapija/article_detail.html:81
+msgid "Related services"
+msgstr "Related services"
+
+#: aterapija/templates/aterapija/articles.html:4
+msgid "Meaningful readings"
+msgstr ""
+
+#: aterapija/templates/aterapija/articles.html:17
+#: aterapija/templates/aterapija/includes/navbar.html:66
+msgid "Articles"
+msgstr "Articles"
+
+#: aterapija/templates/aterapija/articles.html:58
+msgid "No published articles are available yet."
+msgstr "No published articles are available yet."
+
+#: aterapija/templates/aterapija/articles.html:72
+msgid "Archive"
+msgstr ""
+
+#: aterapija/templates/aterapija/articles.html:76
+msgid "Past insights"
+msgstr ""
+
+#: aterapija/templates/aterapija/articles.html:100
+#| msgid "No previous advice has been saved yet."
+msgid "No previous insights have been saved yet."
+msgstr "No previous advice has been saved yet."
+
+#: aterapija/templates/aterapija/articles.html:113
+msgid "Newer"
+msgstr ""
+
+#: aterapija/templates/aterapija/articles.html:121
+msgid "Older"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment.html:4
+#: aterapija/templates/aterapija/home.html:66
+#: aterapija/templates/aterapija/includes/navbar.html:55
+#: aterapija/templates/aterapija/includes/navbar.html:59
+#: aterapija/templates/aterapija/services.html:19
+msgid "Help me choose"
+msgstr "Help me choose"
+
+#: aterapija/templates/aterapija/assessment.html:16
+msgid "Let’s find what feels right"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment.html:19
+msgid ""
+"Answer a few gentle questions to help us understand your current needs. "
+"Based on your answers, we'll recommend the therapies that may suit you best."
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment.html:81
+#| msgid "No previous advice has been saved yet."
+msgid "No answer options have been added yet."
+msgstr "No previous advice has been saved yet."
+
+#: aterapija/templates/aterapija/assessment.html:103
+msgid "Before you continue"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment.html:107
+msgid ""
+"We'll save your answers securely and suggest the services that best match "
+"what you've shared. If you're new to A Terapija, you'll be asked to create a "
+"free account before viewing your recommendations. Your answers will be saved "
+"automatically, so you won't need to complete the questionnaire again."
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment.html:119
+msgid "View my recommendations"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment.html:130
+#| msgid "No active therapists are available yet."
+msgid "No active wellbeing questions are available yet."
+msgstr "No active therapists are available yet."
+
+#: aterapija/templates/aterapija/assessment_results.html:4
+msgid "Based on what you’ve shared"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment_results.html:15
+msgid "Based on what you’ve shared,"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment_results.html:19
+msgid "these services may be a good place to begin."
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment_results.html:23
+msgid ""
+"Every journey is different, so you are always welcome to explore all "
+"services before making your choice."
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment_results.html:48
+#: aterapija/templates/aterapija/service_detail.html:38
+#: aterapija/templates/aterapija/services.html:46
+#: aterapija/templates/aterapija/services.html:105
+#, python-format
+#| msgid "%(minutes)s minutes"
+msgid "%(minutes)s min"
+msgstr "%(minutes)s minutes"
+
+#: aterapija/templates/aterapija/assessment_results.html:57
+#: aterapija/templates/aterapija/services.html:53
+#: aterapija/templates/aterapija/services.html:112
+msgid "More"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment_results.html:72
+msgid "No clear match yet"
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment_results.html:76
+msgid ""
+"We could not match your answers to a specific service yet. You can retake "
+"the questions or browse all available services."
+msgstr ""
+
+#: aterapija/templates/aterapija/assessment_results.html:88
+msgid "Retake assessment"
+msgstr "Retake assessment"
+
+#: aterapija/templates/aterapija/assessment_results.html:92
+msgid "Browse all services"
+msgstr "Browse all services"
+
+#: aterapija/templates/aterapija/base.html:11
+msgid "A Terapija"
+msgstr "A Terapija"
+
+#: aterapija/templates/aterapija/booking_form.html:4
+msgid "Book Appointment"
+msgstr "Book Appointment"
+
+#: aterapija/templates/aterapija/booking_form.html:12
+#| msgid "Book Appointment"
+msgid "Appointments"
+msgstr "Book Appointment"
+
+#: aterapija/templates/aterapija/booking_form.html:20
+msgid ""
+"Choose a service and your preferred date. We'll show the available "
+"appointment times for that day."
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_form.html:55
+#| msgid "Preferred therapist"
+msgid "Preferred date"
+msgstr "Preferred date"
+
+#: aterapija/forms.py:233
+msgid "Preferred time"
+msgstr "Preferred time"
+
+#: aterapija/templates/aterapija/booking_form.html:71
+msgid "Preferred therapist"
+msgstr "Preferred therapist"
+
+#: aterapija/templates/aterapija/booking_form.html:116
+msgid "minutes"
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_form.html:125
+msgid "Select the appointment time that works best for you."
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_form.html:133
+msgid "No available appointments on this date. Please choose another date."
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_form.html:141
+#| msgid "Choose a service to see available start times."
+msgid "Select a date to see available appointment times."
+msgstr "Choose a service to see available start times."
+
+#: aterapija/templates/aterapija/booking_form.html:149
+#| msgid "Choose a service to see available start times."
+msgid ""
+"Select a service and your preferred date to see available appointment times."
+msgstr "Choose a service to see available start times."
+
+#: aterapija/templates/aterapija/booking_form.html:159
+msgid "Additional information"
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_form.html:163
+msgid ""
+"If you'd like, you can share anything that may help your therapist prepare "
+"for the appointment."
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_form.html:172
+msgid "Continue"
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_thanks.html:5
+msgid "Appointment Confirmed"
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_thanks.html:15
+msgid "Appointment confirmed"
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_thanks.html:19
+#| msgid "Book appointment"
+msgid "Your appointment is booked"
+msgstr "Book appointment"
+
+#: aterapija/templates/aterapija/booking_thanks.html:23
+msgid ""
+"Your appointment has been added to your dashboard, where you can view all "
+"the details."
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_thanks.html:27
+msgid ""
+"If your plans change, you can reschedule or cancel your appointment from "
+"your dashboard up to 24 hours before it starts."
+msgstr ""
+
+#: aterapija/templates/aterapija/booking_thanks.html:38
+#| msgid "Personal dashboard"
+msgid "View dashboard"
+msgstr "Personal dashboard"
+
+#: aterapija/templates/aterapija/contact.html:4
+#: aterapija/templates/aterapija/contact.html:14
+#: aterapija/templates/aterapija/includes/navbar.html:73
+#: aterapija/templates/aterapija/includes/navbar.html:77
+msgid "Contact"
+msgstr "Contact"
+
+#: aterapija/templates/aterapija/contact.html:17
+msgid "Let’s start gently"
+msgstr ""
+
+#: aterapija/templates/aterapija/contact.html:21
+msgid "Send us a message and we will get back to you soon."
+msgstr ""
+
+#: aterapija/templates/aterapija/contact.html:34
+msgid "Message sent successfully"
+msgstr ""
+
+#: aterapija/templates/aterapija/contact.html:52
+msgid "Coming soon in Vilnius"
+msgstr ""
+
+#: aterapija/templates/aterapija/contact.html:79
+msgid "Send message"
+msgstr ""
+
+#: aterapija/templates/aterapija/home.html:4
+#: aterapija/templates/aterapija/includes/navbar.html:36
+msgid "Home"
+msgstr "Home"
+
+#: aterapija/templates/aterapija/home.html:17
+msgid "Your wellbeing starts here"
+msgstr ""
+
+#: aterapija/templates/aterapija/home.html:21
+msgid "Restore your mind, body and wellbeing"
+msgstr ""
+
+#: aterapija/templates/aterapija/home.html:25
+msgid ""
+"Evidence-based therapies and wellbeing practices to help you restore balance "
+"and be yourself again"
+msgstr ""
+
+#: aterapija/templates/aterapija/home.html:32
+#| msgid "Browse services"
+msgid "Explore services"
+msgstr "Browse services"
+
+#: aterapija/templates/aterapija/home.html:37
+#| msgid "Read articles"
+msgid "Explore articles"
+msgstr "Read articles"
+
+#: aterapija/templates/aterapija/home.html:49
+msgid "Hummingbird carrying a flower"
+msgstr ""
+
+#: aterapija/templates/aterapija/home.html:62
+msgid "I know what I need"
+msgstr "I know what I need"
+
+#: aterapija/templates/aterapija/home.html:63
+#| msgid "Browse services and choose a support option directly."
+msgid "Browse therapies and book directly"
+msgstr "Browse services and choose a support option directly."
+
+#: aterapija/templates/aterapija/home.html:67
+msgid "Answer a few gentle questions to discover the most suitable therapy"
+msgstr ""
+
+#: aterapija/templates/aterapija/home.html:70
+msgid "I'd like to learn first"
+msgstr ""
+
+#: aterapija/templates/aterapija/home.html:71
+msgid "Explore practical articles and wellbeing insights"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/cookie_banner.html:11
+#: aterapija/templates/aterapija/includes/footer.html:17
+#| msgid "Booking was saved."
+msgid "Cookies"
+msgstr "Booking was saved."
+
+#: aterapija/templates/aterapija/includes/cookie_banner.html:15
+msgid ""
+"We use cookies to improve your experience, remember your preferences and "
+"analyse website usage. You can accept all cookies or manage your preferences."
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/cookie_banner.html:25
+#: aterapija/templates/aterapija/legal/privacy.html:5
+#: aterapija/templates/aterapija/legal/privacy.html:27
+msgid "Privacy Policy"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/cookie_banner.html:33
+#: aterapija/templates/aterapija/legal/cookies.html:5
+#: aterapija/templates/aterapija/legal/cookies.html:27
+msgid "Cookies Policy"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/footer.html:8
+#| msgid "A Terapija. All rights reserved."
+msgid "All rights reserved."
+msgstr "A Terapija. All rights reserved."
+
+#: aterapija/templates/aterapija/includes/footer.html:11
+msgid "Legal navigation"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/footer.html:13
+msgid "Privacy"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/footer.html:21
+msgid "Terms"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/navbar.html:23
+msgid "Toggle navigation"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/navbar.html:42
+msgid "About"
+msgstr "About"
+
+#: aterapija/templates/aterapija/includes/navbar.html:100
+msgid "Switch to Day mode"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/navbar.html:101
+#: aterapija/templates/aterapija/includes/navbar.html:102
+#: aterapija/templates/aterapija/includes/navbar.html:103
+msgid "Switch to Evening mode"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/navbar.html:135
+msgid "Personal dashboard"
+msgstr "Personal dashboard"
+
+#: aterapija/templates/aterapija/includes/navbar.html:136
+msgid "Profile"
+msgstr "Profile"
+
+#: aterapija/templates/aterapija/includes/navbar.html:141
+msgid "Logout"
+msgstr "Logout"
+
+#: aterapija/templates/aterapija/includes/navbar.html:148
+msgid "Sign in"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/share_links.html:4
+msgid "Share today's insight"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/today_insight_card.html:9
+#| msgid "Daily blog"
+msgid "Daily insight"
+msgstr "Daily blog"
+
+#: aterapija/templates/aterapija/includes/today_insight_card.html:27
+msgid "Today's Insight"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/today_insight_card.html:35
+msgid "Small, consistent steps create lasting change."
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/today_insight_card.html:47
+msgid ""
+"Today's insight has not been published yet. Meanwhile, explore our articles "
+"and discover practical ideas for improving wellbeing."
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/today_insight_card.html:54
+msgid "Read today's insight"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/today_insight_card.html:59
+msgid "Read the insight"
+msgstr ""
+
+#: aterapija/templates/aterapija/includes/today_insight_card.html:65
+msgid "2 min read"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:17
+#: aterapija/templates/aterapija/legal/privacy.html:17
+#: aterapija/templates/aterapija/legal/terms.html:17
+#| msgid "Back to therapists"
+msgid "Back to home"
+msgstr "Back to therapists"
+
+#: aterapija/templates/aterapija/legal/cookies.html:23
+#: aterapija/templates/aterapija/legal/privacy.html:23
+#: aterapija/templates/aterapija/legal/terms.html:23
+msgid "Legal information"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:31
+#: aterapija/templates/aterapija/legal/privacy.html:31
+#: aterapija/templates/aterapija/legal/terms.html:31
+msgid "Last updated: January 2025"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:40
+msgid "1. What Are Cookies?"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:43
+msgid ""
+"Cookies are small text files that are placed on your computer or mobile "
+"device when you visit our website. They help us remember your preferences "
+"and understand how you use our site."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:50
+msgid "2. Types of Cookies We Use"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:55
+msgid "Essential Cookies"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:56
+msgid ""
+"Necessary for the website to function properly, including user "
+"authentication and security features."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:60
+msgid "Preference Cookies"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:61
+msgid "Remember your choices, such as language preferences and theme settings."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:65
+msgid "Analytics Cookies"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:66
+msgid "Help us understand how the website is used so we can improve it."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:70
+msgid "Marketing Cookies"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:71
+msgid ""
+"May be used to display relevant content or measure campaign performance."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:80
+msgid "3. How to Control Cookies"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:83
+msgid ""
+"You can control cookies through your browser settings. Blocking cookies may "
+"affect the availability of some website features."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:87
+msgid "Common browser settings:"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:92
+msgid "Chrome — Settings → Privacy and Security → Cookies and Other Site Data"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:93
+msgid "Firefox — Settings → Privacy & Security → Cookies and Site Data"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:94
+msgid "Safari — Preferences → Privacy → Cookies and Website Data"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:95
+msgid "Edge — Settings → Privacy → Cookies and Other Site Permissions"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:103
+msgid "4. Third-Party Cookies"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:106
+msgid ""
+"Some cookies may be placed by third-party services that provide analytics or "
+"other website functionality. These providers manage their cookies according "
+"to their own privacy policies."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:113
+msgid "5. Cookie Duration"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:116
+msgid ""
+"Session cookies are deleted when you close your browser. Persistent cookies "
+"remain on your device until they expire or are manually removed."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:123
+msgid "6. Your Consent"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:126
+msgid ""
+"By continuing to use this website, you agree to the use of cookies described "
+"in this policy. You may withdraw your consent at any time by changing your "
+"browser settings."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:133
+#| msgid "Contact"
+msgid "7. Contact"
+msgstr "Contact"
+
+#: aterapija/templates/aterapija/legal/cookies.html:136
+msgid "If you have any questions about this Cookies Policy, please contact us:"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/cookies.html:143
+#: aterapija/templates/aterapija/legal/privacy.html:180
+#: aterapija/templates/aterapija/legal/terms.html:160
+msgid "Email"
+msgstr "Email"
+
+#: aterapija/templates/aterapija/legal/cookies.html:150
+#: aterapija/templates/aterapija/legal/privacy.html:187
+#: aterapija/templates/aterapija/legal/terms.html:167
+msgid "Phone"
+msgstr "Phone"
+
+#: aterapija/forms.py:695
+msgid "Username"
+msgstr "Username"
+
+#: aterapija/forms.py:697
+msgid "First name"
+msgstr "First name"
+
+#: aterapija/forms.py:698
+msgid "Last name"
+msgstr "Last name"
+
+#: aterapija/forms.py:707
+msgid "Profile picture"
+msgstr "Profile picture"
+
+#: aterapija/templates/aterapija/legal/privacy.html:40
+msgid "1. Introduction"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:43
+#| msgid "A Terapija"
+msgid "A Terapija (\\"
+msgstr "A Terapija"
+
+#: aterapija/templates/aterapija/legal/privacy.html:50
+msgid "2. Information We Collect"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:53
+msgid "We may collect the following types of information:"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:59
+msgid "Personal information"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:60
+msgid ""
+"Name, email address, phone number, address, date of birth and other "
+"information you voluntarily provide."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:64
+msgid "Profile information"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:65
+msgid "Information shared during assessments, bookings or therapy sessions."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:69
+msgid "Usage data"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:70
+msgid ""
+"Technical information such as browser type, IP address, pages visited and "
+"visit times."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:74
+msgid "Communication records"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:75
+msgid "Messages exchanged with therapists or administrative staff."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:84
+msgid "3. How We Use Your Information"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:87
+msgid "We use your information to:"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:92
+msgid "Provide and improve our services."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:93
+msgid "Process bookings and manage therapy sessions."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:94
+msgid "Send important service notifications."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:95
+msgid "Respond to your enquiries."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:96
+msgid "Understand how our website is used."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:97
+msgid "Comply with legal obligations."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:98
+msgid "Protect the security of our services."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:106
+msgid "4. Data Security"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:109
+msgid ""
+"We apply appropriate technical, organisational and administrative measures "
+"to protect your personal information. Although we strive to safeguard your "
+"data, no method of electronic storage or internet transmission can guarantee "
+"absolute security."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:116
+msgid "5. Your Privacy Rights"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:119
+msgid "Depending on applicable law, you may have the right to:"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:124
+msgid "Access your personal data."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:125
+msgid "Correct inaccurate information."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:126
+msgid "Request deletion of your data."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:127
+msgid "Object to or restrict certain processing."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:128
+msgid "Request data portability."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:133
+msgid "To exercise these rights, please contact us using the details below."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:140
+msgid "6. Cookies"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:143
+msgid ""
+"We use cookies to improve your experience and website functionality. Please "
+"see our Cookies Policy for more information."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:150
+msgid "7. Third-Party Websites"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:153
+msgid ""
+"Our website may contain links to third-party websites. We are not "
+"responsible for their privacy practices or content. We encourage you to "
+"review their privacy policies before providing personal information."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:160
+msgid "8. Changes to This Policy"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:163
+msgid ""
+"We may update this Privacy Policy from time to time. Any changes will be "
+"published on this page together with the updated revision date."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/privacy.html:170
+#| msgid "Contact"
+msgid "9. Contact"
+msgstr "Contact"
+
+#: aterapija/templates/aterapija/legal/privacy.html:173
+msgid ""
+"If you have questions about this Privacy Policy or how we process your "
+"personal information, please contact us:"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:5
+#: aterapija/templates/aterapija/legal/terms.html:27
+#| msgid "Service"
+msgid "Terms of Service"
+msgstr "Service"
+
+#: aterapija/templates/aterapija/legal/terms.html:40
+msgid "1. Acceptance of Terms"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:43
+msgid ""
+"By accessing or using the A Terapija website and services, you agree to "
+"these Terms of Service. If you do not agree with these terms, please do not "
+"use the website or our services."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:50
+msgid "2. Use of the Website"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:53
+msgid ""
+"The content on this website is provided for your personal, non-commercial "
+"use. You may not:"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:58
+msgid "Copy, modify or distribute website content without permission."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:59
+msgid "Use the website or its content for commercial purposes."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:60
+msgid "Attempt to reverse engineer or interfere with website functionality."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:61
+msgid "Remove copyright or proprietary notices."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:62
+msgid ""
+"Republish website materials on other websites or servers without permission."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:70
+msgid "3. Disclaimer"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:73
+msgid ""
+"The website and its content are provided on an 'as is' basis without "
+"warranties of any kind. While we strive to keep information accurate and up "
+"to date, we cannot guarantee that all content is complete, accurate or "
+"suitable for every situation."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:80
+msgid "4. Limitation of Liability"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:83
+msgid ""
+"To the extent permitted by law, A Terapija is not liable for any direct or "
+"indirect damages arising from the use of, or inability to use, this website "
+"or its services."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:90
+msgid "5. Accuracy of Information"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:93
+msgid ""
+"Website content may occasionally contain errors or become outdated. We "
+"reserve the right to update, modify or remove information at any time "
+"without prior notice."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:100
+msgid "6. External Links"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:103
+msgid ""
+"Our website may include links to external websites. We are not responsible "
+"for their content, availability or privacy practices."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:110
+msgid "7. Changes to These Terms"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:113
+msgid ""
+"We may update these Terms of Service from time to time. Continued use of the "
+"website after changes are published constitutes acceptance of the revised "
+"terms."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:120
+msgid "8. Governing Law"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:123
+msgid ""
+"These Terms of Service are governed by the laws of the Republic of "
+"Lithuania. Any disputes shall be resolved in accordance with Lithuanian law."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:130
+msgid "9. User Accounts"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:133
+msgid ""
+"If you create an account, you are responsible for providing accurate "
+"information, keeping your login credentials confidential and notifying us "
+"immediately if you suspect unauthorised access to your account."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:140
+msgid "10. Therapy Services"
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:143
+msgid ""
+"Our services are provided by qualified professionals. Information on this "
+"website does not replace emergency medical or psychological care. If you are "
+"experiencing an emergency, please contact your local emergency services "
+"immediately."
+msgstr ""
+
+#: aterapija/templates/aterapija/legal/terms.html:150
+#| msgid "Contact"
+msgid "11. Contact"
+msgstr "Contact"
+
+#: aterapija/templates/aterapija/legal/terms.html:153
+msgid "If you have questions about these Terms of Service, please contact us:"
+msgstr ""
+
+#: aterapija/templates/aterapija/service_detail.html:37
+#| msgid "Duration:"
+msgid "Duration"
+msgstr "Duration"
+
+#: aterapija/templates/aterapija/service_detail.html:42
+#| msgid "Price:"
+msgid "Price"
+msgstr "Price"
+
+#: aterapija/templates/aterapija/service_detail.html:49
+msgid "Request booking"
+msgstr "Request booking"
+
+#: aterapija/templates/aterapija/service_detail.html:63
+msgid "Offered by"
+msgstr ""
+
+#: aterapija/templates/aterapija/service_detail.html:82
+#| msgid "Preferred therapist"
+msgid "Meet the therapist"
+msgstr "Preferred therapist"
+
+#: aterapija/templates/aterapija/service_detail.html:92
+#| msgid "No therapists are linked to this service yet."
+msgid "No therapist is linked to this service yet."
+msgstr "No therapists are linked to this service yet."
+
+#: aterapija/templates/aterapija/services.html:14
+msgid "Browse available support options by category."
+msgstr "Browse available support options by category."
+
+#: aterapija/templates/aterapija/services.html:127
+msgid "No active services are available yet."
+msgstr "No active services are available yet."
+
+#: aterapija/templates/aterapija/therapist_detail.html:14
+msgid "Back"
+msgstr ""
+
+#: aterapija/templates/aterapija/therapists.html:3
+#: aterapija/templates/aterapija/therapists.html:5
+msgid "Therapists"
+msgstr "Therapists"
+
+#: aterapija/templates/aterapija/therapists.html:6
+msgid "Find practitioners and the services they offer."
+msgstr "Find practitioners and the services they offer."
+
+#: aterapija/templates/aterapija/therapists.html:29
+msgid "View details"
+msgstr "View details"
+
+#: aterapija/templates/aterapija/therapists.html:35
+msgid "No active therapists are available yet."
+msgstr "No active therapists are available yet."
+
+#: aterapija/templates/registration/aterapija_password_reset_email.html:3
+msgid ""
+"\n"
+"Hello,\n"
+msgstr ""
+
+#: aterapija/templates/registration/aterapija_password_reset_email.html:7
+msgid ""
+"\n"
+"We received a request to reset the password for your A Terapija account.\n"
+msgstr ""
+
+#: aterapija/templates/registration/aterapija_password_reset_email.html:11
+msgid ""
+"\n"
+"To create a new password, please use the link below:\n"
+msgstr ""
+
+#: aterapija/templates/registration/aterapija_password_reset_email.html:17
+msgid ""
+"\n"
+"If you didn't request a password reset, you can safely ignore this email. "
+"Your password will remain unchanged.\n"
+msgstr ""
+
+#: aterapija/templates/registration/aterapija_password_reset_email.html:21
+msgid ""
+"\n"
+"Kind regards,\n"
+msgstr ""
+
+#: aterapija/templates/registration/aterapija_password_reset_subject.txt:1
+msgid "A Terapija password reset"
+msgstr ""
+
+#: aterapija/views.py:210 aterapija/views.py:219
+msgid ""
+"We could not match your questionnaire answers to this session. Please "
+"complete the questionnaire again."
+msgstr ""
+
+#: aterapija/views.py:224
+msgid "Your questionnaire answers were saved."
+msgstr ""
+
+#: aterapija/views.py:809
+msgid "Article was created."
+msgstr "Article was created."
+
+#: aterapija/views.py:826
+msgid "Article was updated."
+msgstr "Article was updated."
+
+#: aterapija/views.py:836
+msgid "Article was deleted."
+msgstr "Article was deleted."
+
+#: aterapija/views.py:863
+#| msgid "Service category was created."
+msgid "Article category was created."
+msgstr "Service category was created."
+
+#: aterapija/views.py:882
+msgid "Please create a profile before booking an appointment."
+msgstr "Please create a profile before booking an appointment."
+
+#: aterapija/views.py:954
+msgid "Your booking has been approved."
+msgstr "Your booking has been approved."
+
+#: aterapija/views.py:1043
+msgid ""
+"Please log in or create an account to save your questionnaire answers and "
+"continue."
+msgstr ""
+
+#: aterapija/views.py:1106
+msgid "Thank you for your message. We will get back to you soon."
+msgstr ""
+
+#: aterapija/views.py:1126
+msgid "Your account has been created."
+msgstr "Your account has been created."
+
+#: aterapija/views.py:1175
+msgid "Password updated. You can now log in with the new password."
+msgstr "Password updated. You can now log in with the new password."
+
+#: aterapija/views.py:1225
+msgid "Notifications were marked as read."
+msgstr "Notifications were marked as read."
+
+#: aterapija/views.py:1305
+msgid "Advice was scheduled."
+msgstr "Advice was scheduled."
+
+#: aterapija/views.py:1316
+msgid "Advice was updated."
+msgstr "Advice was updated."
+
+#: aterapija/views.py:1329
+msgid "About page was updated."
+msgstr "About page was updated."
+
+#: aterapija/views.py:1349
+msgid "Service was created."
+msgstr "Service was created."
+
+#: aterapija/views.py:1360 aterapija/views.py:2029
+msgid "Service was updated."
+msgstr "Service was updated."
+
+#: aterapija/views.py:1373
+msgid "This service cannot be deleted because it is used by bookings."
+msgstr "This service cannot be deleted because it is used by bookings."
+
+#: aterapija/views.py:1375 aterapija/views.py:2055
+msgid "Service was deleted."
+msgstr "Service was deleted."
+
+#: aterapija/views.py:1423
+msgid "Question was saved."
+msgstr "Question was saved."
+
+#: aterapija/views.py:1443
+msgid "Question was deleted."
+msgstr "Question was deleted."
+
+#: aterapija/views.py:1497
+msgid "Availability was added."
+msgstr "Availability was added."
+
+#: aterapija/views.py:1517
+msgid "Availability was updated."
+msgstr "Availability was updated."
+
+#: aterapija/views.py:1531
+msgid "Availability was deleted."
+msgstr "Availability was deleted."
+
+#: aterapija/views.py:1581
+msgid ""
+"Cancellation is no longer available online because less than 24 hours remain."
+msgstr ""
+"Cancellation is no longer available online because less than 24 hours remain."
+
+#: aterapija/views.py:1587 aterapija/views.py:1816
+msgid "Booking was cancelled."
+msgstr "Booking was cancelled."
+
+#: aterapija/views.py:1606
+msgid ""
+"Postponement is no longer available online because less than 24 hours remain."
+msgstr ""
+"Postponement is no longer available online because less than 24 hours remain."
+
+#: aterapija/views.py:1645
+msgid "Booking was postponed."
+msgstr "Booking was postponed."
+
+#: aterapija/views.py:1721
+msgid "Booking was saved."
+msgstr "Booking was saved."
+
+#: aterapija/views.py:1797
+msgid "Booking was updated."
+msgstr "Booking was updated."
+
+#: aterapija/views.py:1841
+msgid "Payment status was updated."
+msgstr "Payment status was updated."
+
+#: aterapija/views.py:1875
+msgid "Client profile was created and login details were emailed."
+msgstr "Client profile was created and login details were emailed."
+
+#: aterapija/views.py:1877
+msgid ""
+"Client profile was created. No email was sent because the client has no "
+"email address."
+msgstr ""
+"Client profile was created. No email was sent because the client has no "
+"email address."
+
+#: aterapija/views.py:1918
+msgid "Therapist profile was created."
+msgstr "Therapist profile was created."
+
+#: aterapija/views.py:1941
+msgid "Therapist profile updated."
+msgstr "Therapist profile updated."
+
+#: aterapija/views.py:1969 aterapija/views.py:2155 aterapija/views.py:2188
+msgid "Profile updated."
+msgstr "Profile updated."
+
+#: aterapija/views.py:2005
+msgid "Service was created and linked to your profile."
+msgstr "Service was created and linked to your profile."
+
+#: aterapija/views.py:2016
+msgid "Service category was created."
+msgstr "Service category was created."
+
+#: aterapija/views.py:2045
+msgid "Service was removed from your profile."
+msgstr "Service was removed from your profile."
+
+#: aterapija/views.py:2052
+msgid "Service was removed from your profile because it is used elsewhere."
+msgstr "Service was removed from your profile because it is used elsewhere."
+
+#: aterapija/views.py:2071
+msgid "Selected services were linked to your profile."
+msgstr "Selected services were linked to your profile."
+
+#: aterapija/forms.py:1046
+msgid "Title"
+msgstr "Title"
+
+#: aterapija/forms.py:1047
+msgid "Published date"
+msgstr "Published date"
+
+#: aterapija/forms.py:1048
+msgid "Quote"
+msgstr "Quote"
+
+#: aterapija/forms.py:1049
+msgid "Body"
+msgstr "Body"
+
+#: aterapija/forms.py:1050
+msgid "Is active"
+msgstr "Is active"
+
+#: aterapija/forms.py:1013
+msgid "Question text"
+msgstr "Question text"
+
+#: aterapija/forms.py:1014
+msgid "Question type"
+msgstr "Question type"
+
+#: aterapija/forms.py:1015 aterapija/forms.py:1032
+msgid "Order"
+msgstr "Order"
+
+#: aterapija/forms.py:1030
+msgid "Answer text"
+msgstr "Answer text"
+
+#: aterapija/models.py:588
+msgid "Text input"
+msgstr "Text input"
+
+#: aterapija/models.py:589
+msgid "Textarea"
+msgstr "Textarea"
+
+#: aterapija/models.py:590
+msgid "Single choice"
+msgstr "Single choice"
+
+#: aterapija/models.py:591
+msgid "Multiple choice"
+msgstr "Multiple choice"
+
+#: aterapija/templates/accounts/admin_therapist_form.html:21
+msgid "Edit therapist profile"
+msgstr "Edit therapist profile"
+
+#: aterapija/templates/accounts/admin_therapist_form.html:28
+msgid ""
+"Create or update a therapist profile, including contact information, "
+"languages, professional details, and profile photo"
+msgstr ""
+"Create or update a therapist profile, including contact information, "
+"languages, professional details, and profile photo"
+
+#: aterapija/forms.py:583
+msgid "Full name"
+msgstr "Full name"
+
+#: aterapija/forms.py:585
+msgid "Profile photo"
+msgstr "Profile photo"
+
+#: aterapija/forms.py:586
+msgid "Specializations"
+msgstr "Specializations"
+
+#: aterapija/forms.py:587
+msgid "Languages"
+msgstr "Languages"
+
+#: aterapija/forms.py:588
+msgid "Experience"
+msgstr "Experience"
+
+#: aterapija/forms.py:1106
+msgid "Name"
+msgstr "Name"
+
+#: aterapija/forms.py:1107
+msgid "Description"
+msgstr "Description"
+
+#~ msgid "Suggested services"
+#~ msgstr "Suggested services"
+
+#~ msgid "These suggestions are based on the answer options linked in admin."
+#~ msgstr "These suggestions are based on the answer options linked in admin."
+
+#~ msgid "Your written answers"
+#~ msgstr "Your written answers"
+
+#~ msgid ""
+#~ "No services matched yet. Add related services to answer options in admin, "
+#~ "or browse all services."
+#~ msgstr ""
+#~ "No services matched yet. Add related services to answer options in admin, "
+#~ "or browse all services."
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "Register"
+#~ msgstr "Register"
+
+#~ msgid ""
+#~ "Educational content for learning about wellbeing, separate from booking."
+#~ msgstr ""
+#~ "Educational content for learning about wellbeing, separate from booking."
+
+#~ msgid "Older advice is saved here after a new Advice for Today is added."
+#~ msgstr "Older advice is saved here after a new Advice for Today is added."
+
+#~ msgid "Read advice"
+#~ msgstr "Read advice"
+
+#, python-format
+#~ msgid ""
+#~ "%(service_title)s lasts %(minutes)s minutes. A 30-minute therapist "
+#~ "transition buffer is reserved after the appointment."
+#~ msgstr ""
+#~ "%(service_title)s lasts %(minutes)s minutes. A 30-minute therapist "
+#~ "transition buffer is reserved after the appointment."
+
+#~ msgid "Welcome to A Terapija"
+#~ msgstr "Welcome to A Terapija"
+
+#~ msgid ""
+#~ "A calm place to find wellness support with less pressure and clearer "
+#~ "choices."
+#~ msgstr ""
+#~ "A calm place to find wellness support with less pressure and clearer "
+#~ "choices."
+
+#~ msgid "Answer a few questions when you are unsure where to start."
+#~ msgstr "Answer a few questions when you are unsure where to start."
+
+#~ msgid "Start assessment"
+#~ msgstr "Start assessment"
+
+#~ msgid "Learn first"
+#~ msgstr "Learn first"
+
+#~ msgid "Read educational articles without booking pressure."
+#~ msgstr "Read educational articles without booking pressure."
+
+#~ msgid "Open advice"
+#~ msgstr "Open advice"
+
+#~ msgid "Advice for Today has not been added yet."
+#~ msgstr "Advice for Today has not been added yet."
+
+#~ msgid "Therapists offering this service"
+#~ msgstr "Therapists offering this service"
+
+#~ msgid "View therapist"
+#~ msgstr "View therapist"
+
+#, python-format
+#~ msgid "%(minutes)s minutes · %(price)s"
+#~ msgstr "%(minutes)s minutes · %(price)s"
+
+#~ msgid "No services linked yet."
+#~ msgstr "No services linked yet."
+
+#~ msgid "Thank you! Your message has been received."
+#~ msgstr "Thank you! Your message has been received."

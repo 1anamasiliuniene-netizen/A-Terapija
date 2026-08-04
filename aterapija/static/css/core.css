@@ -1,0 +1,1172 @@
+/* ==========================================================
+   1. DESIGN TOKENS
+   ========================================================== */
+
+:root {
+    /* ------------------------------------------------------
+       Primitive colours
+    ------------------------------------------------------ */
+
+    --at-sage-700: #30463d;
+    --at-sage-500: #6f8375;
+    --at-sage-300: #b9c8bc;
+
+    --at-white: #ffffff;
+    --at-cream: #fbf6ee;
+    --at-surface: #fffaf3;
+    --at-border: #e5d8ca;
+    --at-soft: #f3ebe2;
+    --at-orchid: #d9a3af;
+    --at-orchid-strong: #c57f90;
+
+
+    /* ------------------------------------------------------
+       Semantic colours — day mode
+    ------------------------------------------------------ */
+
+    --at-bg: var(--at-cream);
+    --at-surface-main: var(--at-white);
+    --at-surface-soft: var(--at-soft);
+
+    --at-text: var(--at-sage-700);
+    --at-text-muted: #68786f;
+
+    --at-border-color: var(--at-border);
+
+    --at-card-bg: linear-gradient(
+        135deg,
+        var(--at-surface-main),
+        var(--at-surface-soft)
+    );
+    --at-card-border: var(--at-border-color);
+
+
+    /* ------------------------------------------------------
+       Typography
+    ------------------------------------------------------ */
+
+    --at-font-display: "Cormorant Garamond", Georgia, serif;
+    --at-font-body: "Inter", sans-serif;
+
+
+    /* ------------------------------------------------------
+       Shape
+    ------------------------------------------------------ */
+
+    --at-radius-sm: 8px;
+    --at-radius-md: 16px;
+    --at-radius-lg: 24px;
+    --at-radius-pill: 999px;
+
+
+    /* ------------------------------------------------------
+       Spacing scale
+    ------------------------------------------------------ */
+
+    --at-space-1: 4px;
+    --at-space-2: 8px;
+    --at-space-3: 12px;
+    --at-space-4: 16px;
+    --at-space-5: 24px;
+    --at-space-6: 32px;
+    --at-space-7: 48px;
+    --at-space-8: 64px;
+
+
+    /* ------------------------------------------------------
+       Section rhythm
+    ------------------------------------------------------ */
+
+    --at-space-section: 6rem;
+    --at-space-section-lg: 8rem;
+    --at-space-after-hero: 4rem;
+    --at-space-divider: 5rem;
+
+
+    /* ------------------------------------------------------
+       Shared widths
+    ------------------------------------------------------ */
+
+    --at-width-narrow: 760px;
+    --at-width-content: 980px;
+    --at-width-wide: 1120px;
+    --at-width-xxl: 1320px;
+    --at-media-width-card: 240px;
+
+    --at-contact-width: var(--at-width-content);
+
+
+    /* ------------------------------------------------------
+       Shadows and motion
+    ------------------------------------------------------ */
+
+    --at-shadow-sm: 0 4px 12px rgba(48, 70, 61, 0.08);
+    --at-shadow-md: 0 8px 24px rgba(48, 70, 61, 0.12);
+    --at-transition: 220ms ease;
+    --at-card-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .5),
+    0 10px 28px rgba(48, 70, 61, .08);
+
+
+    /* ------------------------------------------------------
+        Buttons
+    ------------------------------------------------------ */
+
+    --at-btn-height: 48px;
+    --at-btn-padding-x: var(--at-space-6);
+
+    --at-btn-sm-height: 44px;
+    --at-btn-sm-padding-x: var(--at-space-5);
+    }
+
+/* ==========================================================
+   2. EVENING MODE TOKENS
+   ========================================================== */
+
+[data-bs-theme="dark"] {
+    --at-bg: var(--at-sage-700);
+    --at-text: var(--at-cream);
+    --at-text-muted: rgba(251, 246, 238, .72);
+    --at-border-color: rgba(251, 246, 238, .08);
+
+    --at-card-bg:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, .035),
+            rgba(255, 255, 255, .015)
+        );
+
+    --at-card-border: rgba(251, 246, 238, .06);
+
+    --at-card-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .035),
+        0 10px 28px rgba(18, 31, 26, .12);
+
+    --at-surface-soft: rgba(251, 246, 238, .055);
+    --at-surface-float: rgba(48, 70, 61, .96);
+
+    --at-surface-input: color-mix(
+        in srgb,
+        var(--at-sage-500) 55%,
+        var(--at-sage-700)
+    );
+}
+
+/* ==========================================================
+   3. SHARED SURFACES
+   ========================================================== */
+
+.at-hero,
+.at-path-card,
+.at-blog-card,
+.at-cta,
+.at-info-card,
+.at-therapist-detail-hero {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--at-card-bg);
+    border: 1px solid var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .08),
+        0 12px 32px rgba(0, 0, 0, .12);
+
+    backdrop-filter: blur(10px);
+}
+
+.at-hero::before,
+.at-path-card::before,
+.at-blog-card::before,
+.at-cta::before,
+.at-info-card::before,
+.at-therapist-detail-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(
+        circle at top left,
+        rgba(255, 255, 255, .07),
+        transparent 60%
+    );
+
+    opacity: .8;
+}
+
+/* ----------------------------------------------------------
+   Shared surfaces — evening mode
+---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-hero,
+[data-bs-theme="dark"] .at-path-card,
+[data-bs-theme="dark"] .at-blog-card,
+[data-bs-theme="dark"] .at-cta,
+[data-bs-theme="dark"] .at-info-card,
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .at-therapist-detail-hero {
+    background: var(--at-card-bg);
+    border-color: var(--at-card-border);
+    box-shadow: var(--at-card-shadow);
+}
+
+/* ----------------------------------------------------------
+   CTA-specific settings
+---------------------------------------------------------- */
+
+.at-cta {
+    padding: clamp(2.25rem, 5vw, 4rem) !important;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
+}
+.at-cta .at-body {
+   max-width: 42rem;
+   margin-inline: auto;
+}
+
+/* ==========================================================
+   4. GLOBAL SECTION SPACING
+   ========================================================== */
+
+.at-section {
+    padding-block: var(--at-space-section);
+}
+
+.at-section-lg {
+    padding-block: var(--at-space-section-lg);
+}
+
+.at-section-divider {
+    width: 100%;
+    max-width: var(--at-width-wide);
+    height: 1px;
+
+    margin-block: var(--at-space-divider);
+    margin-inline: auto;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--at-border-color),
+        transparent
+    );
+
+    opacity: .5;
+}
+
+@media (max-width: 767.98px) {
+    .at-section {
+        padding-block: var(--at-space-8);
+    }
+
+    .at-section-lg {
+        padding-block: var(--at-space-section);
+    }
+}
+
+/* ==========================================================
+   5. BASE
+   ========================================================== */
+
+body {
+    background: var(--at-bg);
+    color: var(--at-text);
+    font-family: var(--at-font-body);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+}
+
+
+/* ==========================================================
+   6. TYPOGRAPHY
+   ========================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: var(--at-space-4);
+    color: var(--at-text);
+    line-height: 1.15;
+}
+
+p {
+    color: var(--at-text-muted);
+}
+
+
+/* ----------------------------------------------------------
+   Display
+---------------------------------------------------------- */
+
+.at-display {
+    color: var(--at-text);
+    font-family: var(--at-font-display);
+    font-size: clamp(4rem, 7vw, 5.8rem);
+    font-weight: 500;
+    letter-spacing: -.03em;
+    line-height: .95;
+}
+
+
+/* ----------------------------------------------------------
+   Headings
+---------------------------------------------------------- */
+
+.at-heading-1,
+.at-heading-2,
+.at-heading-3 {
+    color: var(--at-text);
+    font-family: var(--at-font-display);
+    font-weight: 500;
+}
+
+.at-heading-1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.at-heading-2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.at-heading-3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+
+/* ----------------------------------------------------------
+   Body text
+---------------------------------------------------------- */
+
+.at-body-lg {
+    color: var(--at-text-muted);
+    font-family: var(--at-font-body);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+.at-body {
+    color: var(--at-text-muted);
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+.at-caption {
+    color: var(--at-text-muted);
+    font-size: 1rem;
+}
+
+
+/* ----------------------------------------------------------
+   Eyebrow
+---------------------------------------------------------- */
+
+.at-eyebrow {
+    display: block;
+    margin: 0 0 var(--at-space-5);
+
+    color: var(--at-orchid);
+    font-family: var(--at-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: .1em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   7. FORMS
+   ========================================================== */
+
+.at-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-space-5);
+}
+
+.at-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+}
+
+.at-label {
+    color: var(--at-text);
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+.at-helper {
+    color: var(--at-text-muted);
+    font-size: .85rem;
+}
+
+.at-error {
+    color: #c86b7c;
+    font-size: .85rem;
+}
+
+
+/* ----------------------------------------------------------
+   Form controls
+---------------------------------------------------------- */
+
+.at-input,
+.at-textarea,
+.at-select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+
+    background: var(--at-surface-main);
+    border: 1px solid var(--at-border-color);
+    border-radius: var(--at-radius-lg);
+
+    color: var(--at-text);
+    font-size: 1rem;
+
+    transition:
+        border-color var(--at-transition),
+        box-shadow var(--at-transition),
+        background var(--at-transition);
+}
+
+.at-input::placeholder,
+.at-textarea::placeholder {
+    color: var(--at-text-muted);
+}
+
+.at-input:focus,
+.at-textarea:focus,
+.at-select:focus {
+    border-color: var(--at-sage-500);
+    box-shadow: 0 0 0 4px rgba(111, 131, 117, .15);
+    outline: none;
+}
+
+.at-textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+
+/* ----------------------------------------------------------
+   Alert
+---------------------------------------------------------- */
+
+.at-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--at-space-4);
+
+    width: fit-content;
+    max-width: 700px;
+    margin: var(--at-space-6) 0 var(--at-space-7);
+    padding: var(--at-space-5);
+
+    background: var(--at-surface-soft);
+    border: 1px solid rgba(251, 246, 238, .18);
+    border-left: 2px solid var(--at-orchid);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-shadow-sm);
+}
+
+.at-alert i {
+    flex-shrink: 0;
+    margin-top: .2rem;
+
+    color: var(--at-orchid);
+    font-size: 1.35rem;
+}
+
+.at-alert-title {
+    margin: 0 0 .5rem;
+
+    color: var(--at-text);
+    font-family: var(--at-font-body);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.at-alert-text {
+    margin: 0;
+
+    color: var(--at-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+[data-bs-theme="dark"] .at-alert-title {
+    color: var(--at-cream);
+}
+
+@media (max-width: 767.98px) {
+    .at-alert {
+        margin: var(--at-space-5) 0 var(--at-space-6);
+        padding: var(--at-space-4);
+    }
+}
+
+
+/* ==========================================================
+   8. BUTTONS
+   ========================================================== */
+
+.at-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--at-space-3);
+
+    min-height: var(--at-btn-height);
+    padding-inline: var(--at-btn-padding-x);
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--at-radius-pill);
+
+    color: var(--at-text);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+        background var(--at-transition),
+        border-color var(--at-transition),
+        box-shadow var(--at-transition),
+        color var(--at-transition),
+        transform var(--at-transition);
+}
+
+.at-btn::after {
+    font-size: 1.25em;
+    line-height: 1;
+    transition: transform var(--at-transition);
+}
+
+.at-btn:hover::after {
+    transform: translateX(var(--at-space-1));
+}
+
+
+/* ----------------------------------------------------------
+   Primary button
+---------------------------------------------------------- */
+
+.at-btn-primary {
+    background: var(--at-sage-500);
+    border-color: var(--at-sage-500);
+    box-shadow: var(--at-shadow-sm);
+    color: var(--at-white);
+}
+
+.at-btn-primary:hover {
+    background: var(--at-sage-700);
+    border-color: var(--at-sage-700);
+    box-shadow: var(--at-shadow-md);
+    color: var(--at-white);
+    transform: translateY(-2px);
+}
+
+
+/* ----------------------------------------------------------
+   Secondary button
+---------------------------------------------------------- */
+
+.at-btn-secondary {
+    background: var(--at-surface-main);
+    border-color: var(--at-border-color);
+    box-shadow: var(--at-shadow-sm);
+    color: var(--at-text);
+}
+
+.at-btn-secondary:hover {
+    background: var(--at-surface-soft);
+    border-color: var(--at-border-color);
+    box-shadow: var(--at-shadow-md);
+    color: var(--at-text);
+    transform: translateY(-2px);
+}
+
+
+/* ----------------------------------------------------------
+   Accent button
+---------------------------------------------------------- */
+
+.at-btn-accent {
+    background: transparent;
+    border-color: var(--at-orchid);
+    box-shadow: none;
+    color: var(--at-orchid);
+}
+
+.at-btn-accent:hover {
+    background: rgba(217, 163, 175, .08);
+    border-color: var(--at-orchid-strong);
+    color: var(--at-orchid-strong);
+    transform: translateY(-2px);
+}
+
+
+/* ----------------------------------------------------------
+   Small button
+---------------------------------------------------------- */
+
+.at-btn-sm {
+    min-height: var(--at-btn-sm-height);
+    padding-inline: var(--at-btn-sm-padding-x);
+    font-size: 1rem;
+}
+
+
+/* ----------------------------------------------------------
+   Button states
+---------------------------------------------------------- */
+
+.at-btn:focus-visible {
+    outline: 3px solid var(--at-orchid);
+    outline-offset: 3px;
+}
+
+.at-btn:active {
+    box-shadow: var(--at-shadow-sm);
+    transform: translateY(0);
+}
+
+.at-btn:disabled,
+.at-btn.disabled {
+    cursor: not-allowed;
+    opacity: .45;
+    transform: none;
+}
+
+
+/* ----------------------------------------------------------
+   Evening mode buttons
+---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-btn-primary {
+    background: var(--at-cream);
+    border-color: var(--at-cream);
+    box-shadow: var(--at-shadow-sm);
+    color: var(--at-sage-700);
+}
+
+[data-bs-theme="dark"] .at-btn-primary:hover {
+    background: var(--at-white);
+    border-color: var(--at-white);
+    box-shadow:
+        0 0 0 var(--at-space-1)
+        rgba(217, 163, 175, .18);
+    color: var(--at-sage-700);
+}
+
+[data-bs-theme="dark"] .at-btn-secondary {
+    background: transparent;
+    border-color: var(--at-border-color);
+    color: var(--at-cream);
+    border: 1.5px solid rgba(251, 246, 238, .22);
+}
+
+[data-bs-theme="dark"] .at-btn-secondary:hover {
+    background: rgba(255, 255, 255, .06);
+    border-color: rgba(251, 246, 238, .45);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-btn-accent {
+    background: transparent;
+    border-color: var(--at-orchid);
+    color: var(--at-orchid);
+}
+
+[data-bs-theme="dark"] .at-btn-accent:hover {
+    background: rgba(217, 163, 175, .12);
+    border-color: var(--at-orchid);
+    color: #e8b6c4;
+}
+/* ==========================================================
+   9. BOOTSTRAP OVERRIDES
+   ========================================================== */
+
+.card {
+    background: var(--at-card-bg);
+    border-color: var(--at-card-border);
+    border-radius: var(--at-radius-lg);
+    color: var(--at-text);
+}
+
+.card-text,
+.text-muted {
+    color: var(--at-text-muted) !important;
+}
+
+
+/* ==========================================================
+   10. HEADER
+   ========================================================== */
+
+.at-navbar {
+    padding: 1.25rem 0;
+
+    background: var(--at-bg);
+    border-bottom: 1px solid var(--at-border-color);
+}
+
+.at-navbar-container {
+    align-items: center;
+}
+
+.at-navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.at-navbar-logo {
+    display: block;
+    width: auto;
+    height: 108px;
+
+    background: transparent;
+    object-fit: contain;
+}
+
+.at-navbar-menu {
+    gap: 1.6rem;
+}
+
+.at-navbar a,
+.at-navbar a:hover,
+.at-navbar a:focus {
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------------------------
+   Navigation links
+---------------------------------------------------------- */
+
+.at-nav-link {
+    padding: .35rem .25rem;
+
+    color: var(--at-text);
+    font-family: var(--at-font-display);
+    font-size: 1.45rem;
+    font-weight: 400;
+    line-height: 1;
+    opacity: .82;
+
+    transition:
+        color var(--at-transition),
+        opacity var(--at-transition);
+}
+
+.at-nav-link:hover,
+.at-nav-link.active {
+    color: var(--at-orchid);
+    opacity: 1;
+}
+
+
+/* ----------------------------------------------------------
+   Navbar toggler
+---------------------------------------------------------- */
+
+.navbar-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.at-toggler-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+
+    width: 28px;
+    height: 22px;
+}
+
+.at-toggler-icon span {
+    display: block;
+    width: 100%;
+    height: 2px;
+
+    background: var(--at-text);
+    border-radius: var(--at-radius-pill);
+
+    transition: all .25s ease;
+}
+
+
+/* ----------------------------------------------------------
+   Navbar actions
+---------------------------------------------------------- */
+
+.at-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.at-language-switcher {
+    display: inline-flex;
+}
+
+.at-round-toggle,
+.at-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+    border-radius: 50%;
+
+    color: var(--at-text);
+    font-size: .95rem;
+    font-weight: 700;
+
+    transition: all var(--at-transition);
+}
+
+.at-round-toggle:hover,
+.at-theme-toggle:hover {
+    background: var(--at-surface-main);
+    transform: translateY(-1px);
+}
+
+.at-theme-toggle,
+.at-icon-link {
+    position: relative;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    border-radius: 50%;
+    font-size: 1.1rem;
+}
+
+.at-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--at-surface-soft);
+    border: 1px solid var(--at-border-color);
+
+    color: var(--at-text);
+    text-decoration: none;
+
+    transition: all var(--at-transition);
+}
+
+.at-notification-link.has-unread {
+    color: #b96c82;
+}
+
+.at-notification-link.has-unread i {
+    color: inherit !important;
+}
+
+
+/* ----------------------------------------------------------
+   Login and register
+---------------------------------------------------------- */
+
+.at-nav-pill {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 44px;
+    padding: 0 1.25rem;
+
+    background: var(--at-sage-500);
+    border: 1px solid var(--at-sage-500);
+    border-radius: var(--at-radius-pill);
+
+    color: var(--at-white);
+    font-family: var(--at-font-body);
+    font-size: .95rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.at-nav-pill:hover {
+    background: var(--at-sage-700);
+    border-color: var(--at-sage-700);
+    color: var(--at-white);
+}
+
+
+/* ----------------------------------------------------------
+   Profile button
+---------------------------------------------------------- */
+
+.at-profile-button {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+    padding: 0;
+
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+}
+
+.at-profile-button::after {
+    display: none;
+}
+
+.at-profile-button img,
+.at-profile-button span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    background: var(--at-surface-soft);
+    border: 2px solid rgba(251, 246, 238, .45);
+    border-radius: 50%;
+
+    color: var(--at-cream);
+    font-weight: 700;
+    object-fit: cover;
+}
+
+.at-profile-button:hover img,
+.at-profile-button:hover span {
+    border-color: var(--at-orchid);
+}
+
+
+/* ----------------------------------------------------------
+   Profile dropdown
+---------------------------------------------------------- */
+
+.at-dropdown-menu {
+    padding: .6rem;
+
+    background: var(--at-surface) !important;
+    border: 1px solid var(--at-border-color) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 12px 32px rgba(48, 70, 61, .08) !important;
+}
+
+.at-dropdown-menu .dropdown-item {
+    padding: .85rem 1rem;
+
+    border-radius: 12px;
+    color: #48645b;
+    font-family: var(--at-font-display);
+    font-size: 1.45rem;
+    font-weight: 500;
+
+    transition: .2s ease;
+}
+
+.at-dropdown-menu .dropdown-item:hover,
+.at-dropdown-menu .dropdown-item:focus {
+    background: var(--at-soft);
+    color: var(--at-sage-700);
+}
+
+.at-dropdown-menu .dropdown-divider {
+    border-color: var(--at-border-color);
+}
+
+
+/* ----------------------------------------------------------
+   Header responsive
+---------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+    .at-navbar {
+        padding: 1rem 0;
+    }
+
+    .at-navbar-logo {
+        height: 92px;
+    }
+
+    .at-navbar-menu {
+        gap: .75rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .at-navbar-menu .at-nav-link {
+        display: block;
+        padding: .25rem 0;
+        font-size: 2rem;
+    }
+
+    .at-navbar-actions {
+        margin-top: .75rem;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   Header evening mode
+---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-navbar {
+    background: var(--at-bg);
+    border-color: var(--at-border-color);
+}
+
+[data-bs-theme="dark"] .at-language-switcher button,
+[data-bs-theme="dark"] .at-theme-toggle,
+[data-bs-theme="dark"] .at-icon-link,
+[data-bs-theme="dark"] .at-profile-button {
+    background: rgba(251, 246, 238, .08);
+    border-color: rgba(251, 246, 238, .14);
+}
+
+[data-bs-theme="dark"] .at-nav-link:hover,
+[data-bs-theme="dark"] .at-nav-link.active {
+    color: #e8b6c4;
+}
+
+[data-bs-theme="dark"] .at-nav-pill {
+    background: var(--at-cream);
+    border-color: var(--at-cream);
+    color: var(--at-sage-700);
+}
+
+[data-bs-theme="dark"] .at-dropdown-menu {
+    background: rgba(48, 70, 61, .94) !important;
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--at-border-color) !important;
+    box-shadow: var(--at-shadow-md) !important;
+}
+
+[data-bs-theme="dark"] .at-dropdown-menu .dropdown-item {
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-dropdown-menu .dropdown-item:hover,
+[data-bs-theme="dark"] .at-dropdown-menu .dropdown-item:focus {
+    background: rgba(251, 246, 238, .08);
+    color: var(--at-cream);
+}
+
+[data-bs-theme="dark"] .at-dropdown-menu .dropdown-divider {
+    border-color: rgba(251, 246, 238, .12);
+}
+
+/* ==========================================================
+   11. FOOTER
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Base
+---------------------------------------------------------- */
+
+.at-footer {
+    padding: 2.75rem 0;
+
+    background: var(--at-bg);
+    border-top: 1px solid var(--at-border-color);
+    color: var(--at-text-muted);
+}
+
+.at-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--at-space-5);
+}
+
+.at-footer-copy {
+    margin: 0;
+
+    color: var(--at-text-muted);
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+
+/* ----------------------------------------------------------
+   Footer links and states
+---------------------------------------------------------- */
+
+.at-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-space-4);
+}
+
+.at-footer-links a {
+    color: var(--at-text-muted);
+    font-size: .9rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    transition: color var(--at-transition);
+}
+
+.at-footer-links a:hover {
+    color: var(--at-orchid-strong);
+    opacity: .8;
+}
+
+
+/* ----------------------------------------------------------
+   Footer evening mode
+---------------------------------------------------------- */
+
+[data-bs-theme="dark"] .at-footer {
+    border-color: var(--at-border-color);
+}
+
+/* ----------------------------------------------------------
+   Footer responsive
+---------------------------------------------------------- */
+
+@media (max-width: 575.98px) {
+    .at-footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

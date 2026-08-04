@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<footer class="at-footer">
+  <div class="container">
+    <div class="at-footer-inner">
+
+      <p class="at-footer-copy">
+        © {% now "Y" %} A Terapija. {% trans "All rights reserved." %}
+      </p>
+
+      <nav class="at-footer-links" aria-label="{% trans 'Legal navigation' %}">
+        <a href="{% url 'aterapija:privacy' %}">
+          {% trans "Privacy" %}
+        </a>
+
+        <a href="{% url 'aterapija:cookies' %}">
+          {% trans "Cookies" %}
+        </a>
+
+        <a href="{% url 'aterapija:terms' %}">
+          {% trans "Terms" %}
+        </a>
+      </nav>
+
+    </div>
+  </div>
+</footer>

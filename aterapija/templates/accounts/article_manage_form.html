@@ -1,0 +1,84 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n i18n_content %}
+
+{% block title %}
+    {% if object %}
+        {% trans "Edit article" %}
+    {% else %}
+        {% trans "Add article" %}
+    {% endif %}
+    | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:article_manage_list' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to articles" %}
+    </a>
+
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+            <p class="at-eyebrow">{% trans "Content management" %}</p>
+
+            <h1 class="at-heading-1">
+                {% if object %}
+                    {% trans "Edit article" %}
+                {% else %}
+                    {% trans "Add article" %}
+                {% endif %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Create or update article content, category, publication status, and image." %}
+            </p>
+        </div>
+
+        <a href="{% url 'aterapija:article_category_add' %}"
+           class="at-btn at-btn-secondary">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            {% trans "Add new category" %}
+        </a>
+    </header>
+
+    <div class="at-admin-form-card">
+
+        {% if object and object.image %}
+            <div class="at-admin-article-preview">
+                <img src="{{ object.image.url }}"
+                     alt="{{ object|localized_title }}">
+            </div>
+        {% endif %}
+
+        <form method="post"
+              enctype="multipart/form-data"
+              class="at-admin-form at-article-admin-form"
+              novalidate>
+
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <div class="at-admin-form-actions">
+
+                <a href="{% url 'aterapija:article_manage_list' %}"
+                   class="at-btn at-btn-secondary">
+                    {% trans "Cancel" %}
+                </a>
+
+                <button type="submit" class="at-btn at-btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i>
+                    {% trans "Save article" %}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

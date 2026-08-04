@@ -1,0 +1,346 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Admin Dashboard" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-dashboard-page">
+
+  <header class="at-dashboard-header">
+    <p class="at-eyebrow">{% trans "Administration" %}</p>
+
+    <h1 class="at-heading-1">
+      {% trans "Admin dashboard" %}
+    </h1>
+
+    <p class="at-body">
+      {% trans "Manage content, bookings, therapists, clients, and questionnaire results." %}
+    </p>
+
+    <div class="at-dashboard-actions">
+      <a
+        href="{% url 'aterapija:admin_advice_list' %}"
+        class="at-btn at-btn-primary"
+      >
+        {% trans "Manage advice schedule" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_about_edit' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Edit about page" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_assessment_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Help Me Choose results" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_question_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Questionnaire editor" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_contact_message_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Client messages" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_booking_request_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Bookings" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_booking_request_add' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Add booking" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_service_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Manage services" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:admin_therapist_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Therapists" %}
+      </a>
+
+      <a
+        href="{% url 'aterapija:article_manage_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Manage articles" %}
+      </a>
+
+      <a
+        href="/admin/"
+        class="at-btn at-btn-accent"
+      >
+        {% trans "Open Django admin" %}
+      </a>
+    </div>
+  </header>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Overview" %}</p>
+        <h2 class="at-heading-2">{% trans "Accounts" %}</h2>
+      </div>
+    </div>
+
+    <div class="at-dashboard-stats">
+
+      <article class="at-stat-card">
+        <span class="at-stat-label">{% trans "Therapists" %}</span>
+
+        <strong class="at-stat-value">
+          {{ therapists|length }}
+        </strong>
+
+        <span class="at-stat-meta">
+          {% blocktrans count count=therapists|length %}
+            Therapist account visible to admin
+          {% plural %}
+            Therapist accounts visible to admin
+          {% endblocktrans %}
+        </span>
+      </article>
+
+      <article class="at-stat-card">
+        <span class="at-stat-label">{% trans "Clients" %}</span>
+
+        <strong class="at-stat-value">
+          {{ clients|length }}
+        </strong>
+
+        <span class="at-stat-meta">
+          {% blocktrans count count=clients|length %}
+            Client account visible to admin
+          {% plural %}
+            Client accounts visible to admin
+          {% endblocktrans %}
+        </span>
+      </article>
+
+      <article class="at-stat-card">
+        <span class="at-stat-label">{% trans "Recent bookings" %}</span>
+
+        <strong class="at-stat-value">
+          {{ bookings|length }}
+        </strong>
+
+        <span class="at-stat-meta">
+          {% blocktrans count count=bookings|length %}
+            Approved booking shown below
+          {% plural %}
+            Approved bookings shown below
+          {% endblocktrans %}
+        </span>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Availability" %}</p>
+        <h2 class="at-heading-2">{% trans "Busy and unavailable periods" %}</h2>
+      </div>
+
+      <a
+        href="{% url 'aterapija:admin_booking_request_add' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "Add booking" %}
+      </a>
+    </div>
+
+    <div class="at-dashboard-card">
+      {% include "accounts/includes/busy_period_list.html" with busy_periods=busy_periods %}
+    </div>
+
+  </section>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Appointments" %}</p>
+        <h2 class="at-heading-2">{% trans "Recent bookings" %}</h2>
+      </div>
+
+      <a
+        href="{% url 'aterapija:admin_booking_request_list' %}"
+        class="at-btn at-btn-secondary"
+      >
+        {% trans "View all bookings" %}
+      </a>
+    </div>
+
+    {% if bookings %}
+
+      <div class="at-dashboard-table-card">
+        <div class="table-responsive">
+
+          <table class="at-dashboard-table">
+
+            <thead>
+              <tr>
+                <th scope="col">{% trans "Client" %}</th>
+                <th scope="col">{% trans "Therapist" %}</th>
+                <th scope="col">{% trans "Service" %}</th>
+                <th scope="col">{% trans "Price" %}</th>
+                <th scope="col">{% trans "Payment" %}</th>
+                <th scope="col">{% trans "Date and time" %}</th>
+                <th scope="col">{% trans "Status" %}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for booking in bookings %}
+                <tr>
+
+                  <td data-label="{% trans 'Client' %}">
+                    <strong>{{ booking.client_name }}</strong>
+                  </td>
+
+                  <td data-label="{% trans 'Therapist' %}">
+                    {{ booking.therapist.full_name }}
+                  </td>
+
+                  <td data-label="{% trans 'Service' %}">
+                    {{ booking.service|localized_title }}
+                  </td>
+
+                  <td data-label="{% trans 'Price' %}">
+                    €{{ booking.service.price|floatformat:2 }}
+                  </td>
+
+                  <td data-label="{% trans 'Payment' %}">
+                    {% url 'aterapija:admin_booking_payment_toggle' booking.pk as payment_toggle_url %}
+
+                    {% include "accounts/includes/payment_received_checkbox.html" with booking=booking payment_toggle_url=payment_toggle_url %}
+                  </td>
+
+                  <td data-label="{% trans 'Date and time' %}">
+                    {{ booking.preferred_date|date:"M j, Y" }}
+
+                    <span class="at-table-time">
+                      {{ booking.preferred_time|time:"H:i" }}
+                    </span>
+                  </td>
+
+                  <td data-label="{% trans 'Status' %}">
+                    <span class="at-status at-status-{{ booking.status }}">
+                      {{ booking.get_status_display }}
+                    </span>
+                  </td>
+
+                </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="at-empty-state">
+        <h3 class="at-heading-3">{% trans "No bookings yet" %}</h3>
+
+        <p class="at-body">
+          {% trans "Approved bookings will appear here." %}
+        </p>
+      </div>
+
+    {% endif %}
+
+  </section>
+
+
+  <section class="at-dashboard-section">
+
+    <div class="at-dashboard-section-header">
+      <div>
+        <p class="at-card-eyebrow">{% trans "Payments" %}</p>
+        <h2 class="at-heading-2">{% trans "Earnings received" %}</h2>
+      </div>
+    </div>
+
+    {% if earnings %}
+
+      <div class="at-dashboard-table-card">
+        <div class="table-responsive">
+
+          <table class="at-dashboard-table">
+
+            <thead>
+              <tr>
+                <th scope="col">{% trans "Therapist" %}</th>
+                <th scope="col">{% trans "Payment received total" %}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for therapist in earnings %}
+                <tr>
+                  <td data-label="{% trans 'Therapist' %}">
+                    <strong>{{ therapist.full_name }}</strong>
+                  </td>
+
+                  <td data-label="{% trans 'Payment received total' %}">
+                    €{{ therapist.total_received|default:"0.00"|floatformat:2 }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="at-empty-state">
+        <h3 class="at-heading-3">{% trans "No received payments yet" %}</h3>
+
+        <p class="at-body">
+          {% trans "Recorded therapist earnings will appear here." %}
+        </p>
+      </div>
+
+    {% endif %}
+
+  </section>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% load i18n i18n_content %}
+
+<section class="at-therapist-detail-hero">
+
+    <div class="at-therapist-detail-photo-wrap">
+        {% if therapist.profile_photo %}
+            <img
+                src="{{ therapist.profile_photo.url }}"
+                alt="{{ therapist.full_name }}"
+                class="at-therapist-detail-photo">
+        {% else %}
+            <div class="at-therapist-detail-photo-placeholder">
+                {{ therapist.full_name|first }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="at-therapist-detail-content">
+
+        <p class="at-eyebrow">
+            {% trans "Therapist" %}
+        </p>
+
+        <h1 class="at-heading-1">
+            {{ therapist.full_name }}
+        </h1>
+
+        <blockquote class="at-therapist-quote">
+            {% if therapist.quote %}
+                “{{ therapist.quote }}”
+            {% else %}
+                                "{% trans "A gentle space to reconnect with your body, your needs, and your inner balance." %}"
+            {% endif %}
+        </blockquote>
+
+        <div class="at-therapist-chips">
+
+            {% if therapist.experience %}
+                <span>
+                    <strong>{% trans "Experience:" %}</strong>
+                    {{ therapist.experience }}
+                </span>
+            {% endif %}
+
+            {% if therapist.languages %}
+                <span>
+                    <strong>{% trans "Languages:" %}</strong>
+                    {{ therapist.languages }}
+                </span>
+            {% endif %}
+
+            {% if therapist.specializations %}
+                <span>
+                    <strong>{% trans "Specializations:" %}</strong>
+                    {{ therapist.specializations }}
+                </span>
+            {% endif %}
+
+        </div>
+
+        <a
+            href="{% url 'aterapija:booking_create' %}"
+            class="at-btn at-btn-primary mt-4">
+            {% trans "Book a session" %}
+        </a>
+
+    </div>
+
+</section>
+
+<hr class="at-section-divider">
+
+<section class="at-therapist-detail-section">
+
+    <p class="at-eyebrow">
+        {% trans "Biography" %}
+    </p>
+
+    <h2 class="at-heading-2">
+    {% trans "Therapeutic presence" %}
+    </h2>
+
+    <div class="at-rich-text at-therapist-bio">
+        {{ therapist|localized_bio|linebreaks }}
+    </div>
+
+</section>
+
+{% if active_services %}
+<hr class="at-section-divider">
+
+<section class="at-therapist-detail-section">
+    <p class="at-eyebrow">
+        {% trans "Services" %}
+    </p>
+
+    <h2 class="at-heading-2">
+        {% trans "Areas of support" %}
+    </h2>
+
+    <div class="at-therapist-service-list">
+        {% for service in active_services %}
+            <a
+                href="{% url 'aterapija:service_detail' service.slug %}"
+                class="at-service-chip">
+                {{ service|localized_title }}
+            </a>
+        {% endfor %}
+    </div>
+</section>
+
+{% endif %}

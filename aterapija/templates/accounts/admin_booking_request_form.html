@@ -1,0 +1,415 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n i18n_content %}
+
+{% block title %}
+    {% trans "Booking" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page at-admin-booking-form-page">
+
+    <a
+        href="{% url 'aterapija:admin_booking_request_list' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to bookings" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Booking management" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% if object %}
+                    {% trans "Edit booking" %}
+                {% else %}
+                    {% trans "Add booking" %}
+                {% endif %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Choose a service and available time first, then select an existing client. New clients are created separately." %}
+            </p>
+
+        </div>
+
+    </header>
+
+    <section class="at-admin-form-card at-admin-booking-search-card">
+
+        <div class="at-admin-form-section-header">
+
+            <p class="at-eyebrow">
+                {% trans "Step 1" %}
+            </p>
+
+            <h2 class="at-heading-3">
+                {% trans "Find available times" %}
+            </h2>
+
+            <p class="at-admin-form-section-intro">
+                {% trans "Choose a service, therapist and date range to view available appointment slots." %}
+            </p>
+
+        </div>
+
+        <form
+            method="get"
+            class="at-admin-slot-search"
+        >
+
+            <div class="at-admin-slot-search-field">
+
+                <label for="admin-service">
+                    {% trans "Service" %}
+                </label>
+
+                <select
+                    id="admin-service"
+                    name="service"
+                    class="at-select"
+                    required
+                >
+                    <option value="">
+                        {% trans "Choose service" %}
+                    </option>
+
+                    {% for service_option in services %}
+                        <option
+                            value="{{ service_option.pk }}"
+                            {% if selected_service and selected_service.pk == service_option.pk %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ service_option|localized_title }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div class="at-admin-slot-search-field">
+
+                <label for="admin-therapist">
+                    {% trans "Therapist" %}
+                </label>
+
+                <select
+                    id="admin-therapist"
+                    name="therapist"
+                    class="at-select"
+                >
+                    <option value="">
+                        {% trans "Any therapist" %}
+                    </option>
+
+                    {% for therapist_option in therapists %}
+                        <option
+                            value="{{ therapist_option.pk }}"
+                            {% if selected_therapist and selected_therapist.pk == therapist_option.pk %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ therapist_option.full_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div class="at-admin-slot-search-field">
+
+                <label for="admin-date-from">
+                    {% trans "From" %}
+                </label>
+
+                <input
+                    id="admin-date-from"
+                    type="date"
+                    name="date_from"
+                    value="{{ date_from|date:'Y-m-d' }}"
+                    class="at-input"
+                >
+
+            </div>
+
+            <div class="at-admin-slot-search-field">
+
+                <label for="admin-date-to">
+                    {% trans "To" %}
+                </label>
+
+                <input
+                    id="admin-date-to"
+                    type="date"
+                    name="date_to"
+                    value="{{ date_to|date:'Y-m-d' }}"
+                    class="at-input"
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="at-btn at-btn-primary"
+            >
+                {% trans "Show slots" %}
+            </button>
+
+        </form>
+
+    </section>
+
+    {% if selected_service %}
+
+        <section class="at-admin-form-card">
+
+            <div class="at-admin-form-section-header">
+
+                <p class="at-eyebrow">
+                    {% trans "Step 2" %}
+                </p>
+
+                <h2 class="at-heading-3">
+                    {% trans "Available times" %}
+                </h2>
+
+                <p class="at-admin-form-section-intro">
+                    {% trans "Choose one available time to continue with the booking." %}
+                </p>
+
+            </div>
+
+            {% url 'aterapija:admin_booking_request_add' as admin_booking_add_url %}
+
+            {% include "accounts/includes/slot_day_cards.html" with slot_days=slot_days show_therapist_names=True slot_link_base=admin_booking_add_url selected_service=selected_service date_from=date_from date_to=date_to %}
+
+            <details class="at-admin-booking-busy-details">
+
+                <summary>
+                    {% trans "Busy and booked periods" %}
+                </summary>
+
+                <div class="at-admin-booking-busy-content">
+                    {% include "accounts/includes/busy_period_list.html" with busy_periods=busy_periods %}
+                </div>
+
+            </details>
+
+        </section>
+
+    {% endif %}
+
+    {% if selected_slot.service and selected_slot.therapist and selected_slot.date and selected_slot.time %}
+
+        <div class="at-admin-selection-status at-admin-selection-status--success">
+
+            <i class="bi bi-check-circle" aria-hidden="true"></i>
+
+            <div>
+
+                <strong>
+                    {% trans "Selected appointment" %}
+                </strong>
+
+                <p>
+                    {% blocktrans with service_title=selected_slot.service|localized_title therapist_name=selected_slot.therapist.full_name date=selected_slot.date time=selected_slot.time %}
+                        {{ service_title }} with {{ therapist_name }} on {{ date }} at {{ time }}.
+                    {% endblocktrans %}
+                </p>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <div class="at-admin-selection-status at-admin-selection-status--warning">
+
+            <i class="bi bi-info-circle" aria-hidden="true"></i>
+
+            <div>
+
+                <strong>
+                    {% trans "No appointment selected" %}
+                </strong>
+
+                <p>
+                    {% trans "Select an available time above before saving the booking." %}
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+    <div class="at-admin-form-card">
+
+        <div class="at-admin-form-section-header">
+
+            <p class="at-eyebrow">
+                {% trans "Step 3" %}
+            </p>
+
+            <h2 class="at-heading-3">
+                {% trans "Client and booking details" %}
+            </h2>
+
+            <p class="at-admin-form-section-intro">
+                {% trans "Select the client, review the booking information and save the appointment." %}
+            </p>
+
+        </div>
+
+        <form
+            method="post"
+            class="at-admin-form"
+            novalidate
+        >
+
+            {% csrf_token %}
+
+            {% if form.errors %}
+
+                <div class="at-form-message at-form-message-error">
+
+                    <strong>
+                        {% trans "Booking was not saved." %}
+                    </strong>
+
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+            {% endif %}
+
+            {% for field in form %}
+
+                {% if field.name == "status" %}
+
+                    {{ field.as_hidden }}
+
+                {% elif field.name == "payment_received" %}
+
+                    <div class="at-admin-payment-field">
+
+                        <label
+                            for="{{ field.id_for_label }}"
+                            class="at-admin-payment-label"
+                        >
+                            {{ field.label }}
+                        </label>
+
+                        <label class="at-switch">
+
+                            <input
+                                type="checkbox"
+                                name="{{ field.html_name }}"
+                                id="{{ field.id_for_label }}"
+                                value="true"
+                                {% if field.value %}checked{% endif %}
+                            >
+
+                            <span class="at-switch__slider"></span>
+
+                        </label>
+
+                        {% if field.errors %}
+                            <div class="at-form-error">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                {% else %}
+
+                    {{ field|as_crispy_field }}
+
+                {% endif %}
+
+            {% endfor %}
+
+            <div class="at-admin-booking-client-action">
+
+                <p>
+                    {% trans "The client is not in the system yet?" %}
+                </p>
+
+                <a
+                    href="{% url 'aterapija:admin_client_add' %}"
+                    class="at-btn at-btn-secondary at-btn-small"
+                >
+                    {% trans "Add new client" %}
+                </a>
+
+            </div>
+
+            <div class="at-admin-form-actions">
+
+                <a
+                    href="{% url 'aterapija:admin_booking_request_list' %}"
+                    class="at-btn at-btn-secondary"
+                >
+                    {% trans "Cancel" %}
+                </a>
+
+                <button
+                    type="submit"
+                    class="at-btn at-btn-primary"
+                >
+                    {% trans "Save booking" %}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script>
+    document.querySelectorAll(".js-slot-choice").forEach((button) => {
+        button.addEventListener("click", () => {
+            const dateInput = document.getElementById("id_preferred_date");
+            const timeInput = document.getElementById("id_preferred_time");
+            const therapistInput = document.getElementById("id_therapist");
+
+            if (dateInput) {
+                dateInput.value = button.dataset.date;
+            }
+
+            if (timeInput) {
+                timeInput.value = button.dataset.time;
+            }
+
+            if (therapistInput) {
+                therapistInput.value = button.dataset.therapist;
+            }
+
+            document.querySelectorAll(".js-slot-choice").forEach((slotButton) => {
+                slotButton.classList.remove("is-selected");
+            });
+
+            button.classList.add("is-selected");
+        });
+    });
+</script>
+
+{% endblock %}

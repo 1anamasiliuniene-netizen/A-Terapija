@@ -1,0 +1,225 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n i18n_content %}
+
+{% block title %}{% trans "Book Appointment" %} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section class="at-booking-page">
+
+    <header class="at-booking-header">
+        <p class="at-eyebrow">
+            {% trans "Appointments" %}
+        </p>
+
+        <h1 class="at-heading-1">
+            {% trans "Book appointment" %}
+        </h1>
+
+        <p class="at-booking-intro">
+            {% trans "Choose a service and your preferred date. We'll show the available appointment times for that day." %}
+        </p>
+    </header>
+
+    <form method="get" class="at-booking-search">
+        <div class="row g-3 align-items-end">
+
+            <div class="col-12 col-md-5">
+                <label for="booking-service" class="form-label">
+                    {% trans "Service" %}
+                </label>
+
+                <select
+                    id="booking-service"
+                    name="service"
+                    class="form-select"
+                    required
+                >
+                    <option value="">
+                        {% trans "Choose service" %}
+                    </option>
+
+                    {% for service_option in services %}
+                        <option
+                            value="{{ service_option.pk }}"
+                            {% if service and service.pk == service_option.pk %}selected{% endif %}
+                        >
+                            {{ service_option|localized_title }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label for="booking-date" class="form-label">
+                    {% trans "Preferred date" %}
+                </label>
+
+                <input
+                    id="booking-date"
+                    name="preferred_date"
+                    type="date"
+                    class="form-control"
+                    value="{{ selected_date|date:'Y-m-d' }}"
+                    required
+                >
+            </div>
+
+            {% if show_therapist_choice %}
+                <div class="col-12 col-md-3">
+                    <label for="booking-therapist" class="form-label">
+                        {% trans "Preferred therapist" %}
+                    </label>
+
+                    <select
+                        id="booking-therapist"
+                        name="therapist"
+                        class="form-select"
+                    >
+                        <option value="">
+                            {% trans "Any therapist" %}
+                        </option>
+
+                        {% for therapist_option in therapists %}
+                            <option
+                                value="{{ therapist_option.pk }}"
+                                {% if therapist and therapist.pk == therapist_option.pk %}selected{% endif %}
+                            >
+                                {{ therapist_option.full_name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            <div class="col-12 col-md">
+                <button type="submit" class="at-btn at-btn-primary w-100">
+                    {% trans "Find available times" %}
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <section class="at-booking-section">
+
+        <h2 class="at-heading-2">
+            {% trans "Available times" %}
+        </h2>
+
+        {% if service %}
+
+            <p class="at-booking-service-meta">
+                <span>{{ service|localized_title }}</span>
+                <span aria-hidden="true">•</span>
+                <span>
+                    {{ service.duration_minutes }} {% trans "minutes" %}
+                </span>
+            </p>
+
+            {% if selected_date %}
+
+                {% if slot_days %}
+
+                    <p>
+                        {% trans "Select the appointment time that works best for you." %}
+                    </p>
+
+                    {% include "accounts/includes/slot_day_cards.html" with slot_days=slot_days show_therapist_names=show_therapist_choice %}
+
+                {% else %}
+
+                    <p class="at-booking-empty">
+                        {% trans "No available appointments on this date. Please choose another date." %}
+                    </p>
+
+                {% endif %}
+
+            {% else %}
+
+                <p class="at-booking-empty">
+                    {% trans "Select a date to see available appointment times." %}
+                </p>
+
+            {% endif %}
+
+        {% else %}
+
+            <p class="at-booking-empty">
+                {% trans "Select a service and your preferred date to see available appointment times." %}
+            </p>
+
+        {% endif %}
+
+    </section>
+
+    <section class="at-booking-section at-booking-details">
+
+        <h2 class="at-heading-2">
+            {% trans "Additional information" %}
+        </h2>
+
+        <p>
+            {% trans "If you'd like, you can share anything that may help your therapist prepare for the appointment." %}
+        </p>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <button type="submit" class="at-btn at-btn-primary">
+                {% trans "Continue" %}
+            </button>
+        </form>
+
+    </section>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slotButtons = document.querySelectorAll(".js-slot-choice");
+
+    slotButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const dateInput = document.getElementById("id_preferred_date");
+            const timeInput = document.getElementById("id_preferred_time");
+            const therapistInput = document.getElementById("id_therapist");
+
+            if (dateInput) {
+                dateInput.value = button.dataset.date;
+            }
+
+            if (timeInput) {
+                timeInput.value = button.dataset.time;
+            }
+
+            if (therapistInput) {
+                therapistInput.value = button.dataset.therapist;
+            }
+
+            slotButtons.forEach(function (slotButton) {
+                slotButton.classList.remove(
+                    "at-btn-primary",
+                    "is-selected"
+                );
+
+                slotButton.classList.add("at-btn-outline-primary");
+                slotButton.setAttribute("aria-pressed", "false");
+            });
+
+            button.classList.remove("at-btn-outline-primary");
+
+            button.classList.add(
+                "at-btn-primary",
+                "is-selected"
+            );
+
+            button.setAttribute("aria-pressed", "true");
+        });
+    });
+});
+</script>
+
+{% endblock %}

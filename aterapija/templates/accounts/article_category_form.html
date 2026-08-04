@@ -1,0 +1,66 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}
+    {% trans "Add article category" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section class="at-admin-page">
+
+    <a href="{% url 'aterapija:article_manage_add' %}" class="at-back-link">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to article form" %}
+    </a>
+
+    <header class="at-admin-page-header">
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Content management" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {% trans "Add article category" %}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% trans "Create a new category to organise articles and make content easier to manage." %}
+            </p>
+
+        </div>
+    </header>
+
+    <div class="at-admin-form-card">
+
+        <form method="post"
+              class="at-admin-form"
+              novalidate>
+
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <div class="at-admin-form-actions">
+
+                <a href="{% url 'aterapija:article_manage_add' %}"
+                   class="at-btn at-btn-secondary">
+                    {% trans "Cancel" %}
+                </a>
+
+                <button type="submit"
+                        class="at-btn at-btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i>
+                    {% trans "Save category" %}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

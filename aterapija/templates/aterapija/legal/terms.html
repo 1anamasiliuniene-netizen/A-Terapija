@@ -1,0 +1,180 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Terms of Service" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<article class="at-legal-page">
+
+    <a
+        href="{% url 'aterapija:home' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to home" %}
+    </a>
+
+    <header class="at-legal-header">
+
+        <p class="at-eyebrow">
+            {% trans "Legal information" %}
+        </p>
+
+        <h1 class="at-heading-1">
+            {% trans "Terms of Service" %}
+        </h1>
+
+        <p class="at-legal-updated">
+            {% trans "Last updated: January 2025" %}
+        </p>
+
+    </header>
+
+    <div class="at-legal-content">
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "1. Acceptance of Terms" %}</h2>
+
+            <p>
+                {% trans "By accessing or using the A Terapija website and services, you agree to these Terms of Service. If you do not agree with these terms, please do not use the website or our services." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "2. Use of the Website" %}</h2>
+
+            <p>
+                {% trans "The content on this website is provided for your personal, non-commercial use. You may not:" %}
+            </p>
+
+            <ul>
+
+                <li>{% trans "Copy, modify or distribute website content without permission." %}</li>
+                <li>{% trans "Use the website or its content for commercial purposes." %}</li>
+                <li>{% trans "Attempt to reverse engineer or interfere with website functionality." %}</li>
+                <li>{% trans "Remove copyright or proprietary notices." %}</li>
+                <li>{% trans "Republish website materials on other websites or servers without permission." %}</li>
+
+            </ul>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "3. Disclaimer" %}</h2>
+
+            <p>
+                {% trans "The website and its content are provided on an 'as is' basis without warranties of any kind. While we strive to keep information accurate and up to date, we cannot guarantee that all content is complete, accurate or suitable for every situation." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "4. Limitation of Liability" %}</h2>
+
+            <p>
+                {% trans "To the extent permitted by law, A Terapija is not liable for any direct or indirect damages arising from the use of, or inability to use, this website or its services." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "5. Accuracy of Information" %}</h2>
+
+            <p>
+                {% trans "Website content may occasionally contain errors or become outdated. We reserve the right to update, modify or remove information at any time without prior notice." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "6. External Links" %}</h2>
+
+            <p>
+                {% trans "Our website may include links to external websites. We are not responsible for their content, availability or privacy practices." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "7. Changes to These Terms" %}</h2>
+
+            <p>
+                {% trans "We may update these Terms of Service from time to time. Continued use of the website after changes are published constitutes acceptance of the revised terms." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "8. Governing Law" %}</h2>
+
+            <p>
+                {% trans "These Terms of Service are governed by the laws of the Republic of Lithuania. Any disputes shall be resolved in accordance with Lithuanian law." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "9. User Accounts" %}</h2>
+
+            <p>
+                {% trans "If you create an account, you are responsible for providing accurate information, keeping your login credentials confidential and notifying us immediately if you suspect unauthorised access to your account." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "10. Therapy Services" %}</h2>
+
+            <p>
+                {% trans "Our services are provided by qualified professionals. Information on this website does not replace emergency medical or psychological care. If you are experiencing an emergency, please contact your local emergency services immediately." %}
+            </p>
+
+        </section>
+
+        <section class="at-legal-section">
+
+            <h2>{% trans "11. Contact" %}</h2>
+
+            <p>
+                {% trans "If you have questions about these Terms of Service, please contact us:" %}
+            </p>
+
+            <address class="at-legal-address">
+
+                <strong>A Terapija</strong><br>
+
+                {% trans "Email" %}:
+                <a href="mailto:info@aterapija.lt">
+                    info@aterapija.lt
+                </a>
+
+                <br>
+
+                {% trans "Phone" %}:
+                <a href="tel:+37060123456">
+                    +370&nbsp;6&nbsp;012&nbsp;3456
+                </a>
+
+            </address>
+
+        </section>
+
+    </div>
+
+</article>
+
+{% endblock %}

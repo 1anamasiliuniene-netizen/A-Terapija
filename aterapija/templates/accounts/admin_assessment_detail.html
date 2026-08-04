@@ -1,0 +1,212 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{% trans "Help Me Choose Result" %} | A Terapija{% endblock %}
+
+{% block content %}
+{% trans "Not provided" as not_provided %}
+
+<section class="at-admin-page">
+
+    <a
+        href="{% url 'aterapija:admin_assessment_list' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to Help Me Choose results" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Client insight" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {{ result.client_name }}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% blocktrans with submitted_at=assessment.created_at|date:"M j, Y H:i" %}
+                Questionnaire submitted on
+                {{ submitted_at }}.
+                {% endblocktrans %}
+            </p>
+
+        </div>
+
+    </header>
+
+    <div class="at-admin-detail-grid">
+
+        <section class="at-admin-detail-card">
+
+            <div class="at-admin-detail-card-header">
+
+                <div>
+                    <p class="at-eyebrow">
+                        {% trans "Client information" %}
+                    </p>
+
+                    <h2 class="at-heading-3">
+                        {% trans "Contact details" %}
+                    </h2>
+                </div>
+
+                <i class="bi bi-person-lines-fill" aria-hidden="true"></i>
+
+            </div>
+
+            <dl class="at-admin-detail-list">
+
+                <div class="at-admin-detail-row">
+                    <dt>{% trans "Email" %}</dt>
+
+                    <dd>
+                        {{ assessment.user.email|default:not_provided }}
+                    </dd>
+                </div>
+
+                <div class="at-admin-detail-row">
+                    <dt>{% trans "Phone" %}</dt>
+
+                    <dd>
+                        {{ result.client_phone|default:not_provided }}
+                    </dd>
+                </div>
+
+            </dl>
+
+        </section>
+
+        <section class="at-admin-detail-card at-admin-detail-card--wide">
+
+            <div class="at-admin-detail-card-header">
+
+                <div>
+                    <p class="at-eyebrow">
+                        {% trans "Questionnaire" %}
+                    </p>
+
+                    <h2 class="at-heading-3">
+                        {% trans "Answers" %}
+                    </h2>
+                </div>
+
+                <i class="bi bi-ui-checks-grid" aria-hidden="true"></i>
+
+            </div>
+
+            {% if result.selected_options or result.text_answers %}
+
+                <div class="at-admin-answer-list">
+
+                    {% for option in result.selected_options %}
+
+                        <article class="at-admin-answer-card">
+
+                            <h3 class="at-admin-answer-question">
+                                {{ option.question.question_text }}
+                            </h3>
+
+                            <p class="at-admin-answer-text">
+                                {{ option.answer_text }}
+                            </p>
+
+                        </article>
+
+                    {% endfor %}
+
+                    {% for text_answer in result.text_answers %}
+
+                        <article class="at-admin-answer-card">
+
+                            <h3 class="at-admin-answer-question">
+                                {{ text_answer.question.question_text }}
+                            </h3>
+
+                            <p class="at-admin-answer-text">
+                                {{ text_answer.answer_text|linebreaksbr }}
+                            </p>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="at-admin-inline-empty">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+
+                    <p>
+                        {% trans "No answers were saved for this assessment." %}
+                    </p>
+                </div>
+
+            {% endif %}
+
+        </section>
+
+        <section class="at-admin-detail-card at-admin-detail-card--wide">
+
+            <div class="at-admin-detail-card-header">
+
+                <div>
+                    <p class="at-eyebrow">
+                        {% trans "Recommendation" %}
+                    </p>
+
+                    <h2 class="at-heading-3">
+                        {% trans "Suggested services" %}
+                    </h2>
+                </div>
+
+                <i class="bi bi-stars" aria-hidden="true"></i>
+
+            </div>
+
+            {% if result.suggested_services %}
+
+                <div class="at-admin-service-chip-list">
+
+                    {% for service in result.suggested_services %}
+
+                        <a
+                            href="{% url 'aterapija:service_detail' service.slug %}"
+                            class="at-admin-service-chip"
+                        >
+                            {{ service|localized_title }}
+
+                            <i
+                                class="bi bi-arrow-up-right"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="at-admin-inline-empty">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+
+                    <p>
+                        {% trans "No services matched this assessment." %}
+                    </p>
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Client Message" %} | A Terapija{% endblock %}
+
+{% block content %}
+{% trans "Not provided" as not_provided %}
+
+<section class="at-admin-page">
+
+    <a
+        href="{% url 'aterapija:admin_contact_message_list' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to client messages" %}
+    </a>
+
+    <header class="at-admin-page-header">
+
+        <div class="at-admin-page-heading">
+
+            <p class="at-eyebrow">
+                {% trans "Client communication" %}
+            </p>
+
+            <h1 class="at-heading-1">
+                {{ contact_message.subject }}
+            </h1>
+
+            <p class="at-admin-page-intro">
+                {% blocktrans with date=contact_message.created_at|date:"M j, Y H:i" %}
+                    Submitted on {{ date }}.
+                {% endblocktrans %}
+            </p>
+
+        </div>
+
+    </header>
+
+    <div class="at-admin-detail-grid">
+
+        <section class="at-admin-detail-card">
+
+            <div class="at-admin-detail-card-header">
+
+                <div>
+                    <p class="at-eyebrow">
+                        {% trans "Sender" %}
+                    </p>
+
+                    <h2 class="at-heading-3">
+                        {% trans "Contact details" %}
+                    </h2>
+                </div>
+
+                <i class="bi bi-person-lines-fill" aria-hidden="true"></i>
+
+            </div>
+
+            <dl class="at-admin-detail-list">
+
+                <div class="at-admin-detail-row">
+                    <dt>{% trans "Name" %}</dt>
+
+                    <dd>
+                        {{ contact_message.name|default:not_provided }}
+                    </dd>
+                </div>
+
+                <div class="at-admin-detail-row">
+                    <dt>{% trans "Email" %}</dt>
+
+                    <dd>
+                        {{ contact_message.email|default:not_provided }}
+                    </dd>
+                </div>
+
+                {% if contact_message.user %}
+                    <div class="at-admin-detail-row">
+                        <dt>{% trans "Account" %}</dt>
+
+                        <dd>
+                            {{ contact_message.user.username }}
+                        </dd>
+                    </div>
+                {% endif %}
+
+            </dl>
+
+        </section>
+
+        <section class="at-admin-detail-card at-admin-detail-card--wide">
+
+            <div class="at-admin-detail-card-header">
+
+                <div>
+                    <p class="at-eyebrow">
+                        {% trans "Message" %}
+                    </p>
+
+                    <h2 class="at-heading-3">
+                        {% trans "Client message" %}
+                    </h2>
+                </div>
+
+                <i class="bi bi-chat-left-text" aria-hidden="true"></i>
+
+            </div>
+
+            <div class="at-admin-message-content">
+                {{ contact_message.message|linebreaks }}
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}

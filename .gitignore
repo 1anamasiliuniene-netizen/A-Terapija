@@ -1,0 +1,11 @@
+# Local environment/secrets
+.env
+.env.*
+!.env.example
+
+# Local databases may contain users, bookings, emails, and other private data
+db.sqlite3
+*.sqlite3
+
+# Uploaded media may contain personal or client-owned files
+media/

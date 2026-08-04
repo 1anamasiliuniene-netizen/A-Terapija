@@ -1,0 +1,178 @@
+{% extends "aterapija/base.html" %}
+{% load crispy_forms_tags i18n i18n_content %}
+
+{% block title %}
+    {% trans "Postpone Booking" %} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<section
+    class="at-form-page at-postpone-page"
+    style="--at-page-width: var(--at-width-content);"
+>
+
+    <header class="at-form-page__header">
+        <a
+            href="{% url 'aterapija:client_dashboard' %}"
+            class="at-back-link"
+        >
+            <span aria-hidden="true">←</span>
+            {% trans "Back to client dashboard" %}
+        </a>
+
+        <p class="at-eyebrow">
+            {% trans "Appointment" %}
+        </p>
+
+        <h1 class="at-heading-1">
+            {% trans "Postpone booking" %}
+        </h1>
+
+        <p class="at-body at-postpone-page__summary">
+            {{ booking.service|localized_title }}
+            {% trans "with" %}
+            {{ booking.therapist.full_name }}.
+        </p>
+    </header>
+
+    <section class="at-form-section">
+        <div class="at-form-section__header">
+            <div>
+                <p class="at-card-eyebrow">
+                    {% trans "Schedule" %}
+                </p>
+
+                <h2 class="at-heading-2">
+                    {% trans "Choose a new date" %}
+                </h2>
+            </div>
+        </div>
+
+        <form
+            method="get"
+            class="at-form-card at-postpone-date-form"
+        >
+            <div class="at-postpone-date-form__fields">
+                <div>
+                    <label
+                        for="postpone-date"
+                        class="form-label"
+                    >
+                        {% trans "New appointment date" %}
+                    </label>
+
+                    <input
+                        id="postpone-date"
+                        name="preferred_date"
+                        type="date"
+                        class="form-control"
+                        value="{{ selected_date|date:'Y-m-d' }}"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="at-btn at-btn-primary"
+                >
+                    {% trans "Show times" %}
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section class="at-form-section">
+        <div class="at-form-section__header">
+            <div>
+                <p class="at-card-eyebrow">
+                    {% trans "Available times" %}
+                </p>
+
+                <h2 class="at-heading-2">
+                    {{ selected_date|date:"D, M j" }}
+                </h2>
+            </div>
+        </div>
+
+        {% if slot_days %}
+            {% include "accounts/includes/slot_day_cards.html" with slot_days=slot_days show_therapist_names=False %}
+        {% else %}
+            <div class="at-empty-state">
+                <p>
+                    {% trans "No available times on this date. Please choose another date." %}
+                </p>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="at-form-section">
+        <form
+            method="post"
+            novalidate
+            class="at-form-card at-postpone-form"
+        >
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <div class="at-form-actions">
+                <button
+                    type="submit"
+                    class="at-btn at-btn-primary"
+                >
+                    {% trans "Postpone to selected time" %}
+                </button>
+
+                <a
+                    href="{% url 'aterapija:client_dashboard' %}"
+                    class="at-btn at-btn-secondary"
+                >
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
+    </section>
+
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const slotButtons = document.querySelectorAll(".js-slot-choice");
+
+        slotButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const dateInput = document.getElementById("id_preferred_date");
+                const timeInput = document.getElementById("id_preferred_time");
+
+                if (dateInput) {
+                    dateInput.value = button.dataset.date;
+                }
+
+                if (timeInput) {
+                    timeInput.value = button.dataset.time;
+                }
+
+                slotButtons.forEach(function (slotButton) {
+                    slotButton.classList.remove(
+                        "btn-primary",
+                        "is-selected"
+                    );
+
+                    slotButton.classList.add("btn-outline-primary");
+                    slotButton.setAttribute("aria-pressed", "false");
+                });
+
+                button.classList.remove("btn-outline-primary");
+                button.classList.add(
+                    "btn-primary",
+                    "is-selected"
+                );
+
+                button.setAttribute("aria-pressed", "true");
+            });
+        });
+    });
+</script>
+
+{% endblock %}

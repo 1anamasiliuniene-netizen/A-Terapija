@@ -1,0 +1,19 @@
+{% extends "aterapija/base.html" %}
+{% load i18n %}
+{% block title %}{{ advice.title }} | A Terapija{% endblock %}
+{% block content %}
+<p><a href="{% url 'aterapija:home' %}">{% trans "Back to home" %}</a></p>
+
+<article class="mb-4">
+  <p class="text-muted small mb-1">{{ advice.published_date }}</p>
+  <h1>{{ advice.title }}</h1>
+  {% if advice.image %}
+    <div class="advice-banner mb-3">
+      <img src="{{ advice.image.url }}" alt="{{ advice.title }}">
+    </div>
+  {% endif %}
+  <div>{{ advice.body|linebreaks }}</div>
+</article>
+
+{% include "aterapija/includes/share_links.html" with share_url=advice_share_url share_text=advice.title %}
+{% endblock %}

@@ -1,0 +1,118 @@
+<!doctype html>
+{% load static i18n %}
+
+<html lang="{{ LANGUAGE_CODE|default:'lt' }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {% block title %}{% trans "A Terapija" %}{% endblock %}
+    </title>
+
+    <script>
+        (function () {
+            var storageKey = "aterapija-theme";
+            var savedTheme = null;
+
+            try {
+                savedTheme = window.localStorage.getItem(storageKey);
+            } catch (error) {
+                savedTheme = null;
+            }
+
+            var systemPrefersDark =
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+            var initialTheme =
+                savedTheme ||
+                (systemPrefersDark ? "dark" : "light");
+
+            document.documentElement.setAttribute(
+                "data-bs-theme",
+                initialTheme
+            );
+        })();
+    </script>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/core.css' %}?v=13"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/app.css' %}?v=13"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/public.css' %}?v=13"
+    >
+</head>
+<body>
+
+{% include "aterapija/includes/navbar.html" %}
+
+<main class="py-4">
+    <div class="container">
+        {% if messages %}
+        <div class="at-messages">
+            {% for message in messages %}
+            <div class="at-alert at-alert-{{ message.tags|default:'info' }}">
+                {% if "success" in message.tags %}
+                <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                {% elif "error" in message.tags %}
+                <i class="bi bi-x-circle-fill" aria-hidden="true"></i>
+                {% elif "warning" in message.tags %}
+                <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+                {% else %}
+                <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+                {% endif %}
+
+                <p class="at-alert-text">{{ message }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+{% include "aterapija/includes/footer.html" %}
+{% include "aterapija/includes/cookie_banner.html" %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/theme_toggle.js' %}" defer></script>
+
+</body>
+</html>

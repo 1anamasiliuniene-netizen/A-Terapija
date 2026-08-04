@@ -1,0 +1,66 @@
+{% load i18n %}
+
+{% if slot_days %}
+    <div class="at-slot-days">
+        {% for day in slot_days %}
+            <section class="at-slot-day-card{% if day.is_today %} is-today{% endif %}">
+                <header class="at-slot-day-card__header">
+                    <h3 class="at-slot-day-card__title">
+                        {{ day.date|date:"D, M j" }}
+                    </h3>
+                </header>
+
+                <div class="at-slot-day-card__slots">
+                    {% for slot in day.slots %}
+                        {% if slot_link_base %}
+                            <a
+                                class="btn btn-sm at-slot-choice {% if slot.is_selected %}btn-primary is-selected{% else %}btn-outline-primary{% endif %}"
+                                href="{{ slot_link_base }}?service={{ selected_service.pk }}&therapist={{ slot.therapist.pk }}&preferred_date={{ day.date|date:'Y-m-d' }}&preferred_time={{ slot.time|time:'H:i' }}&date_from={{ date_from|date:'Y-m-d' }}&date_to={{ date_to|date:'Y-m-d' }}"
+                                {% if slot.is_selected %}aria-current="true"{% endif %}
+                            >
+                                <span class="at-slot-choice__time">
+                                    {{ slot.time|time:"H:i" }}
+                                </span>
+
+                                {% if slot.is_selected %}
+                                    <span class="at-slot-choice__meta">
+                                        {% trans "Selected" %}
+                                    </span>
+                                {% endif %}
+
+                                {% if show_therapist_names %}
+                                    <span class="at-slot-choice__meta">
+                                        {{ slot.therapist.full_name }}
+                                    </span>
+                                {% endif %}
+                            </a>
+                        {% else %}
+                            <button
+                                    type="button"
+                                    class="btn btn-outline-primary btn-sm at-slot-choice js-slot-choice"
+                                    data-date="{{ day.date|date:'Y-m-d' }}"
+                                    data-time="{{ slot.time|time:'H:i' }}"
+                                    data-therapist="{{ slot.therapist.pk }}"
+                                    aria-pressed="false"
+                            >
+                                <span class="at-slot-choice__time">
+                                    {{ slot.time|time:"H:i" }}
+                                </span>
+
+                                {% if show_therapist_names %}
+                                    <span class="at-slot-choice__meta">
+                                        {{ slot.therapist.full_name }}
+                                    </span>
+                                {% endif %}
+                            </button>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="at-empty-state at-slot-days-empty">
+        <p>{% trans "No available times match this selection." %}</p>
+    </div>
+{% endif %}

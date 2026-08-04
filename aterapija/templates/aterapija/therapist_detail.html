@@ -1,0 +1,21 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}{{ therapist.full_name }} | A Terapija{% endblock %}
+
+{% block content %}
+
+<section
+    class="container py-5 at-therapist-detail-page"
+    style="--at-page-width: var(--at-width-xxl);"
+>
+
+    <a href="javascript:history.back()" class="at-back-link">
+        ← {% trans "Back" %}
+    </a>
+
+    {% include "aterapija/_therapist_detail_content.html" %}
+
+</section>
+
+{% endblock %}

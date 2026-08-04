@@ -1,0 +1,120 @@
+{% extends "aterapija/base.html" %}
+{% load i18n i18n_content %}
+
+{% block title %}
+    {{ article|localized_title }} | A Terapija
+{% endblock %}
+
+{% block content %}
+
+<article class="at-article-detail">
+
+    <a
+        href="{% url 'aterapija:articles' %}"
+        class="at-back-link"
+    >
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {% trans "Back to articles" %}
+    </a>
+
+    <header class="at-article-detail-header">
+
+        <p class="at-eyebrow">
+            {{ article.category.name }}
+        </p>
+
+        <h1 class="at-heading-1">
+            {{ article|localized_title }}
+        </h1>
+
+        {% if article.summary %}
+            <p class="at-article-detail-lead">
+                {{ article.summary }}
+            </p>
+        {% endif %}
+
+    </header>
+
+    {% if article.show_lithuanian_only_notice %}
+
+        <div class="at-form-message at-form-message-info">
+
+            <i class="bi bi-info-circle" aria-hidden="true"></i>
+
+            <p>
+                {% trans "This article is currently available only in Lithuanian." %}
+            </p>
+
+        </div>
+
+    {% endif %}
+
+    {% if article.image %}
+
+        <figure class="at-article-detail-media">
+
+            <img
+                src="{{ article.image.url }}"
+                alt="{{ article|localized_title }}"
+                class="at-article-detail-image"
+            >
+
+        </figure>
+
+    {% endif %}
+
+    <div class="at-article-detail-content">
+        {{ article|localized_content|linebreaks }}
+    </div>
+
+    {% if article.related_services.all %}
+
+        <section class="at-article-related-services">
+
+            <div class="at-article-related-services-header">
+
+                <p class="at-eyebrow">
+                    {% trans "Continue exploring" %}
+                </p>
+
+                <h2 class="at-heading-3">
+                    {% trans "Related services" %}
+                </h2>
+
+            </div>
+
+            <div class="at-article-related-services-list">
+
+                {% for service in article.related_services.all %}
+
+                    {% if service.is_active %}
+
+                        <a
+                            href="{% url 'aterapija:service_detail' service.slug %}"
+                            class="at-article-related-service"
+                        >
+
+                            <span>
+                                {{ service|localized_title }}
+                            </span>
+
+                            <i
+                                class="bi bi-arrow-up-right"
+                                aria-hidden="true"
+                            ></i>
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    {% endif %}
+
+</article>
+
+{% endblock %}

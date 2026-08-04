@@ -1,0 +1,48 @@
+{% load i18n %}
+
+{% if busy_periods %}
+    <div class="at-busy-period-list">
+        {% for period in busy_periods %}
+            <article class="at-busy-period-card">
+                <div class="at-busy-period-card__header">
+                    <span class="at-status-chip {% if period.kind == 'booking' %}at-status-booking{% else %}at-status-unavailable{% endif %}">
+                        {% if period.kind == "booking" %}
+                            {% trans "Booked" %}
+                        {% else %}
+                            {% trans "Blocked" %}
+                        {% endif %}
+                    </span>
+
+                    <span class="at-busy-period-card__date">
+                        {{ period.date|date:"M j, Y" }}
+                        {% if period.end_date and period.end_date != period.date %}
+                            – {{ period.end_date|date:"M j, Y" }}
+                        {% endif %}
+                    </span>
+                </div>
+
+                <h3 class="at-busy-period-card__title">
+                    {{ period.title }}
+                </h3>
+
+                <p class="at-busy-period-card__therapist">
+                    {{ period.therapist.full_name }}
+                </p>
+
+                <p class="at-busy-period-card__time">
+                    {{ period.start_time|time:"H:i" }} – {{ period.end_time|time:"H:i" }}
+                </p>
+
+                {% if period.detail %}
+                    <p class="at-busy-period-card__detail">
+                        {{ period.detail }}
+                    </p>
+                {% endif %}
+            </article>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="at-empty-state">
+        {% trans "No busy periods in this range." %}
+    </p>
+{% endif %}
