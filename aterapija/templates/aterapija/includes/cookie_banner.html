@@ -2,7 +2,6 @@
 <div
         class="at-cookie-banner"
         id="cookie-banner"
-        hidden
 >
 
     <div class="at-cookie-content">
@@ -40,13 +39,13 @@
 
     <div class="at-cookie-actions">
 
-        <button class="at-btn at-btn-secondary">
+        <button class="at-btn at-btn-secondary" type="button" data-cookie-consent="necessary">
 
             {% trans "Only necessary" %}
 
         </button>
 
-        <button class="at-btn at-btn-primary">
+        <button class="at-btn at-btn-primary" type="button" data-cookie-consent="all">
 
             {% trans "Accept all" %}
 
@@ -55,3 +54,35 @@
     </div>
 
 </div>
+
+<script>
+    (function () {
+        var storageKey = "aterapija-cookie-consent";
+        var banner = document.getElementById("cookie-banner");
+
+        if (!banner) {
+            return;
+        }
+
+        try {
+            if (window.localStorage.getItem(storageKey)) {
+                banner.hidden = true;
+                return;
+            }
+        } catch (error) {
+            return;
+        }
+
+        banner.querySelectorAll("[data-cookie-consent]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                try {
+                    window.localStorage.setItem(storageKey, button.dataset.cookieConsent);
+                } catch (error) {
+                    // The banner should still close when storage is unavailable.
+                }
+
+                banner.hidden = true;
+            });
+        });
+    })();
+</script>
