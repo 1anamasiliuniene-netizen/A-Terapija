@@ -696,8 +696,18 @@ class ServiceListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        featured_service = (
+            self.get_queryset()
+            .filter(slug__in=["initial-wellbeing-consultation", "wellbeing-consultation"])
+            .first()
+        )
+        service_queryset = self.get_queryset()
+        if featured_service:
+            service_queryset = service_queryset.exclude(pk=featured_service.pk)
+
+        context["featured_service"] = featured_service
         context["categories"] = ServiceCategory.objects.prefetch_related(
-            Prefetch("services", queryset=self.get_queryset())
+            Prefetch("services", queryset=service_queryset)
         )
         return context
 

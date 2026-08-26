@@ -21,51 +21,50 @@
   </div>
 
 
-  {# Featured first consultation #}
-  {% for category in categories %}
-    {% for service in category.services.all %}
-      {% if service.slug == "initial-wellbeing-consultation" %}
-
-        <section class="at-service-start mb-5">
-
-          <div class="at-service-start-copy mb-4">
-
-        <article class="card at-service-card at-service-card-featured">
-          <div class="card-body">
-            <div class="at-service-featured-layout">
-              <div class="at-service-featured-content">
-                <h3 class="at-heading-3">
-                  {{ service|localized_title }}
-                </h3>
-                <p class="at-body">
-                  {{ service|localized_short_description }}
-                </p>
-                <div class="at-service-card-footer">
-                  <div class="at-service-meta">
-                    <span class="at-service-duration">
-                      {% blocktrans with minutes=service.duration_minutes %}{{ minutes }} min{% endblocktrans %}
-                    </span>
-                    <span class="at-service-price">
-                      {{ service.price }} €
-                    </span>
-                  </div>
-                  <a href="{% url 'aterapija:service_detail' service.slug %}" class="at-card-link">
+  {% if featured_service %}
+    <section class="at-service-start mb-5" aria-labelledby="featured-service-title">
+      <article class="card at-service-card at-service-card-featured">
+        <div class="card-body">
+          <div class="at-service-featured-layout">
+            <div class="at-service-featured-content">
+              <span class="at-service-featured-kicker">
+                {% trans "Recommended first step" %}
+              </span>
+              <h2 class="at-heading-2" id="featured-service-title">
+                {{ featured_service|localized_title }}
+              </h2>
+              <p class="at-body-lg">
+                {{ featured_service|localized_short_description }}
+              </p>
+              <div class="at-service-card-footer">
+                <div class="at-service-meta">
+                  <span class="at-service-duration">
+                    {% blocktrans with minutes=featured_service.duration_minutes %}{{ minutes }} min{% endblocktrans %}
+                  </span>
+                  <span class="at-service-price">
+                    {{ featured_service.price }} €
+                  </span>
+                </div>
+                <div class="at-service-featured-actions">
+                  <a href="{% url 'aterapija:service_detail' featured_service.slug %}" class="at-card-link">
                     {% trans "More" %} →
+                  </a>
+                  <a href="{% url 'aterapija:booking_for_service' featured_service.slug %}" class="at-btn at-btn-primary">
+                    {% trans "Request booking" %}
                   </a>
                 </div>
               </div>
-              <div class="at-service-featured-image">
-                <img src="{% static 'images/service_placeholder.png' %}" alt="" aria-hidden="true">
-              </div>
+            </div>
+            <div class="at-service-featured-image">
+              <img src="{% static 'images/service_placeholder.png' %}" alt="" aria-hidden="true">
             </div>
           </div>
-        </article>
-</div>
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
+        </div>
+      </article>
+    </section>
 
-  <hr class="at-section-divider my-5">
+    <hr class="at-section-divider my-5">
+  {% endif %}
 
   {# Service categories #}
   {% for category in categories %}
@@ -87,8 +86,6 @@
 
         <div class="row g-4">
           {% for service in category.services.all %}
-            {% if service.slug != "initial-wellbeing-consultation" %}
-
               <div class="col-md-6">
                 <article class="card at-service-card h-100">
                   <div class="card-body">
@@ -112,10 +109,9 @@
                         {% trans "More" %} →
                       </a>
                     </div>
+                  </div>
                 </article>
               </div>
-
-            {% endif %}
           {% endfor %}
         </div>
 
