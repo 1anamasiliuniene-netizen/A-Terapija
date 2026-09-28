@@ -81,6 +81,8 @@ class TherapistServiceForm(forms.ModelForm):
             "name",
             "title_lt",
             "title_en",
+            "short_description_lt",
+            "short_description_en",
             "short_description",
             "full_description",
             "description_lt",
@@ -90,6 +92,9 @@ class TherapistServiceForm(forms.ModelForm):
             "is_active",
         ]
         widgets = {
+            "short_description": forms.Textarea(attrs={"rows": 3}),
+            "short_description_lt": forms.Textarea(attrs={"rows": 3}),
+            "short_description_en": forms.Textarea(attrs={"rows": 3}),
             "full_description": forms.Textarea(attrs={"rows": 5}),
             "description_lt": forms.Textarea(attrs={"rows": 5}),
             "description_en": forms.Textarea(attrs={"rows": 5}),
@@ -99,10 +104,12 @@ class TherapistServiceForm(forms.ModelForm):
             "name": _("Internal/fallback service name"),
             "title_lt": _("Lithuanian title"),
             "title_en": _("English title"),
+            "short_description_lt": _("Lithuanian short description"),
+            "short_description_en": _("English short description"),
             "short_description": _("Fallback short description"),
             "full_description": _("Fallback full description"),
-            "description_lt": _("Lithuanian description"),
-            "description_en": _("English description"),
+            "description_lt": _("Lithuanian long description"),
+            "description_en": _("English long description"),
             "duration_minutes": _("Duration minutes"),
             "price": _("Price"),
             "is_active": _("Is active"),
@@ -119,9 +126,26 @@ class TherapistServiceForm(forms.ModelForm):
 class TherapistServiceCategoryForm(forms.ModelForm):
     class Meta:
         model = ServiceCategory
-        fields = ["name", "description"]
+        fields = [
+            "name",
+            "name_lt",
+            "name_en",
+            "description",
+            "description_lt",
+            "description_en",
+        ]
         widgets = {
             "description": forms.Textarea(attrs={"rows": 4}),
+            "description_lt": forms.Textarea(attrs={"rows": 4}),
+            "description_en": forms.Textarea(attrs={"rows": 4}),
+        }
+        labels = {
+            "name": _("Internal/fallback category name"),
+            "name_lt": _("Lithuanian category name"),
+            "name_en": _("English category name"),
+            "description": _("Fallback category description"),
+            "description_lt": _("Lithuanian category description"),
+            "description_en": _("English category description"),
         }
 
     def __init__(self, *args, **kwargs):
@@ -164,6 +188,8 @@ class AdminServiceForm(forms.ModelForm):
             "name",
             "title_lt",
             "title_en",
+            "short_description_lt",
+            "short_description_en",
             "short_description",
             "full_description",
             "description_lt",
@@ -174,6 +200,9 @@ class AdminServiceForm(forms.ModelForm):
             "therapists",
         ]
         widgets = {
+            "short_description": forms.Textarea(attrs={"rows": 3}),
+            "short_description_lt": forms.Textarea(attrs={"rows": 3}),
+            "short_description_en": forms.Textarea(attrs={"rows": 3}),
             "full_description": forms.Textarea(attrs={"rows": 5}),
             "description_lt": forms.Textarea(attrs={"rows": 5}),
             "description_en": forms.Textarea(attrs={"rows": 5}),
@@ -183,10 +212,12 @@ class AdminServiceForm(forms.ModelForm):
             "name": _("Internal/fallback service name"),
             "title_lt": _("Lithuanian title"),
             "title_en": _("English title"),
+            "short_description_lt": _("Lithuanian short description"),
+            "short_description_en": _("English short description"),
             "short_description": _("Fallback short description"),
             "full_description": _("Fallback full description"),
-            "description_lt": _("Lithuanian description"),
-            "description_en": _("English description"),
+            "description_lt": _("Lithuanian long description"),
+            "description_en": _("English long description"),
             "duration_minutes": _("Duration minutes"),
             "price": _("Price"),
             "is_active": _("Is active"),

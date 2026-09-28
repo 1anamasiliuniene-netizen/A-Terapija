@@ -74,14 +74,16 @@
 
         <div class="at-category-header mb-4">
           <h2 class="at-heading-2 at-service-category-title">
-            {{ category.name }}
+            {{ category|localized_title }}
           </h2>
 
-          {% if category.description %}
+          {% with description=category|localized_description %}
+          {% if description %}
             <p class="at-body text-muted mb-0">
-              {{ category.description }}
+              {{ description }}
             </p>
           {% endif %}
+          {% endwith %}
         </div>
 
         <div class="row g-4">

@@ -1952,7 +1952,7 @@ class AdminTherapistListView(AdminRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         for therapist in context["therapists"]:
-            therapist.service_category_names = sorted({service.category.name for service in therapist.services.all()})
+            therapist.service_category_names = sorted({service.category.display_title for service in therapist.services.all()})
         return context
 
 

@@ -50,8 +50,12 @@ def make_unique_slug(instance, source_field, slug_field="slug"):
 
 class ServiceCategory(models.Model):
     name = models.CharField(max_length=120)
+    name_lt = models.CharField(max_length=120, blank=True)
+    name_en = models.CharField(max_length=120, blank=True)
     slug = models.SlugField(max_length=140, unique=True, blank=True)
     description = models.TextField(blank=True)
+    description_lt = models.TextField(blank=True)
+    description_en = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -59,9 +63,25 @@ class ServiceCategory(models.Model):
         verbose_name_plural = _("service categories")
 
     def __str__(self):
-        return self.name
+        return self.display_title
+
+    @property
+    def display_title(self):
+        return localized_value(self.name_lt, self.name_en, self.name)
+
+    @property
+    def display_description(self):
+        return localized_value(self.description_lt, self.description_en, self.description)
 
     def save(self, *args, **kwargs):
+        if not self.name_lt:
+            self.name_lt = self.name
+        if not self.name:
+            self.name = self.name_lt
+        if not self.description_lt:
+            self.description_lt = self.description
+        if not self.description:
+            self.description = self.description_lt
         if not self.slug:
             self.slug = make_unique_slug(self, "name")
         super().save(*args, **kwargs)
@@ -78,6 +98,8 @@ class Service(models.Model):
     title_en = models.CharField(max_length=120, blank=True)
     slug = models.SlugField(max_length=140, unique=True, blank=True)
     short_description = models.CharField(max_length=255)
+    short_description_lt = models.CharField(max_length=255, blank=True)
+    short_description_en = models.CharField(max_length=255, blank=True)
     full_description = models.TextField()
     description_lt = models.TextField(blank=True)
     description_en = models.TextField(blank=True)
@@ -98,7 +120,7 @@ class Service(models.Model):
 
     @property
     def display_short_description(self):
-        return localized_value(self.description_lt, self.description_en, self.short_description)
+        return localized_value(self.short_description_lt, self.short_description_en, self.short_description)
 
     @property
     def display_description(self):
@@ -111,6 +133,10 @@ class Service(models.Model):
             self.name = self.title_lt
         if not self.description_lt:
             self.description_lt = self.full_description or self.short_description
+        if not self.short_description_lt:
+            self.short_description_lt = self.short_description or self.description_lt[:255]
+        if not self.short_description_en:
+            self.short_description_en = self.short_description or self.description_en[:255]
         if not self.full_description:
             self.full_description = self.description_lt
         if not self.short_description:

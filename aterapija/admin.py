@@ -22,9 +22,15 @@ from .models import (
 
 @admin.register(ServiceCategory)
 class ServiceCategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "created_at")
+    list_display = ("name", "name_lt", "name_en", "created_at")
     prepopulated_fields = {"slug": ("name",)}
-    search_fields = ("name", "description")
+    search_fields = ("name", "name_lt", "name_en", "description", "description_lt", "description_en")
+    fieldsets = (
+        (_("General"), {"fields": ("name", "slug")}),
+        (_("Lithuanian content"), {"fields": ("name_lt", "description_lt")}),
+        (_("English content"), {"fields": ("name_en", "description_en")}),
+        (_("Fallback content"), {"fields": ("description",)}),
+    )
 
 
 @admin.register(Service)
@@ -32,11 +38,21 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ("name", "title_lt", "title_en", "category", "duration_minutes", "price", "is_active")
     list_filter = ("category", "is_active")
     prepopulated_fields = {"slug": ("name",)}
-    search_fields = ("name", "title_lt", "title_en", "short_description", "full_description", "description_lt", "description_en")
+    search_fields = (
+        "name",
+        "title_lt",
+        "title_en",
+        "short_description",
+        "short_description_lt",
+        "short_description_en",
+        "full_description",
+        "description_lt",
+        "description_en",
+    )
     fieldsets = (
         (_("General"), {"fields": ("category", "name", "slug", "duration_minutes", "price", "is_active")}),
-        (_("Lithuanian content"), {"fields": ("title_lt", "description_lt")}),
-        (_("English content"), {"fields": ("title_en", "description_en")}),
+        (_("Lithuanian content"), {"fields": ("title_lt", "short_description_lt", "description_lt")}),
+        (_("English content"), {"fields": ("title_en", "short_description_en", "description_en")}),
         (_("Fallback content"), {"fields": ("short_description", "full_description")}),
     )
 
