@@ -1084,7 +1084,7 @@ msgstr ""
 #: aterapija/templates/aterapija/includes/footer.html:17
 #| msgid "Booking was saved."
 msgid "Cookies"
-msgstr "Booking was saved."
+msgstr "Cookies"
 
 #: aterapija/templates/aterapija/includes/cookie_banner.html:15
 msgid ""
