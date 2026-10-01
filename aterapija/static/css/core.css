@@ -49,6 +49,17 @@
     --at-font-body: "Inter", sans-serif;
 
 
+    /* Responsive component tokens; mobile defaults, desktop enhancement below. */
+    --at-font-hero: clamp(2rem, 1.5rem + 2.5vw, 2.5rem);
+    --at-font-h1: clamp(2rem, 1.5rem + 2vw, 2.5rem);
+    --at-font-h2: clamp(1.625rem, 1.25rem + 1.5vw, 2rem);
+    --at-font-h3: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+    --at-font-lead: 1.125rem;
+    --at-page-gutter: 1rem;
+    --at-card-padding: 1.25rem;
+    --at-width-reading: 42rem;
+    --at-reading-width: var(--at-width-reading);
+
     /* ------------------------------------------------------
        Shape
     ------------------------------------------------------ */
@@ -77,10 +88,10 @@
        Section rhythm
     ------------------------------------------------------ */
 
-    --at-space-section: 6rem;
-    --at-space-section-lg: 8rem;
-    --at-space-after-hero: 4rem;
-    --at-space-divider: 5rem;
+    --at-space-section: 2.5rem;
+    --at-space-section-lg: 3rem;
+    --at-space-after-hero: 2rem;
+    --at-space-divider: 2rem;
 
 
     /* ------------------------------------------------------
@@ -118,6 +129,25 @@
     --at-btn-sm-height: 44px;
     --at-btn-sm-padding-x: var(--at-space-5);
     }
+
+@media (min-width: 768px) {
+    :root {
+        --at-font-hero: clamp(3rem, 7vw, 5.8rem);
+        --at-font-h1: clamp(2.5rem, 5vw, 4rem);
+        --at-font-h2: clamp(2rem, 4vw, 3rem);
+        --at-font-h3: clamp(1.5rem, 3vw, 2rem);
+        --at-font-lead: 1.35rem;
+        --at-card-padding: 2rem;
+        --at-space-section: 6rem;
+        --at-space-section-lg: 8rem;
+        --at-space-after-hero: 4rem;
+        --at-space-divider: 5rem;
+    }
+}
+
+@media (max-width: 359.98px) {
+    :root { --at-card-padding: 1rem; }
+}
 
 /* ==========================================================
    2. EVENING MODE TOKENS
@@ -163,7 +193,7 @@
 .at-info-card,
 .at-therapist-detail-hero {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 
     background: var(--at-card-bg);
     border: 1px solid var(--at-card-border);
@@ -217,7 +247,7 @@
 ---------------------------------------------------------- */
 
 .at-cta {
-    padding: clamp(2.25rem, 5vw, 4rem) !important;
+    padding: var(--at-card-padding);
     text-align: center;
     box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
 }
@@ -256,19 +286,17 @@
     opacity: .5;
 }
 
-@media (max-width: 767.98px) {
-    .at-section {
-        padding-block: var(--at-space-8);
-    }
-
-    .at-section-lg {
-        padding-block: var(--at-space-section);
-    }
-}
 
 /* ==========================================================
    5. BASE
    ========================================================== */
+
+/* One visual scale for the whole interface, on desktop and mobile.
+   Keep browser zoom available; responsive breakpoints still follow the viewport. */
+html {
+    --at-ui-scale: .8;
+    zoom: var(--at-ui-scale);
+}
 
 body {
     background: var(--at-bg);
@@ -309,10 +337,10 @@ p {
 .at-display {
     color: var(--at-text);
     font-family: var(--at-font-display);
-    font-size: clamp(4rem, 7vw, 5.8rem);
+    font-size: var(--at-font-hero);
     font-weight: 500;
     letter-spacing: -.03em;
-    line-height: .95;
+    line-height: 1.1;
 }
 
 
@@ -329,15 +357,15 @@ p {
 }
 
 .at-heading-1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: var(--at-font-h1);
 }
 
 .at-heading-2 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: var(--at-font-h2);
 }
 
 .at-heading-3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--at-font-h3);
 }
 
 
@@ -348,7 +376,7 @@ p {
 .at-body-lg {
     color: var(--at-text-muted);
     font-family: var(--at-font-body);
-    font-size: 1.35rem;
+    font-size: var(--at-font-lead);
     font-weight: 400;
     line-height: 1.7;
 }
@@ -528,7 +556,8 @@ p {
     gap: var(--at-space-3);
 
     min-height: var(--at-btn-height);
-    padding-inline: var(--at-btn-padding-x);
+    max-width: 100%;
+    padding: .65rem var(--at-btn-padding-x);
 
     background: transparent;
     border: 1px solid transparent;
@@ -538,10 +567,11 @@ p {
     cursor: pointer;
     font-size: 1rem;
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.35;
     text-align: center;
     text-decoration: none;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
 
     transition:
         background var(--at-transition),
@@ -728,6 +758,9 @@ p {
 
 .at-navbar-container {
     align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    padding-inline: clamp(1rem, 3vw, 3rem);
 }
 
 .at-navbar-brand {
@@ -739,14 +772,14 @@ p {
 .at-navbar-logo {
     display: block;
     width: auto;
-    height: 108px;
+    height: 88px;
 
     background: transparent;
     object-fit: contain;
 }
 
 .at-navbar-menu {
-    gap: 1.6rem;
+    gap: 1rem;
 }
 
 .at-navbar a,
@@ -761,13 +794,17 @@ p {
 ---------------------------------------------------------- */
 
 .at-nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     padding: .35rem .25rem;
 
     color: var(--at-text);
     font-family: var(--at-font-display);
-    font-size: 1.45rem;
+    font-size: 1.25rem;
     font-weight: 400;
-    line-height: 1;
+    line-height: 1.25;
+    white-space: nowrap;
     opacity: .82;
 
     transition:
@@ -1019,32 +1056,86 @@ p {
    Header responsive
 ---------------------------------------------------------- */
 
-@media (max-width: 991.98px) {
-    .at-navbar {
-        padding: 1rem 0;
+@media (min-width: 1400px) {
+    .at-navbar-container {
+        gap: 1.25rem;
     }
 
-    .at-navbar-logo {
-        height: 92px;
+    .at-navbar .navbar-collapse {
+        min-width: 0;
+        gap: 1.25rem;
+        max-height: calc(100dvh - 5rem);
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        padding-inline: .25rem;
     }
 
     .at-navbar-menu {
-        gap: .75rem;
-        padding-top: 1.5rem;
-        padding-bottom: 1rem;
+        flex: 1 1 0;
+        min-width: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: .25rem .75rem;
+    }
+
+    .at-navbar .at-nav-link {
+        font-size: 1.125rem;
+    }
+
+    .at-navbar-brand,
+    .at-navbar-actions {
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 1399.98px) {
+    .at-navbar {
+        padding: .5rem 0;
+    }
+
+    .at-navbar-logo {
+        height: 64px;
+    }
+
+    .at-navbar-menu {
+        gap: .125rem;
+        padding-top: .75rem;
+        padding-bottom: .75rem;
     }
 
     .at-navbar-menu .at-nav-link {
         display: block;
-        padding: .25rem 0;
-        font-size: 2rem;
+        padding: .5rem 0;
+        font-size: 1.25rem;
+        white-space: normal;
     }
 
     .at-navbar-actions {
-        margin-top: .75rem;
+        margin-top: .25rem;
+        padding-block: .75rem;
+        border-top: 1px solid var(--at-border-color);
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .at-navbar .navbar-collapse {
+        min-width: 0;
+        gap: 1.25rem;
+        padding-inline: .25rem;
+        overflow: visible;
+    }
+
+    .at-navbar .dropdown-menu {
+        max-width: calc(100vw - 2.5rem);
+    }
+
+    .at-dropdown-menu .dropdown-item {
+        white-space: normal;
+        font-size: 1.125rem;
     }
 }
-
 
 /* ----------------------------------------------------------
    Header evening mode
@@ -1164,9 +1255,71 @@ p {
    Footer responsive
 ---------------------------------------------------------- */
 
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
     .at-footer-inner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
+    }
+
+    .at-footer-links {
+        justify-content: center;
+    }
+}
+
+/* Shared layout safety and interaction rules. Keep scrolling on wide components,
+   never hide overflow on the page to conceal a layout error. */
+main { overflow-wrap: anywhere; }
+:where(.row > *, .d-flex > *, .d-grid > *, [class^="at-"], [class*=" at-"]) {
+    min-width: 0;
+}
+:where(main img, main video, main svg) { max-width: 100%; }
+:where(main img, main video) { height: auto; }
+:where(h1, h2, h3, .at-display) { hyphens: auto; overflow-wrap: anywhere; }
+:where(.form-control, .form-select, .at-input, .at-select, .at-textarea) {
+    max-width: 100%;
+    min-width: 0;
+    font-size: 1rem;
+}
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--at-text);
+    outline-offset: 3px;
+}
+.at-scroll-region, .table-responsive, .at-week-schedule__table-wrap {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+}
+.at-scroll-hint {
+    margin: .5rem 0;
+    color: var(--at-text-muted);
+    font-size: .875rem;
+}
+.at-scroll-hint[hidden] { display: none; }
+@media (max-width: 767.98px) {
+    main.py-4 { padding-block: 1rem !important; }
+    main > .container { padding-inline: var(--at-page-gutter); }
+    .at-eyebrow { font-size: .8125rem; line-height: 1.5; margin-bottom: 1rem; }
+    .at-body { font-size: 1rem; }
+    .at-btn { --at-btn-padding-x: 1.25rem; }
+    .btn, .form-control, .form-select, .at-input, .at-select {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+    .btn { white-space: normal; overflow-wrap: anywhere; }
+    .form-check { min-height: 44px; padding-top: .5rem; }
+    .form-check-label { cursor: pointer; }
+    .modal-dialog { margin: 1rem; }
+    .modal-content { max-height: calc(100dvh - 2rem); overflow-y: auto; }
+    .modal-footer { flex-wrap: wrap; }
+    .at-footer a { display: inline-flex; align-items: center; min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }

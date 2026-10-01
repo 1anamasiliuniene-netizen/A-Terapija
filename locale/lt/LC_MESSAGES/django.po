@@ -2309,16 +2309,16 @@ msgid_plural ""
 "          "
 msgstr[0] ""
 "\n"
-"apmokėta rezervacija"
+"%(n)s apmokėta rezervacija"
 msgstr[1] ""
 "\n"
-"apmokėtos rezervacijos"
+"%(n)s apmokėtos rezervacijos"
 msgstr[2] ""
 "\n"
-"apmokėtos rezervacijos"
+"%(n)s apmokėtos rezervacijos"
 msgstr[3] ""
 "\n"
-"apmokėtų rezervacijų"
+"%(n)s apmokėtų rezervacijų"
 
 #: aterapija/templates/accounts/therapist_dashboard.html:89
 msgid "This month"
@@ -3044,7 +3044,7 @@ msgstr "Prisijungti"
 
 #: aterapija/templates/aterapija/includes/share_links.html:4
 msgid "Share today's insight"
-msgstr "Pasidalinti šiandienos įžvalga"
+msgstr "Pasidalinti"
 
 #: aterapija/templates/aterapija/includes/today_insight_card.html:9
 #| msgid "Daily blog"
@@ -4359,3 +4359,7 @@ msgstr "Lietuviškas CTA tekstas"
 
 msgid "English CTA text"
 msgstr "Angliškas CTA tekstas"
+
+#: aterapija/templates/aterapija/base.html
+msgid "Scroll horizontally to see more"
+msgstr "Slinkite horizontaliai, kad matytumėte daugiau"

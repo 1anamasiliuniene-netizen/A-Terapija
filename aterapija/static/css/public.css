@@ -89,10 +89,10 @@
     margin-bottom: var(--at-space-6);
 
     font-family: var(--at-font-display);
-    font-size: clamp(4rem, 7vw, 5.8rem);
+    font-size: var(--at-font-hero);
     font-weight: 500;
     letter-spacing: -.03em;
-    line-height: .95;
+    line-height: 1.1;
     text-align: left;
 }
 
@@ -115,6 +115,7 @@
     justify-content: flex-end;
     width: 100%;
     padding-right: 3rem;
+    overflow: clip;
 }
 
 .at-hero-image img {
@@ -148,11 +149,14 @@
 @media (max-width: 767.98px) {
     .at-hero {
         min-height: auto;
-        padding: var(--at-space-6);
+        margin-top: 0;
+        padding: var(--at-card-padding);
     }
 
     .at-hero .row {
         flex-direction: column;
+        --bs-gutter-x: 1.25rem;
+        --bs-gutter-y: 1.5rem;
     }
 
     .at-hero .col-lg-8,
@@ -164,14 +168,14 @@
 
     .at-hero-title {
         max-width: none;
-        margin-bottom: var(--at-space-6);
-
-        font-size: clamp(3.5rem, 11vw, 4.5rem);
-        line-height: .98;
+        margin-bottom: 1rem;
+        font-size: var(--at-font-hero);
+        line-height: 1.12;
     }
 
     .at-hero-text {
         max-width: none;
+        margin-bottom: 1.25rem;
     }
 
     .at-hero .at-body-lg {
@@ -183,7 +187,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        margin-top: var(--at-space-6);
+        margin-top: 0;
     }
 
     .at-hero-actions .at-btn {
@@ -193,7 +197,7 @@
     }
 
     .at-hero-image {
-        margin-top: var(--at-space-6);
+        margin-top: 1.5rem;
     }
 }
 
@@ -223,16 +227,17 @@
    }
     .at-hero-image img {
         display: block;
+        transform: none;
         margin-inline: auto;
     }
 
     .at-hero-home .at-hero-image img {
-        width: min(520px, 100%);
-        transform: scale(1.08);
+        width: min(220px, 100%);
+        transform: none;
     }
 
     .at-about-hero .at-hero-image img {
-        width: min(280px, 100%);
+        width: min(200px, 100%);
     }
 
     .at-hero .at-hero-image {
@@ -270,17 +275,13 @@
 .at-path-card {
     position: relative;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: var(--at-space-2);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1.75rem;
+    align-content: start;
+    gap: var(--at-space-2) var(--at-space-4);
 
     min-height: 150px;
-    padding:
-        var(--at-space-6)
-        72px
-        var(--at-space-6)
-        var(--at-space-6);
+    padding: var(--at-card-padding);
 
     background: var(--at-card-bg);
     border: 1px solid var(--at-border-color);
@@ -303,12 +304,15 @@
 }
 
 .at-path-card span {
+    grid-column: 1 / -1;
     font-size: 1.4rem;
     font-weight: 700;
     line-height: 1.25;
 }
 
 .at-path-card small {
+    grid-column: 1;
+    grid-row: 2;
     color: var(--at-text-muted);
     font-size: 1.05rem;
     line-height: 1.6;
@@ -317,15 +321,14 @@
 .at-path-card::after {
     content: "→";
 
-    position: absolute;
-    top: 50%;
-    right: var(--at-space-6);
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
 
     color: var(--at-text);
-    font-size: 2.2rem;
+    font-size: 2rem;
     line-height: 1;
-
-    transform: translateY(-50%);
     transition: transform 160ms ease;
 }
 
@@ -337,18 +340,7 @@
 }
 
 .at-path-card:hover::after {
-    transform: translate(4px, -50%);
-}
-
-.at-path-card span {
-    font-size: 1.4rem;
-    font-weight: 700;
-}
-
-.at-path-card small {
-    color: var(--at-text-muted);
-    font-size: 1.05rem;
-    line-height: 1.6;
+    transform: translateX(4px);
 }
 
 .at-path-card-featured {
@@ -780,8 +772,9 @@
 
 @media (max-width: 575.98px) {
   .at-journey-circle {
-    width: 320px;
-    height: 320px;
+    width: min(320px, 100%);
+    height: auto;
+    aspect-ratio: 1;
   }
 
   .at-journey-line {
@@ -793,7 +786,11 @@
   }
 
   .at-journey-step h3 {
-    font-size: 1.35rem;
+    font-size: 1.0625rem;
+    line-height: 1.25;
+    hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .at-journey-step small {
@@ -991,7 +988,7 @@
     }
 
     .at-therapist-mini-content .at-heading-3 {
-        font-size: 2.4rem;
+        font-size: var(--at-font-h2);
     }
 
     .at-therapist-mini-specialization {
@@ -1007,7 +1004,7 @@
 
 @media (max-width: 575.98px) {
     .at-therapist-mini-card {
-        grid-template-columns: 110px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--at-space-4);
     }
 
@@ -1026,7 +1023,7 @@
     }
 
     .at-therapist-mini-content .at-heading-3 {
-        font-size: 2rem;
+        font-size: var(--at-font-h2);
     }
 
     .at-therapist-mini-specialization,
@@ -1303,30 +1300,87 @@
         flex-direction: column;
     }
 
+    .at-service-card-featured {
+        border-color: var(--at-border-color);
+        box-shadow: 0 8px 24px rgba(48, 70, 61, .08);
+    }
+
+    .at-service-card-featured::before {
+        display: none;
+    }
+
+    .at-service-card-featured .card-body {
+        min-height: 0;
+        padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    }
+
     .at-service-featured-layout {
-        grid-template-columns: 1fr;
+        display: block;
+        height: auto;
+    }
+
+    .at-service-featured-content {
+        height: auto;
     }
 
     .at-service-featured-image {
         display: none;
     }
 
-    .at-service-card .card-body {
-        min-height: auto;
+    .at-service-featured-kicker {
+        margin-bottom: .85rem;
+        padding: .3rem .7rem;
+        font-size: .75rem;
+    }
+
+    .at-service-card-featured .at-heading-2 {
+        margin-bottom: .75rem;
+    }
+
+    .at-service-card-featured .at-body {
+        min-height: 0;
+        max-height: none;
+        margin-bottom: 1rem;
+        -webkit-line-clamp: unset;
     }
 
     .at-service-card-footer {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: stretch;
+        gap: .85rem;
+        margin-top: 0;
+    }
+
+    .at-service-meta {
+        gap: .5rem;
     }
 
     .at-service-featured-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
         width: 100%;
     }
 
-    .at-services-page .at-page-header .at-btn,
-    .at-services-page .at-card-link,
+    /* More stays a quiet secondary action */
+    .at-services-page .at-card-link {
+        width: auto;
+        min-height: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    /* Booking remains the clear primary action */
     .at-service-featured-actions .at-btn {
+        width: auto;
+        min-width: 10rem;
+        margin-left: auto;
+    }
+
+    .at-services-page .at-page-header .at-btn {
         width: 100%;
     }
 }
@@ -1919,7 +1973,7 @@
 
 .at-therapist-detail-section .at-heading-2 {
     margin-bottom: 2.2rem;
-    font-size: clamp(2.7rem, 4vw, 3.4rem);
+    font-size: var(--at-font-h1);
 }
 
 .at-therapist-bio {
@@ -2680,6 +2734,30 @@
     color: var(--at-text);
 }
 
+.at-booking-service-meta > :last-child {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+    .at-booking-service-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .25rem;
+    }
+
+    .at-booking-service-meta > [aria-hidden="true"] {
+        display: none;
+    }
+
+    .at-booking-service-meta > :last-child {
+        font-size: .95rem;
+        font-weight: 400;
+        color: var(--at-text-muted);
+    }
+}
+
 
 /* ----------------------------------------------------------
    Evening mode
@@ -2711,12 +2789,14 @@
 @media (max-width: 47.99rem) {
     .at-booking-header {
         max-width: 52rem;
+    }
         margin-bottom: var(--at-space-7);
 }
 
     .at-booking-search,
     .at-booking-details form {
         padding: var(--at-space-5);
+        border:0;
     }
 
     .at-booking-section {
@@ -2734,9 +2814,6 @@
     font-weight: 700;
 }
 
-    .at-booking-search {
-    outline: 4px solid red;
-    }
 }
 
 /* ==========================================================
@@ -2919,6 +2996,8 @@
     gap: var(--at-space-6);
 
     max-width: 70rem;
+    max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
     margin-inline: auto;
     padding: var(--at-space-5);
 
@@ -2927,6 +3006,8 @@
     border-radius: var(--at-radius-lg);
     box-shadow: var(--at-shadow-lg);
 }
+
+.at-cookie-banner[hidden] { display: none; }
 
 .at-cookie-content {
     flex: 1;
@@ -2943,6 +3024,7 @@
 }
 
 .at-cookie-links {
+    flex-wrap: wrap;
     margin-top: 1rem;
 
     display: flex;
@@ -2991,4 +3073,48 @@
     border-color: var(--at-card-border);
     box-shadow: var(--at-card-shadow);
     backdrop-filter: blur(18px);
+}
+
+/* Shared public component sizing on phones. */
+@media (max-width: 767.98px) {
+    .at-path-card, .at-info-card, .at-process-grid .at-info-card,
+    .at-service-card .card-body, .at-booking-search,
+    .at-booking-details form, .at-therapist-detail-hero {
+        padding: var(--at-card-padding);
+        min-height: auto;
+    }
+    .at-hero-paths, .at-reading-page { gap: 1.5rem; }
+    .at-question h2 { font-size: var(--at-font-h2); }
+    .at-answer-list { margin-left: 0; }
+    .at-answer-label { font-size: 1rem; line-height: 1.5; padding: .75rem 1rem; }
+    .at-reading-lead, .at-reading-content,
+    .at-therapist-bio, .at-booking-intro { font-size: 1rem; }
+    .at-service-chip, .at-therapist-mini-services a, .at-more-services {
+        min-height: 44px;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    .at-booking-search .btn { white-space: normal; }
+    .at-therapist-detail-photo { height: auto; max-height: 320px; object-fit: cover; }
+    .at-therapist-detail-hero { gap: 1.5rem; }
+    .at-hero-title br { display: none; }
+    .at-service-card-featured .card-body {
+        min-height: 0;
+        padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    }
+}
+/* Tablet hero stacks before the desktop columns become available. */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .at-hero { min-height: auto; padding: 2rem; }
+    .at-hero-image { justify-content: center; padding-right: 0; }
+    .at-hero-image img, .at-hero-home .at-hero-image img {
+        width: min(280px, 100%);
+        transform: none;
+    }
+}
+
+.at-answer-input:focus-visible + .at-answer-label {
+    outline: 3px solid var(--at-text);
+    outline-offset: 3px;
 }

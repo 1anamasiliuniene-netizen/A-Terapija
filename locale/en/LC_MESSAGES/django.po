@@ -2127,3 +2127,7 @@ msgstr "Description"
 
 #~ msgid "Thank you! Your message has been received."
 #~ msgstr "Thank you! Your message has been received."
+
+#: aterapija/templates/aterapija/base.html
+msgid "Scroll horizontally to see more"
+msgstr "Scroll horizontally to see more"

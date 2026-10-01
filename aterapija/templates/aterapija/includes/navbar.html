@@ -3,8 +3,8 @@
 
 {% get_current_language as CURRENT_LANGUAGE %}
 
-<nav class="navbar navbar-expand-lg at-navbar">
-  <div class="container at-navbar-container">
+<nav class="navbar navbar-expand-xxl at-navbar">
+  <div class="container-fluid at-navbar-container">
 
     <a class="at-navbar-brand" href="{% url 'aterapija:home' %}">
       <img
@@ -30,7 +30,7 @@
 
     <div class="collapse navbar-collapse" id="mainNav">
 
-      <ul class="navbar-nav at-navbar-menu mx-lg-auto">
+      <ul class="navbar-nav at-navbar-menu mx-xxl-auto">
         <li class="nav-item">
           <a class="at-nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'aterapija:home' %}">
             {% trans "Home" %}

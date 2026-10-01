@@ -65,20 +65,20 @@
 
     <link
         rel="stylesheet"
-        href="{% static 'css/core.css' %}?v=13"
+        href="{% static 'css/core.css' %}?v=20"
     >
 
     <link
         rel="stylesheet"
-        href="{% static 'css/app.css' %}?v=13"
+        href="{% static 'css/app.css' %}?v=18"
     >
 
     <link
         rel="stylesheet"
-        href="{% static 'css/public.css' %}?v=14"
+        href="{% static 'css/public.css' %}?v=23"
     >
 </head>
-<body>
+<body data-scroll-hint="{% trans 'Scroll horizontally to see more' %}">
 
 {% include "aterapija/includes/navbar.html" %}
 
@@ -113,6 +113,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'js/theme_toggle.js' %}" defer></script>
+
+<script src="{% static 'js/responsive.js' %}?v=1" defer></script>
 
 </body>
 </html>
