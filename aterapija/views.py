@@ -723,7 +723,7 @@ class ServiceDetailView(DetailView):
 
 class TherapistAnchorRedirectMixin:
     def get_redirect_url(self, *args, **kwargs):
-        return f"{reverse('aterapija:about')}#therapist"
+        return f"{reverse('aterapija:about')}#therapists"
 
 
 class TherapistListRedirectView(TherapistAnchorRedirectMixin, RedirectView):

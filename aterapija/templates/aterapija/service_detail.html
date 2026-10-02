@@ -77,7 +77,7 @@
                         {{ therapist|localized_bio|truncatewords:30 }}
                     </p>
                     <div class="at-service-card-footer">
-                      <a href="{% url 'aterapija:therapist_detail' therapist.pk %}"
+                      <a href="{% url 'aterapija:about' %}#therapists"
                          class="at-card-link">
                         {% trans "Meet the therapist" %} →
                       </a>

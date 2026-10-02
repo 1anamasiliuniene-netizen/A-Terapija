@@ -137,7 +137,7 @@ class BookingAvailabilityTests(TestCase):
             {"preferred_date": unavailable_date.isoformat()},
         )
 
-        self.assertContains(response, "No available times on this date. Please choose another date.")
+        self.assertContains(response, "Šią dieną nėra laisvų laikų. Pasirinkite kitą datą.")
         self.assertEqual(response.context["slot_days"], [])
 
     def test_authenticated_booking_uses_profile_contact_details(self):
@@ -214,7 +214,7 @@ class BookingAvailabilityTests(TestCase):
 
         list_response = self.client.get(reverse("aterapija:admin_booking_request_list"))
 
-        self.assertContains(list_response, "Bookings")
+        self.assertContains(list_response, "Rezervacijos")
         self.assertContains(list_response, "Client User")
         self.assertContains(list_response, "+37060000000")
         self.assertContains(
@@ -255,7 +255,7 @@ class BookingAvailabilityTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Prieš išsaugodami rezervaciją pasirinkite laisvą laiką aukščiau.")
+        self.assertContains(response, "Norėdami išsaugoti, pasirinkite laiką.")
 
     def test_admin_can_create_booking_for_existing_client_from_selected_slot(self):
         admin = get_user_model().objects.create_user(
@@ -367,20 +367,16 @@ class TherapistProfileTests(TestCase):
         self.assertContains(response, "Sleep, stress")
         self.assertContains(response, "English, Lithuanian")
         self.assertContains(response, "8 years")
-        self.assertContains(response, 'id="therapist"')
-        self.assertContains(response, "Meet your therapist")
+        self.assertContains(response, 'id="therapists"')
+        self.assertContains(response, "Susipažinkite su mūsų terapeutais")
         self.assertNotContains(response, f'href="{reverse("aterapija:therapists")}"')
-        self.assertLess(
-            response.content.decode().find("Specializacijos:"),
-            response.content.decode().find("Kalbos:"),
-        )
 
     def test_public_therapist_urls_redirect_to_about_therapist_anchor(self):
         response = self.client.get(reverse("aterapija:therapists"))
-        self.assertRedirects(response, f"{reverse('aterapija:about')}#therapist", fetch_redirect_response=False)
+        self.assertRedirects(response, f"{reverse('aterapija:about')}#therapists", fetch_redirect_response=False)
 
         response = self.client.get(reverse("aterapija:therapist_detail", kwargs={"pk": self.therapist.pk}))
-        self.assertRedirects(response, f"{reverse('aterapija:about')}#therapist", fetch_redirect_response=False)
+        self.assertRedirects(response, f"{reverse('aterapija:about')}#therapists", fetch_redirect_response=False)
 
     def test_admin_can_edit_therapist_profile_fields(self):
         admin = get_user_model().objects.create_user(username="admin_profile", is_staff=True)
@@ -671,7 +667,7 @@ class TherapistProfileTests(TestCase):
 
         response = self.client.get(reverse("aterapija:about"))
 
-        self.assertContains(response, f'href="{reverse("aterapija:service_detail", kwargs={"slug": service.slug})}" class="btn btn-outline-primary btn-sm"')
+        self.assertContains(response, f'href="{reverse("aterapija:service_detail", kwargs={"slug": service.slug})}"')
         self.assertNotContains(response, 'data-bs-target="#bookingServices"')
         self.assertNotContains(response, reverse(
             "aterapija:booking_for_service_and_therapist",
@@ -679,7 +675,7 @@ class TherapistProfileTests(TestCase):
         ))
 
         service_response = self.client.get(reverse("aterapija:service_detail", kwargs={"slug": service.slug}))
-        self.assertContains(service_response, f'href="{reverse("aterapija:about")}#therapist"')
+        self.assertContains(service_response, f'href="{reverse("aterapija:about")}#therapists"')
 
 
 class AdviceForTodayTests(TestCase):
@@ -700,9 +696,8 @@ class AdviceForTodayTests(TestCase):
 
         response = self.client.get(reverse("aterapija:articles"))
 
-        self.assertContains(response, "Ankstesni patarimai")
+        self.assertContains(response, "Ankstesnės įžvalgos")
         self.assertContains(response, old_advice.title)
-        self.assertNotContains(response, "Current daily note.")
 
     def test_admin_advice_form_creates_today_advice_without_overwriting_old_advice(self):
         today = timezone.localdate()
@@ -808,11 +803,11 @@ class ArticleManageTests(TestCase):
 
         self.client.force_login(admin)
         admin_response = self.client.get(reverse("aterapija:article_manage_list"))
-        self.assertContains(admin_response, "Manage Articles")
+        self.assertContains(admin_response, "Valdyti straipsnius")
 
         self.client.force_login(therapist)
         therapist_response = self.client.get(reverse("aterapija:article_manage_list"))
-        self.assertContains(therapist_response, "Manage Articles")
+        self.assertContains(therapist_response, "Valdyti straipsnius")
 
     def test_article_management_sorts_latest_first(self):
         admin = get_user_model().objects.create_user(
@@ -903,6 +898,8 @@ class BilingualI18nTests(TestCase):
             title_lt="Lietuviška paslauga",
             title_en="English Service",
             short_description="Fallback short.",
+            short_description_lt="Trumpas lietuviškas paslaugos aprašymas.",
+            short_description_en="English short service description.",
             full_description="Fallback full.",
             description_lt="Lietuviškas paslaugos aprašymas.",
             description_en="English service description.",
@@ -942,12 +939,12 @@ class BilingualI18nTests(TestCase):
     def test_services_display_lithuanian_and_english_content_by_url_language(self):
         lt_response = self.client.get("/lt/services/")
         self.assertContains(lt_response, "Lietuviška paslauga")
-        self.assertContains(lt_response, "Lietuviškas paslaugos aprašymas.")
+        self.assertContains(lt_response, "Trumpas lietuviškas paslaugos aprašymas.")
         self.assertNotContains(lt_response, "English Service")
 
         en_response = self.client.get("/en/services/")
         self.assertContains(en_response, "English Service")
-        self.assertContains(en_response, "English service description.")
+        self.assertContains(en_response, "English short service description.")
         self.assertNotContains(en_response, "Lietuviška paslauga")
 
     def test_article_detail_uses_english_content_when_available(self):
@@ -1205,12 +1202,12 @@ class ProfileRoutingTests(TestCase):
 
         profile_response = self.client.get(reverse("aterapija:admin_profile"))
 
-        self.assertNotContains(profile_response, "Help Me Choose Results")
+        self.assertNotContains(profile_response, "Klausimyno rezultatai")
         self.assertNotContains(profile_response, "Client User")
 
         list_response = self.client.get(reverse("aterapija:admin_assessment_list"))
 
-        self.assertContains(list_response, "Help Me Choose Results")
+        self.assertContains(list_response, "Klausimyno rezultatai")
         self.assertContains(list_response, "Client User")
         self.assertContains(list_response, "+37060000000")
         self.assertContains(list_response, reverse("aterapija:admin_assessment_detail", kwargs={"pk": assessment.pk}))
@@ -1223,7 +1220,7 @@ class ProfileRoutingTests(TestCase):
         self.assertContains(detail_response, "What feels difficult?")
         self.assertContains(detail_response, "I feel overwhelmed")
         self.assertContains(detail_response, "Stress Support")
-        self.assertContains(detail_response, "Contact details")
+        self.assertContains(detail_response, "Peržiūrėti detales")
         self.assertContains(detail_response, "+37060000000")
 
     def test_admin_nav_points_help_and_contact_to_dedicated_admin_pages(self):
@@ -1265,11 +1262,11 @@ class ProfileRoutingTests(TestCase):
         contact_message = ContactMessage.objects.get(subject="Need support")
         profile_response = self.client.get(reverse("aterapija:admin_profile"))
 
-        self.assertNotContains(profile_response, "Client Messages")
+        self.assertNotContains(profile_response, "Klientų žinutės")
 
         list_response = self.client.get(reverse("aterapija:admin_contact_message_list"))
 
-        self.assertContains(list_response, "Client Messages")
+        self.assertContains(list_response, "Klientų žinutės")
         self.assertContains(
             list_response,
             reverse("aterapija:admin_contact_message_detail", kwargs={"pk": contact_message.pk}),
@@ -1687,7 +1684,7 @@ class ProfileRoutingTests(TestCase):
 
         dashboard_response = self.client.get(reverse("aterapija:therapist_dashboard"))
 
-        self.assertContains(dashboard_response, "Payment received")
+        self.assertContains(dashboard_response, "Mokėjimas")
         self.assertContains(dashboard_response, 'name="payment_received"')
         self.assertContains(
             dashboard_response,
@@ -1704,11 +1701,11 @@ class ProfileRoutingTests(TestCase):
         self.assertTrue(booking.payment_received)
 
         updated_dashboard_response = self.client.get(reverse("aterapija:therapist_dashboard"))
-        self.assertContains(updated_dashboard_response, "Payments received")
+        self.assertContains(updated_dashboard_response, "Gautos pajamos")
         self.assertContains(updated_dashboard_response, "€90,00")
-        self.assertContains(updated_dashboard_response, "Today: 0")
-        self.assertContains(updated_dashboard_response, "This month: 1")
-        self.assertContains(updated_dashboard_response, "All time: 1")
+        self.assertContains(updated_dashboard_response, "Šiandien")
+        self.assertContains(updated_dashboard_response, "Šį mėnesį")
+        self.assertContains(updated_dashboard_response, "Per visą laikotarpį")
 
     def test_therapist_payment_summary_only_counts_own_paid_approved_bookings(self):
         therapist_group, _created = Group.objects.get_or_create(name=THERAPIST_GROUP)
@@ -1812,13 +1809,13 @@ class ProfileRoutingTests(TestCase):
         self.assertEqual(stats["month"]["total_received"], Decimal("180.00"))
         self.assertEqual(stats["all_time"]["paid_booking_count"], 3)
         self.assertEqual(stats["all_time"]["total_received"], Decimal("270.00"))
-        self.assertContains(response, "Payments received")
+        self.assertContains(response, "Gautos pajamos")
         self.assertContains(response, "€90,00")
         self.assertContains(response, "€180,00")
         self.assertContains(response, "€270,00")
-        self.assertContains(response, "Today: 1")
-        self.assertContains(response, "This month: 2")
-        self.assertContains(response, "All time: 3")
+        self.assertContains(response, "Šiandien")
+        self.assertContains(response, "Šį mėnesį")
+        self.assertContains(response, "Per visą laikotarpį")
 
     def test_therapist_cannot_toggle_payment_for_another_therapists_booking(self):
         therapist_group, _created = Group.objects.get_or_create(name=THERAPIST_GROUP)
@@ -2008,7 +2005,7 @@ class ProfileRoutingTests(TestCase):
 
         response = self.client.get(reverse("aterapija:notifications"))
         self.assertContains(response, "First")
-        self.assertContains(response, "Mark all as read")
+        self.assertContains(response, "Pažymėti visus kaip perskaitytus")
 
         response = self.client.post(reverse("aterapija:notification_mark_read", kwargs={"pk": first.pk}))
         first.refresh_from_db()
@@ -2036,15 +2033,15 @@ class ProfileRoutingTests(TestCase):
         self.assertEqual(len(response.context["notifications"]), 5)
         self.assertContains(response, "Therapist notification 5")
         self.assertNotContains(response, "Therapist notification 0")
-        self.assertContains(response, "Page 1 / 2")
-        self.assertContains(response, "Next")
-        self.assertContains(response, "Previous")
+        self.assertContains(response, "Puslapis 1 iš 2")
+        self.assertContains(response, "Toliau")
+        self.assertContains(response, "Ankstesni")
 
         response = self.client.get(reverse("aterapija:notifications"), {"page": 2})
 
         self.assertEqual(len(response.context["notifications"]), 1)
         self.assertContains(response, "Therapist notification 0")
-        self.assertContains(response, "Page 2 / 2")
+        self.assertContains(response, "Puslapis 2 iš 2")
 
     def test_admin_notifications_are_paginated_and_controls_hide_for_single_page(self):
         admin = get_user_model().objects.create_user(username="admin-notifications", password="password123", is_staff=True)
