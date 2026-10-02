@@ -1108,14 +1108,6 @@
   box-shadow: 0 18px 40px rgba(48, 70, 61, .14);
 }
 
-.at-service-card-featured::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 8px;
-  background: var(--at-orchid);
-}
-
 .at-service-featured-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 220px;
@@ -1169,7 +1161,7 @@
 
 .at-service-card-featured .card-body {
   min-height: 360px;
-  padding-left: calc(var(--at-space-6) + 8px);
+  padding-left: var(--at-space-6);
 }
 
 .at-service-card-featured .at-heading-2,
@@ -1293,9 +1285,36 @@
     color: var(--at-cream);
 }
 
+/* Desktop featured card: match the other evening-mode cards while giving the
+   featured service a quiet orchid glow instead of a visible left-side stripe. */
+@media (min-width: 768px) {
+    [data-bs-theme="dark"] .at-service-card-featured {
+        background:
+            linear-gradient(90deg, rgba(217, 163, 175, .14), transparent 42%),
+            var(--at-card-bg);
+        border-color: var(--at-card-border);
+        box-shadow:
+            var(--at-card-shadow),
+            -1rem 0 2rem rgba(217, 163, 175, .14);
+    }
+}
+
 /* Mobile */
 
 @media (max-width: 767.98px) {
+    /* Keep the featured card in the same dark palette as the service cards.
+       The base --at-surface token is a light surface, which made its cream
+       text disappear in evening mode on phones. */
+    [data-bs-theme="dark"] .at-service-card-featured {
+        background:
+            linear-gradient(90deg, rgba(217, 163, 175, .14), transparent 42%),
+            var(--at-card-bg);
+        border-color: var(--at-card-border);
+        box-shadow:
+            var(--at-card-shadow),
+            -.75rem 0 1.5rem rgba(217, 163, 175, .12);
+    }
+
     .at-services-page .at-page-header {
         flex-direction: column;
     }
