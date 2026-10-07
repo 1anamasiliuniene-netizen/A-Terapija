@@ -1056,7 +1056,7 @@ p {
    Header responsive
 ---------------------------------------------------------- */
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
     .at-navbar-container {
         gap: 1.25rem;
     }
@@ -1088,7 +1088,7 @@ p {
     }
 }
 
-@media (max-width: 1399.98px) {
+@media (max-width: 1199.98px) {
     .at-navbar {
         padding: .5rem 0;
     }
