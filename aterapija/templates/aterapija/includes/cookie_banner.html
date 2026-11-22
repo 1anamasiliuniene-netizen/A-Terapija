@@ -7,14 +7,11 @@
     <div class="at-cookie-content">
 
         <h2 class="at-cookie-title">
-            {% trans "Cookies" %}
+            {% trans "Cookies and preferences" %}
         </h2>
 
         <p class="at-cookie-text">
-            {% blocktrans trimmed %}
-                We use cookies to improve your experience, remember your preferences and analyse website usage.
-                You can accept all cookies or manage your preferences.
-            {% endblocktrans %}
+            {% trans "We use cookies for sign-in and form security. You can also allow this browser to remember your day or evening theme." %}
         </p>
 
         <p class="at-cookie-links">
@@ -45,9 +42,9 @@
 
         </button>
 
-        <button class="at-btn at-btn-primary" type="button" data-cookie-consent="all">
+        <button class="at-btn at-btn-primary" type="button" data-cookie-consent="preferences">
 
-            {% trans "Accept all" %}
+            {% trans "Remember my theme" %}
 
         </button>
 
@@ -58,30 +55,43 @@
 <script>
     (function () {
         var storageKey = "aterapija-cookie-consent";
+        var themeKey = "aterapija-theme";
         var banner = document.getElementById("cookie-banner");
-
-        if (!banner) {
-            return;
-        }
+        var settings = document.getElementById("cookie-settings");
+        var necessaryButton = banner.querySelector('[data-cookie-consent="necessary"]');
 
         try {
-            if (window.localStorage.getItem(storageKey)) {
-                banner.hidden = true;
-                return;
-            }
+            var consent = window.localStorage.getItem(storageKey);
+            banner.hidden = consent === "necessary" || consent === "preferences";
         } catch (error) {
-            return;
+            // The choices remain available when browser storage is blocked.
         }
+
+        settings.addEventListener("click", function (event) {
+            event.preventDefault();
+            banner.hidden = false;
+            necessaryButton.focus();
+        });
 
         banner.querySelectorAll("[data-cookie-consent]").forEach(function (button) {
             button.addEventListener("click", function () {
+                var choice = button.dataset.cookieConsent;
                 try {
-                    window.localStorage.setItem(storageKey, button.dataset.cookieConsent);
+                    if (choice === "necessary") {
+                        window.localStorage.removeItem(themeKey);
+                    }
+                    window.localStorage.setItem(storageKey, choice);
+                    if (choice === "preferences") {
+                        window.localStorage.setItem(
+                            themeKey,
+                            document.documentElement.getAttribute("data-bs-theme")
+                        );
+                    }
                 } catch (error) {
-                    // The banner should still close when storage is unavailable.
+                    // The choice can still dismiss the banner for the current page.
                 }
-
                 banner.hidden = true;
+                settings.focus();
             });
         });
     })();

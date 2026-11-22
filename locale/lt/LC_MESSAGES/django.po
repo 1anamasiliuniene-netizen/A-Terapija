@@ -4363,3 +4363,30 @@ msgstr "Angliškas CTA tekstas"
 #: aterapija/templates/aterapija/base.html
 msgid "Scroll horizontally to see more"
 msgstr "Slinkite horizontaliai, kad matytumėte daugiau"
+
+msgid "Cookies and preferences"
+msgstr "Slapukai ir nuostatos"
+
+msgid "We use cookies for sign-in and form security. You can also allow this browser to remember your day or evening theme."
+msgstr "Slapukus naudojame prisijungimui ir formų apsaugai. Taip pat galite leisti naršyklei įsiminti dienos arba vakaro rodinį."
+
+msgid "Remember my theme"
+msgstr "Įsiminti rodinį"
+
+msgid "Cookie settings"
+msgstr "Slapukų nustatymai"
+
+msgid "Cookies are small text files stored by your browser. This website uses a session cookie for sign-in and a security cookie to protect form submissions."
+msgstr "Slapukai yra maži tekstiniai failai, kuriuos išsaugo naršyklė. Svetainė naudoja seanso slapuką prisijungimui ir saugos slapuką siunčiamoms formoms apsaugoti."
+
+msgid "If you choose to remember your theme, the website saves your day or evening preference in your browser’s local storage. It also stores your cookie settings there."
+msgstr "Jei leidžiate įsiminti rodinį, svetainė išsaugo dienos arba vakaro rodinio pasirinkimą naršyklės vietinėje saugykloje. Ten pat išsaugomas ir slapukų nustatymų pasirinkimas."
+
+msgid "We do not use analytics or advertising cookies."
+msgstr "Analitikos ir reklamos slapukų nenaudojame."
+
+msgid "You can change your choice at any time using Cookie settings in the footer. Choosing Only necessary removes the saved theme. You can still switch themes while viewing the current page."
+msgstr "Pasirinkimą bet kada galite pakeisti puslapio apačioje atidarę „Slapukų nustatymus“. Pasirinkus „Tik būtini“, išsaugotas rodinys ištrinamas. Rodinį vis tiek galite keisti atidarytame puslapyje."
+
+msgid "Types of cookies we use"
+msgstr "Naudojami slapukai"

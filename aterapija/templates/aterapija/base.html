@@ -18,7 +18,11 @@
             var savedTheme = null;
 
             try {
-                savedTheme = window.localStorage.getItem(storageKey);
+                if (window.localStorage.getItem("aterapija-cookie-consent") === "preferences") {
+                    savedTheme = window.localStorage.getItem(storageKey);
+                } else {
+                    window.localStorage.removeItem(storageKey);
+                }
             } catch (error) {
                 savedTheme = null;
             }
@@ -113,7 +117,7 @@
 {% include "aterapija/includes/cookie_banner.html" %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{% static 'js/theme_toggle.js' %}" defer></script>
+<script src="{% static 'js/theme_toggle.js' %}?v=2" defer></script>
 
 <script src="{% static 'js/responsive.js' %}?v=1" defer></script>
 

@@ -10,7 +10,9 @@
   function setTheme(theme) {
     document.documentElement.setAttribute("data-bs-theme", theme);
     try {
-      window.localStorage.setItem(STORAGE_KEY, theme);
+      if (window.localStorage.getItem("aterapija-cookie-consent") === "preferences") {
+        window.localStorage.setItem(STORAGE_KEY, theme);
+      }
     } catch (error) {
       // Ignore storage errors (for example private mode restrictions).
     }
