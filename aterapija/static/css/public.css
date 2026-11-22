@@ -206,9 +206,31 @@
    Hero artwork variants
 ---------------------------------------------------------- */
 
-/* Home hummingbird */
+/* Home title and hummingbird */
+.at-hero-home .at-hero-title {
+    font-size: clamp(1.85rem, 4.2vw, 4.25rem);
+    text-wrap: balance;
+}
+
+.at-hero-home .at-hero-image {
+    justify-content: center;
+    padding-inline: 0;
+}
+
 .at-hero-home .at-hero-image img {
-    width: min(620px, 120%);
+    width: min(420px, 100%);
+}
+
+@media (min-width: 992px) {
+    .at-hero-home .col-lg-8 {
+        flex-basis: 66%;
+        max-width: 66%;
+    }
+
+    .at-hero-home .col-lg-4 {
+        flex-basis: 34%;
+        max-width: 34%;
+    }
 }
 
 /* About logo */
@@ -232,7 +254,7 @@
     }
 
     .at-hero-home .at-hero-image img {
-        width: min(220px, 100%);
+        width: min(290px, 100%);
         transform: none;
     }
 
@@ -723,6 +745,11 @@
   color: var(--at-text);
 }
 
+html:lang(lt) .at-journey-step h3 {
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+
 .at-journey-step small {
   display: block;
   max-width: 9rem;
@@ -791,6 +818,10 @@
     hyphens: none;
     overflow-wrap: normal;
     word-break: normal;
+  }
+
+  html:lang(lt) .at-journey-step h3 {
+    font-size: 1rem;
   }
 
   .at-journey-step small {
@@ -3127,10 +3158,11 @@
 @media (min-width: 768px) and (max-width: 991.98px) {
     .at-hero { min-height: auto; padding: 2rem; }
     .at-hero-image { justify-content: center; padding-right: 0; }
-    .at-hero-image img, .at-hero-home .at-hero-image img {
+    .at-hero-image img {
         width: min(280px, 100%);
         transform: none;
     }
+    .at-hero-home .at-hero-image img { width: min(360px, 100%); }
 }
 
 .at-answer-input:focus-visible + .at-answer-label {
