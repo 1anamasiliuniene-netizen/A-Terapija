@@ -208,7 +208,7 @@
 
 /* Home and About hero titles */
 .at-hero-home .at-hero-title,
-.at-about-hero .at-hero-title,
+.at-about-intro .at-hero-title,
 .at-approach-text .at-heading-1 {
     font-size: clamp(1.85rem, 4.2vw, 4.25rem);
     text-wrap: balance;
@@ -237,13 +237,13 @@
 }
 
 @media (min-width: 768px) {
-    .at-about-hero .at-hero-actions {
+    .at-about-intro .at-hero-actions {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, max-content));
         align-items: stretch;
     }
 
-    .at-about-hero .at-hero-actions .at-btn {
+    .at-about-intro .at-hero-actions .at-btn {
         white-space: normal;
         text-align: center;
     }
